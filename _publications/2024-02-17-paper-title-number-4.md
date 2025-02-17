@@ -1,13 +1,13 @@
 ---
-title: "Paper Title Number 4"
+title: "An Adaptive Enhanced Method for Cardiovascular Disease Diagnosis Using Dual-Parameter Adjustment"
 collection: publications
-category: conferences
-permalink: /publication/2024-02-17-paper-title-number-4
-excerpt: 'This paper is about fixing template issue #693.'
-date: 2024-02-17
-venue: 'GitHub Journal of Bugs'
-paperurl: 'http://academicpages.github.io/files/paper3.pdf'
-citation: 'Your Name, You. (2024). &quot;Paper Title Number 3.&quot; <i>GitHub Journal of Bugs</i>. 1(3).'
+category: patent
+permalink: /publication/2025-02-11-adaptive-enhanced-method
+excerpt: 'This patent presents an innovative dual-parameter adjustment method for enhanced cardiovascular disease diagnosis, improving prediction accuracy and robustness.'
+date: 2025-02-11
+venue: 'National Patent'
+paperurl: 'http://zhwang2004.github.io/files/Authorized_Patent.pdf'
+citation: 'Ziheng Wang, et al. (2025). "An Adaptive Enhanced Method for Cardiovascular Disease Diagnosis Using Dual-Parameter Adjustment." <i>National Patent</i>. CN 119128694 B.'
 ---
 
-The contents above will be part of a list of publications, if the user clicks the link for the publication than the contents of section will be rendered as a full page, allowing you to provide more information about the paper for the reader. When publications are displayed as a single page, the contents of the above "citation" field will automatically be included below this section in a smaller font.
+This patent presents a novel dual-parameter adjustment mechanism to improve the accuracy and robustness of cardiovascular disease diagnosis. The proposed method offers a significant advancement over traditional techniques, making it more resistant to interference and applicable in various complex scenarios. This patent is authorized by the China National Intellectual Property Administration with patent number **ZL 2024 1 1625421.3**.
