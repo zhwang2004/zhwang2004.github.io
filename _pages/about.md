@@ -38,13 +38,6 @@ Hi, I am **Ziheng Wang**, a student majoring in **Internet of Things Engineering
 
 ---
 
-## Research Achievements
-- **First Author**: *An Adaptive Weighted Boosting Framework for Enhanced Cardiovascular Disease Diagnosis* published in *Biomedical Signal Processing and Control* (SCI, JCR-Q1).
-- **First Author**: *APPBoost: An Adaptive Parameter-Pair Boosting Algorithm* (Accepted by *The Journal of Supercomputing*, SCI, JCR-Q2).
-- **First Inventor**: *An Adaptive Enhanced Method for Cardiovascular Disease Diagnosis Using Weight Parameter Adjustment* (Nationally Authorized Patent).
-
----
-
 ## Competition Achievements
 - **2023 China Undergraduate Mathematical Contest in Modeling**: 1st Place National-level - Second Prize.
 - **2024 Mathematical Contest in Modeling (MCM/ICM)**: 1st Place National-level - Honorable Mention (H Award).
@@ -72,14 +65,6 @@ Hi, I am **Ziheng Wang**, a student majoring in **Internet of Things Engineering
 
 ---
 
-## Supporting Documents
-- [National Patent](#)
-- [Paper on Cardiovascular Disease Diagnosis](#)
-- [GPA Report](#)
-- [CUMCM 2023 Result](#)
-- [IELTS Score](#)
-
----
 
 Feel free to explore more about my research and projects on my [GitHub](https://github.com/Nickory) or contact me via email for collaborations and inquiries.
 
