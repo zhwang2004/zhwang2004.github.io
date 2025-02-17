@@ -1,7 +1,11 @@
-
-
-
-# Welcome to My Personal Website
+---
+permalink: /
+title: " Welcome to My Personal Website"
+author_profile: true
+redirect_from: 
+  - /about/
+  - /about.html
+---
 
 Hi, I am **Ziheng Wang**, a student majoring in **Internet of Things Engineering** at **Nanjing University of Information Science and Technology** in collaboration with **Waterford Institute**. My studies are focused on innovative research and applying cutting-edge technologies to solve real-world problems.
 
