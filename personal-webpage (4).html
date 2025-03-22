@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ziheng Wang | Academic Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0a3d62;
+            --secondary-color: #3498db;
+            --accent-color: #f39c12;
+            --light-color: #f5f6fa;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --max-width: 1200px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .contact-info {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 15px;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        
+        .contact-info a:hover {
+            color: var(--accent-color);
+        }
+        
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav li {
+            padding: 15px 0;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            padding: 15px 20px;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--secondary-color);
+        }
+        
+        nav a i {
+            margin-right: 5px;
+            transition: transform 0.3s;
+        }
+        
+        nav a:hover i {
+            transform: scale(1.2);
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        section:nth-child(even) {
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 15px auto 0;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .profile-pic {
+            flex: 0 0 300px;
+        }
+        
+        .profile-pic img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .education-item, .publication-item, .project-item, .award-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .education-item:hover, .publication-item:hover, .project-item:hover, .award-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-list li i, h2 i, h3 i {
+            animation: float 3s ease-in-out infinite;
+            display: inline-block;
+        }
+        
+        .education-item, .publication-item, .project-item, .award-item, .skill-category {
+            animation: fadeIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .skill-category:nth-child(1) { animation-delay: 0.1s; }
+        .skill-category:nth-child(2) { animation-delay: 0.2s; }
+        .skill-category:nth-child(3) { animation-delay: 0.3s; }
+        .skill-category:nth-child(4) { animation-delay: 0.4s; }
+        
+        .education-item h3, .publication-item h3, .project-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .education-meta, .publication-meta, .project-meta {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .publication-citation {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .skill-category {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-color);
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-list li::before {
+            content: '•';
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .award-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .button:hover {
+            background-color: #e67e22;
+            transform: translateY(-3px);
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .social-links {
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        
+        .highlight {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+        
+        .tag {
+            display: inline-block;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .profile-pic {
+                flex: 0 0 100%;
+                max-width: 300px;
+                margin: 0 auto 30px;
+            }
+            
+            .education-meta, .publication-meta, .project-meta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .education-meta span, .publication-meta span {
+                margin-bottom: 5px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+            }
+            
+            .award-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1><i class="fas fa-user-graduate"></i> Ziheng Wang</h1>
+            <p><i class="fas fa-brain"></i> Machine Learning Researcher | Ph.D. & Research Master's Applicant</p>
+            <div class="contact-info">
+                <a href="mailto:zhwang@nuist.edu.cn"><i class="fas fa-envelope"></i> zhwang@nuist.edu.cn</a> |
+                <a href="https://github.com/Nickory" target="_blank"><i class="fab fa-github"></i> Nickory</a> |
+                <a href="tel:+8613641577335"><i class="fas fa-phone"></i> +86 136-4157-7335</a>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#about" class="active"><i class="fas fa-user"></i> About</a></li>
+                <li><a href="#education"><i class="fas fa-graduation-cap"></i> Education</a></li>
+                <li><a href="#publications"><i class="fas fa-book"></i> Publications</a></li>
+                <li><a href="#projects"><i class="fas fa-flask"></i> Research</a></li>
+                <li><a href="#awards"><i class="fas fa-trophy"></i> Awards</a></li>
+                <li><a href="#skills"><i class="fas fa-tools"></i> Skills</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-user-circle"></i> About Me</h2>
+            <div class="about-content">
+                <div class="profile-pic">
+                    <img src="/api/placeholder/400/500" alt="Ziheng Wang">
+                </div>
+                <div class="about-text">
+                    <p>I am a senior undergraduate student at Nanjing University of Information Science and Technology, specializing in Internet of Things through an international collaborative program. My research focuses on machine learning algorithms with healthcare applications, particularly ensemble methods for cardiovascular disease diagnosis.</p>
+                    <p>My work has resulted in multiple publications in respected scientific journals and a nationally authorized patent. I have developed novel approaches for enhancing the robustness and accuracy of diagnostic algorithms through adaptive techniques and parameter optimization.</p>
+                    <p>I am currently seeking Ph.D. and research-oriented Master's opportunities to further develop my expertise in machine learning for healthcare and intelligent systems. I hope to join a research team where I can continue contributing to this field through innovative computational methods.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-university"></i> Education</h2>
+            <div class="education-item">
+                <h3>Nanjing University of Information Science and Technology</h3>
+                <div class="education-meta">
+                    <span>B.Eng., Internet of Things</span>
+                    <span>2022 - 2026 (Expected)</span>
+                </div>
+                <p><strong>GPA:</strong> 3.969/4.0 (Ranked 2nd out of 34 students)</p>
+                <p>Enrolled in a 4+0 joint program between Nanjing University of Information Science and Technology and South East Technological University, Ireland. All major courses are taught in English, providing strong international exposure and cross-cultural skills.</p>
+                <p><strong>Relevant Coursework:</strong> Machine Learning, Data Structures and Algorithms, Computer Networks, Database Systems, IoT Architecture</p>
+            </div>
+            <div class="education-item">
+                <h3>Jingjiang High School, Jiangsu Province</h3>
+                <div class="education-meta">
+                    <span>High-quality Demonstration School of Jiangsu Province</span>
+                    <span>2019 - 2022</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="publications">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-file-alt"></i> Publications</h2>
+            <div class="publication-item">
+                <h3>An Adaptive Weighted Boosting Framework for Enhanced Cardiovascular Disease Diagnosis</h3>
+                <span class="publication-citation">Wang, Z., Shao, Z., Wang, B., Cheng, X. (2025). An adaptive weighted boosting framework for enhanced cardiovascular disease diagnosis. Biomedical Signal Processing and Control, Elsevier. (SCI, JCR-Q1)</span>
+                <div class="publication-meta">
+                    <span>First Author</span>
+                    <span>Published in Biomedical Signal Processing and Control</span>
+                </div>
+                <p>Developed an innovative adaptive weighting mechanism for boosting algorithms that significantly improves cardiovascular disease diagnostic accuracy compared to traditional methods. The framework demonstrates enhanced robustness across diverse patient populations and clinical scenarios.</p>
+            </div>
+            <div class="publication-item">
+                <h3>APPBoost: An Adaptive Parameter-Pair Boosting Algorithm for Enhanced Robustness Against Noise and Imbalance</h3>
+                <span class="publication-citation">Wang, Z., Shao, Z., Wang, B., Cheng, X. (2025). APPBoost: an adaptive parameter pair boosting algorithm for enhanced robustness against noise and imbalance. The Journal of Supercomputing, Springer. (SCI, JCR-Q2)</span>
+                <div class="publication-meta">
+                    <span>First Author</span>
+                    <span>Accepted by The Journal of Supercomputing</span>
+                </div>
+                <p>This research introduces a novel dual-parameter adjustment mechanism for boosting algorithms that systematically enhances model resistance to interference and improves robustness. The proposed APPBoost algorithm adaptively adjusts two key parameters simultaneously, optimizing performance in the presence of noise and data imbalance.</p>
+            </div>
+            <div class="publication-item">
+                <h3>An Adaptive Enhanced Method for Cardiovascular Disease Diagnosis Using Weight Parameter Adjustment</h3>
+                <div class="publication-meta">
+                    <span>First Inventor</span>
+                    <span>Nationally Authorized Patent</span>
+                </div>
+                <p>This patent documents a novel method for cardiovascular disease diagnosis utilizing adaptive weight parameter adjustments to enhance diagnostic accuracy and system reliability. The invention provides a systematic approach to parameter optimization that significantly improves performance in clinical applications.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-microscope"></i> Research Projects</h2>
+            <div class="project-item">
+                <h3>Research on Early Diagnosis Algorithms for Cardiovascular Diseases Based on Adaptive and Feature Interaction</h3>
+                <div class="project-meta">
+                    <span>Principal Investigator, Project Leader</span>
+                    <span>May 2024 - May 2025</span>
+                </div>
+                <p><strong>National-level College Students' Innovation and Entrepreneurship Training Program</strong></p>
+                <p><strong>Supervisors:</strong> Dean Baowei Wang and Associate Dean Xu Cheng, Waterford Institute</p>
+                <ul>
+                    <li>Researched and proposed an improved adaptive weight algorithm with enhanced prediction accuracy.</li>
+                    <li>Innovatively introduced a dual-parameter adjustment mechanism to enhance the model's resistance to interference and robustness.</li>
+                    <li>Experimental results show that the proposed improved method significantly improves prediction accuracy and robustness compared to the traditional AdaBoost algorithm.</li>
+                </ul>
+            </div>
+            <div class="project-item">
+                <h3>Research on UAV Intelligent Perception and Countermeasure Schemes: Multi-modal Data Fusion and 3D Trajectory Estimation</h3>
+                <div class="project-meta">
+                    <span>Research Project</span>
+                    <span>Winter 2024</span>
+                </div>
+                <ul>
+                    <li>Study UAV intelligent perception and countermeasure schemes, addressing the limitations of traditional single-modal sensors, and improving feasibility in complex environments.</li>
+                    <li>Fuse multi-modal sensor data from vision, radar, and radio frequency to enhance UAV target detection and position estimation accuracy.</li>
+                    <li>Focus on UAV 3D trajectory estimation, overcoming the limitations of traditional 2D tracking, supporting more precise dynamic perception and countermeasures.</li>
+                </ul>
+            </div>
+            <div class="project-item">
+                <h3>Innovative Research on Visible Light-Infrared Pedestrian Re-Identification</h3>
+                <div class="project-meta">
+                    <span>Research Project</span>
+                    <span>Winter 2024</span>
+                </div>
+                <ul>
+                    <li>VI-ReID aims to address the challenge of pedestrian matching under different lighting conditions, facing challenges of cross-modal differences and intra-modal variation.</li>
+                    <li>Design a modality-unified network that merges visible light and infrared information through auxiliary modality fusion, alleviating modality differences.</li>
+                    <li>Design identity alignment and modality alignment loss functions to optimize feature relationships at the identity and distribution levels, improving model performance.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <section id="awards">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-award"></i> Awards & Honors</h2>
+            <div class="award-grid">
+                <div class="award-item">
+                    <h3>Mathematical Modeling</h3>
+                    <ul>
+                        <li>Second Prize, China Undergraduate Mathematical Contest in Modeling (CUMCM), National-level, October 2023</li>
+                        <li>Honorable Mention (H Award), Mathematical Contest in Modeling (MCM/ICM), National-level, May 2024</li>
+                        <li>Second Prize, China Undergraduate Mathematical Contest in Modeling (CUMCM), Provincial-level, October 2024</li>
+                        <li>First Prize, Jiangsu Province Advanced Mathematics Contest, Category A, Provincial-level, May 2023</li>
+                    </ul>
+                </div>
+                <div class="award-item">
+                    <h3>Academic Excellence</h3>
+                    <ul>
+                        <li>First-Class Scholarship, 2023 & 2024</li>
+                        <li>"Three Good Student" of the University, 2023 & 2024</li>
+                        <li>Excellent Communist Youth League Cadre, 2024</li>
+                        <li>Excellent League Member, 2023</li>
+                    </ul>
+                </div>
+                <div class="award-item">
+                    <h3>Language & Innovation</h3>
+                    <ul>
+                        <li>First Prize, Chinese College English Translation Contest, Provincial-level, June 2024</li>
+                        <li>Bronze Award, "Internet+" College Students Innovation and Entrepreneurship Competition, University-level, June 2024</li>
+                        <li>CET-6: 574</li>
+                        <li>IELTS: 6.5 (Reading: 8)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-cogs"></i> Skills & Expertise</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3><i class="fas fa-brain"></i> Machine Learning</h3>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-chart-line"></i> AdaBoost and ensemble algorithms</li>
+                        <li><i class="fas fa-network-wired"></i> Deep learning (TensorFlow, PyTorch)</li>
+                        <li><i class="fas fa-layer-group"></i> Multi-modal learning and pattern recognition</li>
+                        <li><i class="fas fa-dna"></i> Evolutionary optimization algorithms</li>
+                        <li><i class="fas fa-lightbulb"></i> Knowledge distillation techniques</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Programming</h3>
+                    <ul class="skill-list">
+                        <li><i class="fab fa-python"></i> Python</li>
+                        <li><i class="fab fa-java"></i> Java</li>
+                        <li><i class="fab fa-js-square"></i> JavaScript</li>
+                        <li><img src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.5.1/collection/components/icon/svg/logo-kotlin.svg" alt="Kotlin" style="width: 15px; height: 15px; margin-right: 10px;"> Kotlin</li>
+                        <li><i style="font-weight: bold; font-style: normal; margin-right: 10px;">C++</i> C++</li>
+                        <li><i style="font-weight: bold; font-style: normal; margin-right: 10px;">M</i> MATLAB</li>
+                        <li><i class="fab fa-linux"></i> Linux operating system</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-database"></i> Data Management</h3>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-server"></i> MySQL and MongoDB</li>
+                        <li><i class="fas fa-chart-bar"></i> Data visualization (Origin)</li>
+                        <li><i class="fas fa-calculator"></i> Statistical analysis</li>
+                        <li><i class="fab fa-adobe"></i> Adobe design software</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-graduation-cap"></i> Academic Skills</h3>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-square-root-alt"></i> Mathematical modeling</li>
+                        <li><i class="fas fa-pen-fancy"></i> Scientific writing</li>
+                        <li><i class="fas fa-file-code"></i> LaTeX and Markdown</li>
+                        <li><i class="fas fa-book-open"></i> Literature review</li>
+                        <li><i class="fas fa-chalkboard-teacher"></i> Academic presentation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="cta-section">
+        <div class="container cta-content">
+            <h2><i class="fas fa-handshake"></i> Research Opportunities</h2>
+            <p>I am currently seeking PhD and research-oriented Master's opportunities in machine learning, healthcare applications, and intelligent systems. If my research interests align with your program, I would be pleased to discuss potential collaboration.</p>
+                            <a href="mailto:zhwang@nuist.edu.cn" class="button"><i class="fas fa-paper-plane"></i> Contact Me</a>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container footer-content">
+            <div class="social-links">
+                <a href="mailto:zhwang@nuist.edu.cn"><i class="fas fa-envelope"></i> Email</a> |
+                <a href="https://github.com/Nickory" target="_blank"><i class="fab fa-github"></i> GitHub</a> |
+                <a href="tel:+8613641577335"><i class="fas fa-phone"></i> Phone</a>
+            </div>
+            <p class="copyright">© 2025 Ziheng Wang | Nanjing University of Information Science and Technology</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation highlighting and smooth scrolling
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            function resetNavLinks() {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+            }
+            
+            function setActiveLink(id) {
+                resetNavLinks();
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            // Initial setup
+            setActiveLink('about');
+            
+            // Update on scroll
+            window.addEventListener('scroll', () => {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (scrollY >= (sectionTop - 300)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                if (current) {
+                    setActiveLink(current);
+                }
+            });
+            
+            // Handle navigation clicks with smooth scrolling
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    window.scrollTo({
+                        top: targetSection.offsetTop,
+                        behavior: 'smooth'
+                    });
+                    
+                    setActiveLink(targetId);
+                });
+            });
+            
+            // Animation for items on scroll
+            const animateOnScroll = () => {
+                const items = document.querySelectorAll('.education-item, .publication-item, .project-item, .award-item, .skill-category');
+                
+                items.forEach((item, index) => {
+                    const itemPosition = item.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+                    
+                    if (itemPosition < screenPosition) {
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    }
+                });
+            };
+            
+            // Set initial styles for animation
+            const items = document.querySelectorAll('.education-item, .publication-item, .project-item, .award-item, .skill-category');
+            items.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            // Animated typing effect for header
+            const typeWriter = (text, element, i = 0, speed = 50) => {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(() => typeWriter(text, element, i, speed), speed);
+                }
+            };
+            
+            // Call animations
+            animateOnScroll();
+            window.addEventListener('scroll', animateOnScroll);
+        });
+    </script>
+</body>
+</html>
