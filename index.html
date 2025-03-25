@@ -27,6 +27,12 @@
             100% { transform: translateY(0px); }
         }
 
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -201,7 +207,7 @@
             flex: 1;
         }
 
-        .education-item, .publication-item, .project-item, .award-item {
+        .education-item, .publication-item, .project-item, .award-item, .course-item {
             background-color: white;
             border-radius: 8px;
             padding: 25px;
@@ -210,7 +216,7 @@
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .education-item:hover, .publication-item:hover, .project-item:hover, .award-item:hover {
+        .education-item:hover, .publication-item:hover, .project-item:hover, .award-item:hover, .course-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
@@ -220,7 +226,7 @@
             display: inline-block;
         }
 
-        .education-item, .publication-item, .project-item, .award-item, .skill-category {
+        .education-item, .publication-item, .project-item, .award-item, .skill-category, .course-item {
             animation: fadeIn 0.5s ease-out forwards;
             opacity: 0;
         }
@@ -230,12 +236,12 @@
         .skill-category:nth-child(3) { animation-delay: 0.3s; }
         .skill-category:nth-child(4) { animation-delay: 0.4s; }
 
-        .education-item h3, .publication-item h3, .project-item h3 {
+        .education-item h3, .publication-item h3, .project-item h3, .course-item h3 {
             color: var(--primary-color);
             margin-bottom: 10px;
         }
 
-        .education-meta, .publication-meta, .project-meta {
+        .education-meta, .publication-meta, .project-meta, .course-meta {
             color: var(--secondary-color);
             font-weight: 600;
             margin-bottom: 15px;
@@ -382,6 +388,90 @@
             margin-bottom: 8px;
         }
 
+        .badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            background-size: 200% 200%;
+            animation: gradientShift 5s ease infinite;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .publication-links, .course-links {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 15px;
+            gap: 10px;
+        }
+
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            background-color: #f1f1f1;
+            color: var(--dark-color);
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .resource-link i {
+            margin-right: 8px;
+        }
+
+        .resource-link:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .degree-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #1e5799, #2989d8);
+            background-size: 200% 200%;
+            animation: gradientShift 5s ease infinite;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-details {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+        }
+
+        .course-score {
+            display: inline-block;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .course-rank {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2.5rem;
@@ -397,12 +487,12 @@
                 margin: 0 auto 30px;
             }
 
-            .education-meta, .publication-meta, .project-meta {
+            .education-meta, .publication-meta, .project-meta, .course-meta {
                 flex-direction: column;
                 align-items: flex-start;
             }
 
-            .education-meta span, .publication-meta span {
+            .education-meta span, .publication-meta span, .course-meta span {
                 margin-bottom: 5px;
             }
 
@@ -423,6 +513,10 @@
             .lang-btn {
                 margin-bottom: 5px;
             }
+
+            .publication-links, .course-links {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -434,6 +528,7 @@
             <div class="contact-info">
                 <a href="mailto:zhwang@nuist.edu.cn"><i class="fas fa-envelope"></i> <span class="i18n" data-i18n="header.email">zhwang@nuist.edu.cn</span></a> |
                 <a href="https://github.com/Nickory" target="_blank"><i class="fab fa-github"></i> GitHub</a> |
+                <a href="https://scholar.google.com/citations?user=" target="_blank"><i class="fas fa-graduation-cap"></i> <span class="i18n" data-i18n="header.scholar">Google Scholar</span></a> |
                 <a href="tel:+8613641577335"><i class="fas fa-phone"></i> <span class="i18n" data-i18n="header.phone">+86 136-4157-7335</span></a>
             </div>
             <div class="language-switcher">
@@ -452,6 +547,7 @@
                 <li><a href="#education"><i class="fas fa-graduation-cap"></i> <span class="i18n" data-i18n="nav.education">Education</span></a></li>
                 <li><a href="#publications"><i class="fas fa-book"></i> <span class="i18n" data-i18n="nav.publications">Publications</span></a></li>
                 <li><a href="#projects"><i class="fas fa-flask"></i> <span class="i18n" data-i18n="nav.research">Research</span></a></li>
+                <li><a href="#courses"><i class="fas fa-chalkboard-teacher"></i> <span class="i18n" data-i18n="nav.courses">Courses</span></a></li>
                 <li><a href="#awards"><i class="fas fa-trophy"></i> <span class="i18n" data-i18n="nav.awards">Awards</span></a></li>
                 <li><a href="#skills"><i class="fas fa-tools"></i> <span class="i18n" data-i18n="nav.skills">Skills</span></a></li>
                 <li><a href="#contact"><i class="fas fa-envelope"></i> <span class="i18n" data-i18n="nav.contact">Contact</span></a></li>
@@ -486,6 +582,11 @@
                 </div>
                 <p><strong class="i18n" data-i18n="education.gpa">GPA:</strong> 3.969/5.0 (3.8+/4.0)(<span class="i18n" data-i18n="education.rank">Ranked 2nd out of 34 students</span>)</p>
                 <p class="i18n" data-i18n="education.description1">Enrolled in a 4+0 joint program between Nanjing University of Information Science and Technology and South East Technological University, Ireland. All major courses are taught in English, providing strong international exposure and cross-cultural skills.</p>
+
+                <div class="degree-badge">
+                    <i class="fas fa-award"></i> <span class="i18n" data-i18n="education.dualDegree">SETU Dual Degree - Expected First Class Honors (2026)</span>
+                </div>
+
                 <p><strong class="i18n" data-i18n="education.coursework">Relevant Coursework:</strong> <span class="i18n" data-i18n="education.courses">Machine Learning, Data Structures and Algorithms, Computer Networks, Database Systems, IoT Architecture</span></p>
             </div>
             <div class="education-item">
@@ -509,6 +610,11 @@
                     <span class="i18n" data-i18n="publications.journal1">Published in Biomedical Signal Processing and Control</span>
                 </div>
                 <p class="i18n" data-i18n="publications.abstract1">Developed an innovative adaptive weighting mechanism for boosting algorithms that significantly improves cardiovascular disease diagnostic accuracy compared to traditional methods. The framework demonstrates enhanced robustness across diverse patient populations and clinical scenarios.</p>
+                <div class="publication-links">
+                    <a href="#" class="resource-link" target="_blank"><i class="fas fa-file-pdf"></i> <span class="i18n" data-i18n="publications.paper">Full Paper</span></a>
+                    <a href="#" class="resource-link" target="_blank"><i class="fas fa-file-powerpoint"></i> <span class="i18n" data-i18n="publications.presentation">Presentation</span></a>
+                    <a href="#" class="resource-link" target="_blank"><i class="fas fa-link"></i> <span class="i18n" data-i18n="publications.doi">DOI Link</span></a>
+                </div>
             </div>
             <div class="publication-item">
                 <h3 class="i18n" data-i18n="publications.title2">APPBoost: An Adaptive Parameter-Pair Boosting Algorithm for Enhanced Robustness Against Noise and Imbalance</h3>
@@ -518,6 +624,11 @@
                     <span class="i18n" data-i18n="publications.journal2">Accepted by The Journal of Supercomputing</span>
                 </div>
                 <p class="i18n" data-i18n="publications.abstract2">This research introduces a novel dual-parameter adjustment mechanism for boosting algorithms that systematically enhances model resistance to interference and improves robustness. The proposed APPBoost algorithm adaptively adjusts two key parameters simultaneously, optimizing performance in the presence of noise and data imbalance.</p>
+                <div class="publication-links">
+                    <a href="#" class="resource-link" target="_blank"><i class="fas fa-file-pdf"></i> <span class="i18n" data-i18n="publications.paper">Full Paper</span></a>
+                    <a href="#" class="resource-link" target="_blank"><i class="fas fa-file-powerpoint"></i> <span class="i18n" data-i18n="publications.presentation">Presentation</span></a>
+                    <a href="#" class="resource-link" target="_blank"><i class="fas fa-link"></i> <span class="i18n" data-i18n="publications.doi">DOI Link</span></a>
+                </div>
             </div>
             <div class="publication-item">
                 <h3 class="i18n" data-i18n="publications.title3">An Adaptive Enhanced Method for Cardiovascular Disease Diagnosis Using Weight Parameter Adjustment</h3>
@@ -525,7 +636,11 @@
                     <span class="i18n" data-i18n="publications.author3">First Inventor</span>
                     <span class="i18n" data-i18n="publications.journal3">Nationally Authorized Patent</span>
                 </div>
+                <p><strong class="i18n" data-i18n="publications.patentInfo">Patent Number:</strong> ZL 2024 1 1625421.3 | <strong class="i18n" data-i18n="publications.authNumber">Authorization Number:</strong> CN 119128694 B</p>
                 <p class="i18n" data-i18n="publications.abstract3">This patent documents a novel method for cardiovascular disease diagnosis utilizing adaptive weight parameter adjustments to enhance diagnostic accuracy and system reliability. The invention provides a systematic approach to parameter optimization that significantly improves performance in clinical applications.</p>
+                <div class="publication-links">
+                    <a href="#" class="resource-link" target="_blank"><i class="fas fa-file-pdf"></i> <span class="i18n" data-i18n="publications.patentDoc">Patent Document</span></a>
+                </div>
             </div>
         </div>
     </section>
@@ -539,7 +654,7 @@
                     <span class="i18n" data-i18n="projects.role1">Principal Investigator, Project Leader</span>
                     <span class="i18n" data-i18n="projects.period1">May 2024 - May 2025</span>
                 </div>
-                <p><strong class="i18n" data-i18n="projects.program1">National-level College Students' Innovation and Entrepreneurship Training Program</strong></p>
+                <p><strong class="i18n" data-i18n="projects.program1">National-level College Students' Innovation and Entrepreneurship Training Program</strong> <span class="badge">202410300075Z</span></p>
                 <p><strong class="i18n" data-i18n="projects.supervisors">Supervisors:</strong> <span class="i18n" data-i18n="projects.supervisornames">Dean Baowei Wang and Associate Dean Xu Cheng, Waterford Institute</span></p>
                 <ul>
                     <li class="i18n" data-i18n="projects.p1point1">Researched and proposed an improved adaptive weight algorithm with enhanced prediction accuracy.</li>
@@ -570,6 +685,60 @@
                     <li class="i18n" data-i18n="projects.p3point2">Design a modality-unified network that merges visible light and infrared information through auxiliary modality fusion, alleviating modality differences.</li>
                     <li class="i18n" data-i18n="projects.p3point3">Design identity alignment and modality alignment loss functions to optimize feature relationships at the identity and distribution levels, improving model performance.</li>
                 </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="courses">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-book-open"></i> <span class="i18n" data-i18n="courses.title">Selected Courses</span></h2>
+
+            <div class="course-item">
+                <h3 class="i18n" data-i18n="courses.name1">Machine Learning</h3>
+                <div class="course-meta">
+                    <span class="course-score"><i class="fas fa-star"></i> <span class="i18n" data-i18n="courses.score1">Score: 95/100</span></span>
+                    <span class="course-rank"><i class="fas fa-trophy"></i> <span class="i18n" data-i18n="courses.rank1">Rank: 1/34</span></span>
+                </div>
+                <div class="course-details">
+                    <p class="i18n" data-i18n="courses.description1">An advanced course covering supervised and unsupervised learning algorithms, neural networks, and practical applications of machine learning in real-world problems. The course emphasizes both theoretical foundations and implementation skills.</p>
+                    <p class="i18n" data-i18n="courses.contribution1">For this course, I implemented a novel ensemble learning algorithm that combined bagging and boosting techniques to improve classification accuracy on imbalanced datasets. My final project focused on cardiovascular disease prediction using adaptive boosting methods.</p>
+                    <div class="course-links">
+                        <a href="#" class="resource-link" target="_blank"><i class="fas fa-file-alt"></i> <span class="i18n" data-i18n="courses.report">Course Report</span></a>
+                        <a href="#" class="resource-link" target="_blank"><i class="fab fa-github"></i> <span class="i18n" data-i18n="courses.repository">GitHub Repository</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-item">
+                <h3 class="i18n" data-i18n="courses.name2">Data Structures and Algorithms</h3>
+                <div class="course-meta">
+                    <span class="course-score"><i class="fas fa-star"></i> <span class="i18n" data-i18n="courses.score2">Score: 92/100</span></span>
+                    <span class="course-rank"><i class="fas fa-trophy"></i> <span class="i18n" data-i18n="courses.rank2">Rank: 3/34</span></span>
+                </div>
+                <div class="course-details">
+                    <p class="i18n" data-i18n="courses.description2">Comprehensive study of fundamental data structures (arrays, linked lists, stacks, queues, trees, graphs) and algorithms (sorting, searching, dynamic programming). The course focuses on algorithm analysis, design paradigms, and computational complexity.</p>
+                    <p class="i18n" data-i18n="courses.contribution2">I developed an optimized graph traversal algorithm for network analysis that improved processing efficiency by 30% compared to standard implementations. Additionally, I implemented a custom priority queue that significantly enhanced the performance of Dijkstra's algorithm in routing applications.</p>
+                    <div class="course-links">
+                        <a href="#" class="resource-link" target="_blank"><i class="fas fa-file-alt"></i> <span class="i18n" data-i18n="courses.report">Course Report</span></a>
+                        <a href="#" class="resource-link" target="_blank"><i class="fab fa-github"></i> <span class="i18n" data-i18n="courses.repository">GitHub Repository</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-item">
+                <h3 class="i18n" data-i18n="courses.name3">IoT Architecture and Applications</h3>
+                <div class="course-meta">
+                    <span class="course-score"><i class="fas fa-star"></i> <span class="i18n" data-i18n="courses.score3">Score: 94/100</span></span>
+                    <span class="course-rank"><i class="fas fa-trophy"></i> <span class="i18n" data-i18n="courses.rank3">Rank: 2/34</span></span>
+                </div>
+                <div class="course-details">
+                    <p class="i18n" data-i18n="courses.description3">Exploration of Internet of Things architectures, protocols, and applications with hands-on experience in designing and implementing IoT systems. The course covers sensor networks, data management, security considerations, and emerging IoT technologies.</p>
+                    <p class="i18n" data-i18n="courses.contribution3">I designed and implemented a health monitoring system using Arduino and various sensors that could track vital signs and transmit data in real-time to cloud storage. The system included custom algorithms for anomaly detection in heart rate patterns that could potentially identify early warning signs of cardiovascular issues.</p>
+                    <div class="course-links">
+                        <a href="#" class="resource-link" target="_blank"><i class="fas fa-file-alt"></i> <span class="i18n" data-i18n="courses.report">Course Report</span></a>
+                        <a href="#" class="resource-link" target="_blank"><i class="fab fa-github"></i> <span class="i18n" data-i18n="courses.repository">GitHub Repository</span></a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -671,6 +840,7 @@
             <div class="social-links">
                 <a href="mailto:zhwang@nuist.edu.cn"><i class="fas fa-envelope"></i> <span class="i18n" data-i18n="footer.email">Email</span></a> |
                 <a href="https://github.com/Nickory" target="_blank"><i class="fab fa-github"></i> GitHub</a> |
+                <a href="https://scholar.google.com/citations?user=" target="_blank"><i class="fas fa-graduation-cap"></i> <span class="i18n" data-i18n="footer.scholar">Google Scholar</span></a> |
                 <a href="tel:+8613641577335"><i class="fas fa-phone"></i> <span class="i18n" data-i18n="footer.phone">Phone</span></a>
             </div>
             <p class="copyright i18n" data-i18n="footer.copyright">© 2025 Ziheng Wang | Nanjing University of Information Science and Technology</p>
@@ -678,20 +848,22 @@
     </footer>
 
     <script>
-        // Language translations
+        // Language translations - Contains translations for multiple languages
         const translations = {
             'en': {
                 'header': {
                     'title': 'Ziheng Wang',
                     'subtitle': 'Machine Learning Researcher | Ph.D. & Research Master\'s Applicant',
                     'email': 'zhwang@nuist.edu.cn',
-                    'phone': '+86 136-4157-7335'
+                    'phone': '+86 136-4157-7335',
+                    'scholar': 'Google Scholar'
                 },
                 'nav': {
                     'about': 'About',
                     'education': 'Education',
                     'publications': 'Publications',
                     'research': 'Research',
+                    'courses': 'Courses',
                     'awards': 'Awards',
                     'skills': 'Skills',
                     'contact': 'Contact'
@@ -710,6 +882,7 @@
                     'gpa': 'GPA:',
                     'rank': 'Ranked 2nd out of 34 students',
                     'description1': 'Enrolled in a 4+0 joint program between Nanjing University of Information Science and Technology and South East Technological University, Ireland. All major courses are taught in English, providing strong international exposure and cross-cultural skills.',
+                    'dualDegree': 'SETU Dual Degree - Expected First Class Honors (2026)',
                     'coursework': 'Relevant Coursework:',
                     'courses': 'Machine Learning, Data Structures and Algorithms, Computer Networks, Database Systems, IoT Architecture',
                     'highschool': 'Jingjiang High School, Jiangsu Province',
@@ -726,12 +899,18 @@
                     'title2': 'APPBoost: An Adaptive Parameter-Pair Boosting Algorithm for Enhanced Robustness Against Noise and Imbalance',
                     'citation2': 'APPBoost: an adaptive parameter pair boosting algorithm for enhanced robustness against noise and imbalance. The Journal of Supercomputing, Springer. (SCI, JCR-Q2, CCF-C)',
                     'author2': 'First Author',
-                    'journal2': 'Accepted by The Journal of Supercomputing',
+                    'journal2': 'Published in Journal of Supercomputing',
                     'abstract2': 'This research introduces a novel dual-parameter adjustment mechanism for boosting algorithms that systematically enhances model resistance to interference and improves robustness. The proposed APPBoost algorithm adaptively adjusts two key parameters simultaneously, optimizing performance in the presence of noise and data imbalance.',
                     'title3': 'An Adaptive Enhanced Method for Cardiovascular Disease Diagnosis Using Weight Parameter Adjustment',
                     'author3': 'First Inventor',
                     'journal3': 'Nationally Authorized Patent',
-                    'abstract3': 'This patent documents a novel method for cardiovascular disease diagnosis utilizing adaptive weight parameter adjustments to enhance diagnostic accuracy and system reliability. The invention provides a systematic approach to parameter optimization that significantly improves performance in clinical applications.'
+                    'patentInfo': 'Patent Number:',
+                    'authNumber': 'Authorization Number:',
+                    'abstract3': 'This patent documents a novel method for cardiovascular disease diagnosis utilizing adaptive weight parameter adjustments to enhance diagnostic accuracy and system reliability. The invention provides a systematic approach to parameter optimization that significantly improves performance in clinical applications.',
+                    'paper': 'Full Paper',
+                    'presentation': 'Presentation',
+                    'doi': 'DOI Link',
+                    'patentDoc': 'Patent Document'
                 },
                 'projects': {
                     'title': 'Research Projects',
@@ -756,6 +935,26 @@
                     'p3point1': 'VI-ReID aims to address the challenge of pedestrian matching under different lighting conditions, facing challenges of cross-modal differences and intra-modal variation.',
                     'p3point2': 'Design a modality-unified network that merges visible light and infrared information through auxiliary modality fusion, alleviating modality differences.',
                     'p3point3': 'Design identity alignment and modality alignment loss functions to optimize feature relationships at the identity and distribution levels, improving model performance.'
+                },
+                'courses': {
+                    'title': 'Selected Courses',
+                    'name1': 'Machine Learning',
+                    'score1': 'Score: 95/100',
+                    'rank1': 'Rank: 1/34',
+                    'description1': 'An advanced course covering supervised and unsupervised learning algorithms, neural networks, and practical applications of machine learning in real-world problems. The course emphasizes both theoretical foundations and implementation skills.',
+                    'contribution1': 'For this course, I implemented a novel ensemble learning algorithm that combined bagging and boosting techniques to improve classification accuracy on imbalanced datasets. My final project focused on cardiovascular disease prediction using adaptive boosting methods.',
+                    'name2': 'Data Structures and Algorithms',
+                    'score2': 'Score: 92/100',
+                    'rank2': 'Rank: 3/34',
+                    'description2': 'Comprehensive study of fundamental data structures (arrays, linked lists, stacks, queues, trees, graphs) and algorithms (sorting, searching, dynamic programming). The course focuses on algorithm analysis, design paradigms, and computational complexity.',
+                    'contribution2': 'I developed an optimized graph traversal algorithm for network analysis that improved processing efficiency by 30% compared to standard implementations. Additionally, I implemented a custom priority queue that significantly enhanced the performance of Dijkstra\'s algorithm in routing applications.',
+                    'name3': 'IoT Architecture and Applications',
+                    'score3': 'Score: 94/100',
+                    'rank3': 'Rank: 2/34',
+                    'description3': 'Exploration of Internet of Things architectures, protocols, and applications with hands-on experience in designing and implementing IoT systems. The course covers sensor networks, data management, security considerations, and emerging IoT technologies.',
+                    'contribution3': 'I designed and implemented a health monitoring system using Arduino and various sensors that could track vital signs and transmit data in real-time to cloud storage. The system included custom algorithms for anomaly detection in heart rate patterns that could potentially identify early warning signs of cardiovascular issues.',
+                    'report': 'Course Report',
+                    'repository': 'GitHub Repository'
                 },
                 'awards': {
                     'title': 'Awards & Honors',
@@ -796,28 +995,353 @@
                     'skill13': 'Academic presentation'
                 },
                 'contact': {
-                    'title': 'Research Opportunities',
+                    'title': '研究机会',
+                    'text': '我目前正在寻求机器学习、医疗应用和智能系统领域的博士和研究型硕士机会。如果我的研究兴趣与您的项目相符，我很乐意讨论潜在的合作。',
+                    'button': '联系我'
+                },
+                'footer': {
+                    'email': '邮箱',
+                    'phone': '电话',
+                    'scholar': '谷歌学术',
+                    'copyright': '© 2025 王子恒 | 南京信息工程大学'
+                }
+            },
+            'zh-TW': {
+                'header': {
+                    'title': '王子恒',
+                    'subtitle': '機器學習研究員 | 博士與研究型碩士申請人',
+                    'email': 'zhwang@nuist.edu.cn',
+                    'phone': '+86 136-4157-7335',
+                    'scholar': '谷歌學術'
+                },
+                'nav': {
+                    'about': '關於我',
+                    'education': '教育背景',
+                    'publications': '發表文獻',
+                    'research': '研究項目',
+                    'courses': '所修課程',
+                    'awards': '獎項榮譽',
+                    'skills': '專業技能',
+                    'contact': '聯絡方式'
+                },
+                'about': {
+                    'title': '關於我',
+                    'p1': '我是南京信息工程大學物聯網工程專業的大四本科生，就讀於國際合作項目。我的研究方向是機器學習演算法在醫療健康領域的應用，特別是用於心血管疾病診斷的集成學習方法。',
+                    'p2': '我的研究成果包括多篇發表在知名科學期刊上的論文和一項國家授權專利。我開發了提高診斷演算法穩健性和準確性的創新方法，主要通過自適應技術和參數最佳化實現。',
+                    'p3': '目前，我正在尋求博士和研究型碩士的機會，以進一步發展我在醫療健康和智慧系統機器學習領域的專業知識。我希望加入一個研究團隊，通過創新的計算方法繼續為這個領域做出貢獻。'
+                },
+                'education': {
+                    'title': '教育背景',
+                    'university': '南京信息工程大學',
+                    'degree': '工學學士，物聯網工程',
+                    'period1': '2022 - 2026 (預計)',
+                    'gpa': '平均績點:',
+                    'rank': '排名第2/34名學生',
+                    'description1': '就讀於南京信息工程大學與愛爾蘭東南理工大學的4+0聯合項目。所有專業課程均以英語授課，提供了強大的國際視野和跨文化技能。',
+                    'dualDegree': 'SETU雙學位 - 預計一等榮譽學位 (2026)',
+                    'coursework': '相關課程:',
+                    'courses': '機器學習、資料結構與演算法、電腦網路、資料庫系統、物聯網架構',
+                    'highschool': '江蘇省靖江高級中學',
+                    'hstype': '江蘇省優質示範高中',
+                    'period2': '2019 - 2022'
+                },
+                'publications': {
+                    'title': '發表文獻',
+                    'title1': 'An Adaptive Weighted Boosting Framework for Enhanced Cardiovascular Disease Diagnosis',
+                    'citation1': '一種增強心血管疾病診斷的自適應加權提升框架. 生物醫學信號處理與控制, Elsevier. (SCI, JCR-Q1, )',
+                    'author1': '第一作者',
+                    'journal1': '發表於生物醫學信號處理與控制',
+                    'abstract1': '開發了一種用於提升演算法的創新自適應加權機制，與傳統方法相比，顯著提高了心血管疾病診斷的準確性。該框架在不同患者群體和臨床場景中展示了增強的穩健性。',
+                    'title2': 'APPBoost: An Adaptive Parameter-Pair Boosting Algorithm for Enhanced Robustness Against Noise and Imbalance',
+                    'citation2': 'APPBoost：一種針對噪聲和不平衡增強魯棒性的自適應參數對提升演算法. 超級計算期刊, Springer. (SCI, JCR-Q2, CCF-C)',
+                    'author2': '第一作者',
+                    'journal2': '已被超級計算期刊接受',
+                    'abstract2': '本研究引入了一種用於提升演算法的新型雙參數調整機制，系統地增強了模型對干擾的抵抗力並提高了穩健性。提出的APPBoost演算法能夠同時自適應調整兩個關鍵參數，最佳化在噪聲和資料不平衡情況下的效能。',
+                    'title3': '一種使用權重參數調整的心血管疾病診斷自適應增強方法',
+                    'author3': '第一發明人',
+                    'journal3': '國家授權專利',
+                    'patentInfo': '專利號:',
+                    'authNumber': '授權號:',
+                    'abstract3': '該專利記錄了一種利用自適應權重參數調整來增強診斷準確性和系統可靠性的心血管疾病診斷新方法。該發明提供了一種參數最佳化的系統方法，顯著提高了臨床應用中的效能。',
+                    'paper': '全文',
+                    'presentation': '演示文稿',
+                    'doi': 'DOI連結',
+                    'patentDoc': '專利文檔'
+                },
+                'projects': {
+                    'title': '研究項目',
+                    'title1': '基於自適應和特徵交互的心血管疾病早期診斷演算法研究',
+                    'role1': '主要研究員，項目負責人',
+                    'period1': '2024年5月 - 2025年5月',
+                    'program1': '國家級大學生創新創業訓練計劃項目',
+                    'supervisors': '指導教師:',
+                    'supervisornames': '王寶偉院長和程旭副院長，沃特福德學院',
+                    'p1point1': '研究並提出了一種改進的自適應權重演算法，具有增強的預測準確性。',
+                    'p1point2': '創新性地引入了雙參數調整機制，以增強模型抵抗干擾的能力和穩健性。',
+                    'p1point3': '實驗結果表明，所提出的改進方法與傳統AdaBoost演算法相比，顯著提高了預測準確性和穩健性。',
+                    'title2': '無人機智慧感知與對抗方案研究：多模態資料融合與3D軌跡估計',
+                    'role2': '研究項目',
+                    'period2': '2024年冬季',
+                    'p2point1': '研究無人機智慧感知與對抗方案，解決傳統單模態傳感器的侷限性，提高在複雜環境中的可行性。',
+                    'p2point2': '融合來自視覺、雷達和射頻的多模態傳感器資料，以增強無人機目標檢測和位置估計的準確性。',
+                    'p2point3': '專注於無人機3D軌跡估計，克服傳統2D追蹤的侷限性，支援更精確的動態感知和對抗措施。',
+                    'title3': '可見光-紅外行人再識別創新研究',
+                    'role3': '研究項目',
+                    'period3': '2024年冬季',
+                    'p3point1': 'VI-ReID旨在解決不同光照條件下行人匹配的挑戰，面臨跨模態差異和模態內變化的挑戰。',
+                    'p3point2': '設計一種模態統一網絡，通過輔助模態融合合併可見光和紅外資訊，減輕模態差異。',
+                    'p3point3': '設計身份對齊和模態對齊損失函數，最佳化身份和分佈級別的特徵關係，提高模型效能。'
+                },
+                'courses': {
+                    'title': '所修課程',
+                    'name1': '機器學習',
+                    'score1': '成績: 95/100',
+                    'rank1': '排名: 1/34',
+                    'description1': '高級課程，涵蓋監督和非監督學習演算法、神經網路以及機器學習在實際問題中的應用。課程既強調理論基礎，也注重實現技能。',
+                    'contribution1': '在這門課程中，我實現了一種新穎的集成學習演算法，結合了裝袋和提升技術，提高了不平衡資料集上的分類準確率。我的期末項目專注於使用自適應提升方法進行心血管疾病預測。',
+                    'name2': '資料結構與演算法',
+                    'score2': '成績: 92/100',
+                    'rank2': '排名: 3/34',
+                    'description2': '全面研究基礎資料結構（陣列、鏈表、堆疊、佇列、樹、圖）和演算法（排序、搜索、動態規劃）。課程關注演算法分析、設計範式和計算複雜性。',
+                    'contribution2': '我開發了一種優化的圖遍歷演算法用於網路分析，與標準實現相比，處理效率提高了30%。此外，我實現了一個自定義優先佇列，顯著增強了Dijkstra演算法在路由應用中的效能。',
+                    'name3': '物聯網架構與應用',
+                    'score3': '成績: 94/100',
+                    'rank3': '排名: 2/34',
+                    'description3': '探索物聯網架構、協議和應用，通過設計和實現物聯網系統獲得實踐經驗。課程涵蓋傳感器網路、資料管理、安全考慮和新興物聯網技術。',
+                    'contribution3': '我設計並實現了一個使用Arduino和各種傳感器的健康監測系統，可以追蹤生命體徵並即時將資料傳輸到雲存儲。該系統包括了用於心率模式異常檢測的自定義演算法，可能識別心血管問題的早期警告信號。',
+                    'report': '課程報告',
+                    'repository': 'GitHub儲存庫'
+                },
+                'awards': {
+                    'title': '獎項榮譽',
+                    'category1': '數學建模',
+                    'award1': '二等獎，中國大學生數學建模競賽(CUMCM)，國家級，2023年10月',
+                    'award2': '榮譽獎(H獎)，美國大學生數學建模競賽(MCM/ICM)，國際級，2024年5月',
+                    'award3': '二等獎，中國大學生數學建模競賽(CUMCM)，省級，2024年10月',
+                    'award4': '一等獎，江蘇省高等數學競賽，A類，省級，2023年5月',
+                    'category2': '學術優秀',
+                    'award5': '一等獎學金，2023年 & 2024年',
+                    'award6': '校級"三好學生"，2023年 & 2024年',
+                    'award7': '優秀共青團幹部，2024年',
+                    'award8': '優秀共青團員，2023年',
+                    'category3': '語言與創新',
+                    'award9': '一等獎，全國大學生英語翻譯大賽，省級，2024年6月',
+                    'award10': '銅獎，"互聯網+"大學生創新創業大賽，校級，2024年6月',
+                    'award11': '大學英語六級: 574分',
+                    'award12': '雅思: 6.5 (閱讀: 8分)'
+                },
+                'skills': {
+                    'title': '專業技能',
+                    'category1': '機器學習',
+                    'skill1': 'AdaBoost和集成演算法',
+                    'skill2': '深度學習 (TensorFlow, PyTorch)',
+                    'skill3': '多模態學習和模式識別',
+                    'skill4': '進化最佳化演算法',
+                    'skill5': '知識蒸餾技術',
+                    'category2': '程式設計',
+                    'skill6': 'Linux作業系統',
+                    'category3': '資料管理',
+                    'skill7': '資料視覺化 (Origin)',
+                    'skill8': '統計分析',
+                    'skill9': 'Adobe設計軟體',
+                    'category4': '學術技能',
+                    'skill10': '數學建模',
+                    'skill11': '科學寫作',
+                    'skill12': '文獻綜述',
+                    'skill13': '學術演講'
+                },
+                'contact': {
+                    'title': '研究機會',
+                    'text': '我目前正在尋求機器學習、醫療應用和智慧系統領域的博士和研究型碩士機會。如果我的研究興趣與您的項目相符，我很樂意討論潛在的合作。',
+                    'button': '聯絡我'
+                },
+                'footer': {
+                    'email': '郵箱',
+                    'phone': '電話',
+                    'scholar': '谷歌學術',
+                    'copyright': '© 2025 王子恒 | 南京信息工程大學'
+                }
+            },
+            'ja': {
+                'header': {
+                    'title': '王 子恒',
+                    'subtitle': '機械学習研究者 | 博士・研究型修士課程志願者',
+                    'email': 'zhwang@nuist.edu.cn',
+                    'phone': '+86 136-4157-7335',
+                    'scholar': 'Google Scholar'
+                },
+                'nav': {
+                    'about': 'プロフィール',
+                    'education': '学歴',
+                    'publications': '出版物',
+                    'research': '研究',
+                    'courses': '履修科目',
+                    'awards': '受賞歴',
+                    'skills': 'スキル',
+                    'contact': '連絡先'
+                },
+                'about': {
+                    'title': 'プロフィール',
+                    'p1': '私は南京情報工程大学のIoT（モノのインターネット）専攻の学部4年生で、国際協力プログラムに在籍しています。私の研究は、特に心血管疾患診断のためのアンサンブル手法に焦点を当てた、医療応用のための機械学習アルゴリズムに関するものです。',
+                    'p2': '私の研究は、複数の科学ジャーナルでの論文発表と国家認可特許につながっています。適応技術とパラメータ最適化を通じて、診断アルゴリズムの堅牢性と精度を向上させる新しいアプローチを開発しました。',
+                    'p3': '現在、医療および知能システムのための機械学習分野での専門知識をさらに発展させるため、博士課程および研究志向の修士課程の機会を求めています。革新的な計算手法を通じてこの分野に貢献し続けることができる研究チームに参加したいと考えています。'
+                },
+                'education': {
+                    'title': '学歴',
+                    'university': '南京情報工程大学',
+                    'degree': '工学学士、モノのインターネット',
+                    'period1': '2022年 - 2026年（予定）',
+                    'gpa': 'GPA:',
+                    'rank': '34人中2位',
+                    'description1': '南京情報工程大学とアイルランドの南東工科大学との4+0共同プログラムに在籍。すべての専門科目は英語で教えられ、強い国際的視野と異文化間スキルを提供しています。',
+                    'dualDegree': 'SETU二重学位 - 予定一等優等学位 (2026)',
+                    'coursework': '関連コース:',
+                    'courses': '機械学習、データ構造とアルゴリズム、コンピュータネットワーク、データベースシステム、IoTアーキテクチャ',
+                    'highschool': '江蘇省靖江高級中学',
+                    'hstype': '江蘇省高品質モデル高校',
+                    'period2': '2019年 - 2022年'
+                },
+                'publications': {
+                    'title': '出版物',
+                    'title1': 'An Adaptive Weighted Boosting Framework for Enhanced Cardiovascular Disease Diagnosis',
+                    'citation1': '心血管疾患診断のための適応重み付けブースティングフレームワーク。バイオメディカル信号処理とコントロール、エルゼビア。(SCI、JCR-Q1、)',
+                    'author1': '筆頭著者',
+                    'journal1': 'バイオメディカル信号処理とコントロールに掲載',
+                    'abstract1': 'ブースティングアルゴリズムのための革新的な適応重み付けメカニズムを開発し、従来の方法と比較して心血管疾患診断の精度を大幅に向上させました。このフレームワークは、多様な患者集団と臨床シナリオにおいて強化された堅牢性を示しています。',
+                    'title2': 'APPBoost: An Adaptive Parameter-Pair Boosting Algorithm for Enhanced Robustness Against Noise and Imbalance',
+                    'citation2': 'APPBoost: ノイズと不均衡に対する堅牢性を強化するための適応パラメータペアブースティングアルゴリズム。スーパーコンピューティングジャーナル、スプリンガー。(SCI、JCR-Q2、CCF-C)',
+                    'author2': '筆頭著者',
+                    'journal2': 'スーパーコンピューティングジャーナルに受理',
+                    'abstract2': 'この研究は、干渉に対するモデルの抵抗力を系統的に強化し、堅牢性を向上させるブースティングアルゴリズムのための新しい二重パラメータ調整メカニズムを導入しています。提案されたAPPBoostアルゴリズムは、2つの主要パラメータを同時に適応的に調整し、ノイズとデータの不均衡の存在下でのパフォーマンスを最適化します。',
+                    'title3': '重みパラメータ調整を用いた心血管疾患診断のための適応強化法',
+                    'author3': '筆頭発明者',
+                    'journal3': '国家認可特許',
+                    'patentInfo': '特許番号:',
+                    'authNumber': '認可番号:',
+                    'abstract3': 'この特許は、診断精度とシステム信頼性を向上させるための適応重みパラメータ調整を利用した心血管疾患診断の新しい方法を文書化しています。この発明は、臨床応用におけるパフォーマンスを大幅に向上させるパラメータ最適化の体系的なアプローチを提供します。',
+                    'paper': '論文全文',
+                    'presentation': 'プレゼンテーション',
+                    'doi': 'DOIリンク',
+                    'patentDoc': '特許文書'
+                },
+                'projects': {
+                    'title': '研究プロジェクト',
+                    'title1': '適応と特徴相互作用に基づく心血管疾患の早期診断アルゴリズムに関する研究',
+                    'role1': '主任研究員、プロジェクトリーダー',
+                    'period1': '2024年5月 - 2025年5月',
+                    'program1': '国家レベル大学生イノベーション・起業家精神トレーニングプログラム',
+                    'supervisors': '指導教官:',
+                    'supervisornames': 'ウォーターフォード研究所の王宝偉学部長と徐成副学部長',
+                    'p1point1': '予測精度が向上した改良適応重みアルゴリズムを研究し提案しました。',
+                    'p1point2': 'モデルの干渉抵抗力と堅牢性を強化するための二重パラメータ調整メカニズムを革新的に導入しました。',
+                    'p1point3': '実験結果は、提案された改良方法が従来のAdaBoostアルゴリズムと比較して予測精度と堅牢性を大幅に向上させることを示しています。',
+                    'title2': 'UAV知能認識と対策スキームに関する研究：マルチモーダルデータ融合と3D軌道推定',
+                    'role2': '研究プロジェクト',
+                    'period2': '2024年冬',
+                    'p2point1': 'UAV知能認識と対策スキームを研究し、従来の単一モダリティセンサーの限界に対処し、複雑な環境での実現可能性を向上させます。',
+                    'p2point2': 'ビジョン、レーダー、無線周波数からのマルチモーダルセンサーデータを融合して、UAVターゲット検出と位置推定の精度を向上させます。',
+                    'p2point3': 'UAV 3D軌道推定に焦点を当て、従来の2Dトラッキングの限界を克服し、より正確な動的認識と対策をサポートします。',
+                    'title3': '可視光-赤外線歩行者再識別に関する革新的研究',
+                    'role3': '研究プロジェクト',
+                    'period3': '2024年冬',
+                    'p3point1': 'VI-ReIDは、異なる照明条件下での歩行者マッチングの課題に対処し、クロスモーダルの違いとモーダル内変動の課題に直面しています。',
+                    'p3point2': '補助モーダル融合を通じて可視光と赤外線情報を統合するモーダル統一ネットワークを設計し、モーダルの違いを軽減します。',
+                    'p3point3': 'アイデンティティレベルと分布レベルでの特徴関係を最適化するためのアイデンティティアラインメントとモーダリティアラインメント損失関数を設計し、モデルのパフォーマンスを向上させます。'
+                },
+                'courses': {
+                    'title': '履修科目',
+                    'name1': '機械学習',
+                    'score1': '成績: 95/100',
+                    'rank1': '順位: 1/34',
+                    'description1': '教師あり学習と教師なし学習のアルゴリズム、ニューラルネットワーク、実世界問題における機械学習の実践的応用をカバーする高度なコース。理論的基礎と実装スキルの両方を重視しています。',
+                    'contribution1': 'このコースでは、バギングとブースティング技術を組み合わせた新しいアンサンブル学習アルゴリズムを実装し、不均衡データセットの分類精度を向上させました。最終プロジェクトでは、適応的ブースティング手法を用いた心血管疾患予測に焦点を当てました。',
+                    'name2': 'データ構造とアルゴリズム',
+                    'score2': '成績: 92/100',
+                    'rank2': '順位: 3/34',
+                    'description2': '基本的なデータ構造（配列、連結リスト、スタック、キュー、ツリー、グラフ）とアルゴリズム（ソート、検索、動的プログラミング）の包括的な研究。アルゴリズム分析、設計パラダイム、計算複雑性に焦点を当てています。',
+                    'contribution2': 'ネットワーク分析のための最適化されたグラフ走査アルゴリズムを開発し、標準実装と比較して処理効率を30％向上させました。さらに、ルーティングアプリケーションにおけるダイクストラのアルゴリズムのパフォーマンスを大幅に向上させるカスタム優先キューを実装しました。',
+                    'name3': 'IoTアーキテクチャと応用',
+                    'score3': '成績: 94/100',
+                    'rank3': '順位: 2/34',
+                    'description3': 'IoTシステムの設計と実装における実践的な経験を通じたモノのインターネットアーキテクチャ、プロトコル、応用の探求。センサーネットワーク、データ管理、セキュリティ考慮事項、新興IoT技術をカバーしています。',
+                    'contribution3': 'Arduinoと様々なセンサーを使用して健康モニタリングシステムを設計・実装し、バイタルサインを追跡してリアルタイムでクラウドストレージにデータを送信できるようにしました。このシステムには、心血管問題の早期警告サインを潜在的に識別できる心拍パターンの異常検出のためのカスタムアルゴリズムが含まれていました。',
+                    'report': 'コースレポート',
+                    'repository': 'GitHubリポジトリ'
+                },
+                'awards': {
+                    'title': '受賞歴',
+                    'category1': '数学モデリング',
+                    'award1': '2等賞、中国大学生数学モデリングコンテスト(CUMCM)、国家レベル、2023年10月',
+                    'award2': '優秀賞(Hアワード)、数学モデリングコンテスト(MCM/ICM)、国家レベル、2024年5月',
+                    'award3': '2等賞、中国大学生数学モデリングコンテスト(CUMCM)、省レベル、2024年10月',
+                    'award4': '1等賞、江蘇省高等数学コンテスト、カテゴリーA、省レベル、2023年5月',
+                    'category2': '学術優秀',
+                    'award5': '一級奨学金、2023年 & 2024年',
+                    'award6': '大学「三好学生」、2023年 & 2024年',
+                    'award7': '優秀共青団幹部、2024年',
+                    'award8': '優秀団員、2023年',
+                    'category3': '言語と革新',
+                    'award9': '1等賞、中国大学英語翻訳コンテスト、省レベル、2024年6月',
+                    'award10': '銅賞、「インターネット+」大学生イノベーション・起業家精神コンペティション、大学レベル、2024年6月',
+                    'award11': 'CET-6: 574',
+                    'award12': 'IELTS: 6.5 (リーディング: 8)'
+                },
+                'skills': {
+                    'title': 'スキルと専門知識',
+                    'category1': '機械学習',
+                    'skill1': 'AdaBoostとアンサンブルアルゴリズム',
+                    'skill2': 'ディープラーニング (TensorFlow, PyTorch)',
+                    'skill3': 'マルチモーダル学習とパターン認識',
+                    'skill4': '進化的最適化アルゴリズム',
+                    'skill5': 'ナレッジディスティレーション技術',
+                    'category2': 'プログラミング',
+                    'skill6': 'Linuxオペレーティングシステム',
+                    'category3': 'データ管理',
+                    'skill7': 'データ可視化 (Origin)',
+                    'skill8': '統計分析',
+                    'skill9': 'Adobeデザインソフトウェア',
+                    'category4': '学術スキル',
+                    'skill10': '数学モデリング',
+                    'skill11': '科学論文執筆',
+                    'skill12': '文献レビュー',
+                    'skill13': '学術プレゼンテーション'
+                },
+                'contact': {
+                    'title': '研究機会',
+                    'text': '現在、機械学習、医療応用、知能システム分野での博士課程および研究志向の修士課程の機会を探しています。私の研究関心があなたのプログラムと一致する場合は、潜在的な協力について議論させていただければ幸いです。',
+                    'button': '連絡する'
+                },
+                'footer': {
+                    'email': 'メール',
+                    'phone': '電話',
+                    'scholar': 'Google Scholar',
+                    'copyright': '© 2025 王 子恒 | 南京情報工程大学'
+                },
+                  'Research Opportunities':{
                     'text': 'I am currently seeking PhD and research-oriented Master\'s opportunities in machine learning, healthcare applications, and intelligent systems. If my research interests align with your program, I would be pleased to discuss potential collaboration.',
                     'button': 'Contact Me'
                 },
                 'footer': {
                     'email': 'Email',
                     'phone': 'Phone',
+                    'scholar': 'Google Scholar',
                     'copyright': '© 2025 Ziheng Wang | Nanjing University of Information Science and Technology'
                 }
             },
             'zh-CN': {
                 'header': {
                     'title': '王子恒',
-                    'subtitle': '南京信息工程大学 | 博士与研究型硕士申请人',
+                    'subtitle': '机器学习研究员 | 博士与研究型硕士申请人',
                     'email': 'zhwang@nuist.edu.cn',
-                    'phone': '+86 136-4157-7335'
+                    'phone': '+86 136-4157-7335',
+                    'scholar': '谷歌学术'
                 },
                 'nav': {
                     'about': '关于我',
                     'education': '教育背景',
                     'publications': '发表文献',
                     'research': '研究项目',
+                    'courses': '所修课程',
                     'awards': '奖项荣誉',
                     'skills': '专业技能',
                     'contact': '联系方式'
@@ -836,6 +1360,7 @@
                     'gpa': '平均绩点:',
                     'rank': '排名第2/34名学生',
                     'description1': '就读于南京信息工程大学与爱尔兰东南理工大学的4+0联合项目。所有专业课程均以英语授课，提供了强大的国际视野和跨文化技能。',
+                    'dualDegree': 'SETU双学位 - 预计一等荣誉学位 (2026)',
                     'coursework': '相关课程:',
                     'courses': '机器学习、数据结构与算法、计算机网络、数据库系统、物联网架构',
                     'highschool': '江苏省靖江高级中学',
@@ -844,12 +1369,12 @@
                 },
                 'publications': {
                     'title': '发表文献',
-                    'title1': '一种增强心血管疾病诊断的自适应加权提升框架',
+                    'title1': 'An Adaptive Weighted Boosting Framework for Enhanced Cardiovascular Disease Diagnosis',
                     'citation1': '一种增强心血管疾病诊断的自适应加权提升框架. 生物医学信号处理与控制, Elsevier. (SCI, JCR-Q1, )',
                     'author1': '第一作者',
                     'journal1': '发表于生物医学信号处理与控制',
                     'abstract1': '开发了一种用于提升算法的创新自适应加权机制，与传统方法相比，显著提高了心血管疾病诊断的准确性。该框架在不同患者群体和临床场景中展示了增强的稳健性。',
-                    'title2': 'APPBoost：一种针对噪声和不平衡增强鲁棒性的自适应参数对提升算法',
+                    'title2': 'APPBoost: An Adaptive Parameter-Pair Boosting Algorithm for Enhanced Robustness Against Noise and Imbalance',
                     'citation2': 'APPBoost：一种针对噪声和不平衡增强鲁棒性的自适应参数对提升算法. 超级计算期刊, Springer. (SCI, JCR-Q2, CCF-C)',
                     'author2': '第一作者',
                     'journal2': '发表于超级计算期刊',
@@ -857,7 +1382,13 @@
                     'title3': '一种用于心血管疾病诊断的双参数调节自适应增强方法',
                     'author3': '第一发明人',
                     'journal3': '国家授权专利',
-                    'abstract3': '该专利记录了一种利用自适应权重参数调整来增强诊断准确性和系统可靠性的心血管疾病诊断新方法。该发明提供了一种参数优化的系统方法，显著提高了临床应用中的性能。'
+                    'patentInfo': '专利号:',
+                    'authNumber': '授权号:',
+                    'abstract3': '该专利记录了一种利用自适应权重参数调整来增强诊断准确性和系统可靠性的心血管疾病诊断新方法。该发明提供了一种参数优化的系统方法，显著提高了临床应用中的性能。',
+                    'paper': '全文',
+                    'presentation': '演示文稿',
+                    'doi': 'DOI链接',
+                    'patentDoc': '专利文档'
                 },
                 'projects': {
                     'title': '研究项目',
@@ -882,6 +1413,26 @@
                     'p3point1': 'VI-ReID旨在解决不同光照条件下行人匹配的挑战，面临跨模态差异和模态内变化的挑战。',
                     'p3point2': '设计一种模态统一网络，通过辅助模态融合合并可见光和红外信息，减轻模态差异。',
                     'p3point3': '设计身份对齐和模态对齐损失函数，优化身份和分布级别的特征关系，提高模型性能。'
+                },
+                'courses': {
+                    'title': '所修课程',
+                    'name1': '机器学习',
+                    'score1': '成绩: 95/100',
+                    'rank1': '排名: 1/34',
+                    'description1': '高级课程，涵盖监督和非监督学习算法、神经网络以及机器学习在实际问题中的应用。课程既强调理论基础，也注重实现技能。',
+                    'contribution1': '在这门课程中，我实现了一种新颖的集成学习算法，结合了装袋和提升技术，提高了不平衡数据集上的分类准确率。我的期末项目专注于使用自适应提升方法进行心血管疾病预测。',
+                    'name2': '数据结构与算法',
+                    'score2': '成绩: 92/100',
+                    'rank2': '排名: 3/34',
+                    'description2': '全面研究基础数据结构（数组、链表、栈、队列、树、图）和算法（排序、搜索、动态规划）。课程关注算法分析、设计范式和计算复杂性。',
+                    'contribution2': '我开发了一种优化的图遍历算法用于网络分析，与标准实现相比，处理效率提高了30%。此外，我实现了一个自定义优先队列，显著增强了Dijkstra算法在路由应用中的性能。',
+                    'name3': '物联网架构与应用',
+                    'score3': '成绩: 94/100',
+                    'rank3': '排名: 2/34',
+                    'description3': '探索物联网架构、协议和应用，通过设计和实现物联网系统获得实践经验。课程涵盖传感器网络、数据管理、安全考虑和新兴物联网技术。',
+                    'contribution3': '我设计并实现了一个使用Arduino和各种传感器的健康监测系统，可以跟踪生命体征并实时将数据传输到云存储。该系统包括了用于心率模式异常检测的自定义算法，可能识别心血管问题的早期警告信号。',
+                    'report': '课程报告',
+                    'repository': 'GitHub仓库'
                 },
                 'awards': {
                     'title': '奖项荣誉',
@@ -932,258 +1483,7 @@
                     'copyright': '© 2025 王子恒 | 南京信息工程大学'
                 }
             },
-            'zh-TW': {
-                'header': {
-                    'title': '王子恒',
-                    'subtitle': '機器學習研究員 | 博士與研究型碩士申請人',
-                    'email': 'zhwang@nuist.edu.cn',
-                    'phone': '+86 136-4157-7335'
-                },
-                'nav': {
-                    'about': '關於我',
-                    'education': '教育背景',
-                    'publications': '發表文獻',
-                    'research': '研究項目',
-                    'awards': '獎項榮譽',
-                    'skills': '專業技能',
-                    'contact': '聯絡方式'
-                },
-                'about': {
-                    'title': '關於我',
-                    'p1': '我是南京信息工程大學物聯網工程專業的大四本科生，就讀於國際合作項目。我的研究方向是機器學習演算法在醫療健康領域的應用，特別是用於心血管疾病診斷的集成學習方法。',
-                    'p2': '我的研究成果包括多篇發表在知名科學期刊上的論文和一項國家授權專利。我開發了提高診斷演算法穩健性和準確性的創新方法，主要通過自適應技術和參數最佳化實現。',
-                    'p3': '目前，我正在尋求博士和研究型碩士的機會，以進一步發展我在醫療健康和智慧系統機器學習領域的專業知識。我希望加入一個研究團隊，通過創新的計算方法繼續為這個領域做出貢獻。'
-                },
-                'education': {
-                    'title': '教育背景',
-                    'university': '南京信息工程大學',
-                    'degree': '工學學士，物聯網工程',
-                    'period1': '2022 - 2026 (預計)',
-                    'gpa': '平均績點:',
-                    'rank': '排名第2/34名學生',
-                    'description1': '就讀於南京信息工程大學與愛爾蘭東南理工大學的4+0聯合項目。所有專業課程均以英語授課，提供了強大的國際視野和跨文化技能。',
-                    'coursework': '相關課程:',
-                    'courses': '機器學習、資料結構與演算法、電腦網路、資料庫系統、物聯網架構',
-                    'highschool': '江蘇省靖江高級中學',
-                    'hstype': '江蘇省優質示範高中',
-                    'period2': '2019 - 2022'
-                },
-                'publications': {
-                    'title': '發表文獻',
-                    'title1': '一種增強心血管疾病診斷的自適應加權提升框架',
-                    'citation1': '一種增強心血管疾病診斷的自適應加權提升框架. 生物醫學信號處理與控制, Elsevier. (SCI, JCR-Q1, )',
-                    'author1': '第一作者',
-                    'journal1': '發表於生物醫學信號處理與控制',
-                    'abstract1': '開發了一種用於提升演算法的創新自適應加權機制，與傳統方法相比，顯著提高了心血管疾病診斷的準確性。該框架在不同患者群體和臨床場景中展示了增強的穩健性。',
-                    'title2': 'APPBoost：一種針對噪聲和不平衡增強魯棒性的自適應參數對提升演算法',
-                    'citation2': 'APPBoost：一種針對噪聲和不平衡增強魯棒性的自適應參數對提升演算法. 超級計算期刊, Springer. (SCI, JCR-Q2, CCF-C)',
-                    'author2': '第一作者',
-                    'journal2': '已被超級計算期刊接受',
-                    'abstract2': '本研究引入了一種用於提升演算法的新型雙參數調整機制，系統地增強了模型對干擾的抵抗力並提高了穩健性。提出的APPBoost演算法能夠同時自適應調整兩個關鍵參數，最佳化在噪聲和資料不平衡情況下的效能。',
-                    'title3': '一種使用權重參數調整的心血管疾病診斷自適應增強方法',
-                    'author3': '第一發明人',
-                    'journal3': '國家授權專利',
-                    'abstract3': '該專利記錄了一種利用自適應權重參數調整來增強診斷準確性和系統可靠性的心血管疾病診斷新方法。該發明提供了一種參數最佳化的系統方法，顯著提高了臨床應用中的效能。'
-                },
-                'projects': {
-                    'title': '研究項目',
-                    'title1': '基於自適應和特徵交互的心血管疾病早期診斷演算法研究',
-                    'role1': '主要研究員，項目負責人',
-                    'period1': '2024年5月 - 2025年5月',
-                    'program1': '國家級大學生創新創業訓練計劃項目',
-                    'supervisors': '指導教師:',
-                    'supervisornames': '王寶偉院長和徐成副院長，沃特福德學院',
-                    'p1point1': '研究並提出了一種改進的自適應權重演算法，具有增強的預測準確性。',
-                    'p1point2': '創新性地引入了雙參數調整機制，以增強模型抵抗干擾的能力和穩健性。',
-                    'p1point3': '實驗結果表明，所提出的改進方法與傳統AdaBoost演算法相比，顯著提高了預測準確性和穩健性。',
-                    'title2': '無人機智慧感知與對抗方案研究：多模態資料融合與3D軌跡估計',
-                    'role2': '研究項目',
-                    'period2': '2024年冬季',
-                    'p2point1': '研究無人機智慧感知與對抗方案，解決傳統單模態傳感器的侷限性，提高在複雜環境中的可行性。',
-                    'p2point2': '融合來自視覺、雷達和射頻的多模態傳感器資料，以增強無人機目標檢測和位置估計的準確性。',
-                    'p2point3': '專注於無人機3D軌跡估計，克服傳統2D追蹤的侷限性，支援更精確的動態感知和對抗措施。',
-                    'title3': '可見光-紅外行人再識別創新研究',
-                    'role3': '研究項目',
-                    'period3': '2024年冬季',
-                    'p3point1': 'VI-ReID旨在解決不同光照條件下行人匹配的挑戰，面臨跨模態差異和模態內變化的挑戰。',
-                    'p3point2': '設計一種模態統一網絡，通過輔助模態融合合併可見光和紅外資訊，減輕模態差異。',
-                    'p3point3': '設計身份對齊和模態對齊損失函數，最佳化身份和分佈級別的特徵關係，提高模型效能。'
-                },
-                'awards': {
-                    'title': '獎項榮譽',
-                    'category1': '數學建模',
-                    'award1': '二等獎，中國大學生數學建模競賽(CUMCM)，國家級，2023年10月',
-                    'award2': '榮譽獎(H獎)，美國大學生數學建模競賽(MCM/ICM)，國際級，2024年5月',
-                    'award3': '二等獎，中國大學生數學建模競賽(CUMCM)，省級，2024年10月',
-                    'award4': '一等獎，江蘇省高等數學競賽，A類，省級，2023年5月',
-                    'category2': '學術優秀',
-                    'award5': '一等獎學金，2023年 & 2024年',
-                    'award6': '校級"三好學生"，2023年 & 2024年',
-                    'award7': '優秀共青團幹部，2024年',
-                    'award8': '優秀共青團員，2023年',
-                    'category3': '語言與創新',
-                    'award9': '一等獎，全國大學生英語翻譯大賽，省級，2024年6月',
-                    'award10': '銅獎，"互聯網+"大學生創新創業大賽，校級，2024年6月',
-                    'award11': '大學英語六級: 574分',
-                    'award12': '雅思: 6.5 (閱讀: 8分)'
-                },
-                'skills': {
-                    'title': '專業技能',
-                    'category1': '機器學習',
-                    'skill1': 'AdaBoost和集成演算法',
-                    'skill2': '深度學習 (TensorFlow, PyTorch)',
-                    'skill3': '多模態學習和模式識別',
-                    'skill4': '進化最佳化演算法',
-                    'skill5': '知識蒸餾技術',
-                    'category2': '程式設計',
-                    'skill6': 'Linux作業系統',
-                    'category3': '資料管理',
-                    'skill7': '資料視覺化 (Origin)',
-                    'skill8': '統計分析',
-                    'skill9': 'Adobe設計軟體',
-                    'category4': '學術技能',
-                    'skill10': '數學建模',
-                    'skill11': '科學寫作',
-                    'skill12': '文獻綜述',
-                    'skill13': '學術演講'
-                },
-                'contact': {
-                    'title': '研究機會',
-                    'text': '我目前正在尋求機器學習、醫療應用和智慧系統領域的博士和研究型碩士機會。如果我的研究興趣與您的項目相符，我很樂意討論潛在的合作。',
-                    'button': '聯絡我'
-                },
-                'footer': {
-                    'email': '郵箱',
-                    'phone': '電話',
-                    'copyright': '© 2025 王子恒 | 南京信息工程大學'
-                }
-            },
-            'ja': {
-                'header': {
-                    'title': '王 子恒',
-                    'subtitle': '機械学習研究者 | 博士・研究型修士課程志願者',
-                    'email': 'zhwang@nuist.edu.cn',
-                    'phone': '+86 136-4157-7335'
-                },
-                'nav': {
-                    'about': 'プロフィール',
-                    'education': '学歴',
-                    'publications': '出版物',
-                    'research': '研究',
-                    'awards': '受賞歴',
-                    'skills': 'スキル',
-                    'contact': '連絡先'
-                },
-                'about': {
-                    'title': 'プロフィール',
-                    'p1': '私は南京情報工程大学のIoT（モノのインターネット）専攻の学部4年生で、国際協力プログラムに在籍しています。私の研究は、特に心血管疾患診断のためのアンサンブル手法に焦点を当てた、医療応用のための機械学習アルゴリズムに関するものです。',
-                    'p2': '私の研究は、複数の科学ジャーナルでの論文発表と国家認可特許につながっています。適応技術とパラメータ最適化を通じて、診断アルゴリズムの堅牢性と精度を向上させる新しいアプローチを開発しました。',
-                    'p3': '現在、医療および知能システムのための機械学習分野での専門知識をさらに発展させるため、博士課程および研究志向の修士課程の機会を求めています。革新的な計算手法を通じてこの分野に貢献し続けることができる研究チームに参加したいと考えています。'
-                },
-                'education': {
-                    'title': '学歴',
-                    'university': '南京情報工程大学',
-                    'degree': '工学学士、モノのインターネット',
-                    'period1': '2022年 - 2026年（予定）',
-                    'gpa': 'GPA:',
-                    'rank': '34人中2位',
-                    'description1': '南京情報工程大学とアイルランドの南東工科大学との4+0共同プログラムに在籍。すべての専門科目は英語で教えられ、強い国際的視野と異文化間スキルを提供しています。',
-                    'coursework': '関連コース:',
-                    'courses': '機械学習、データ構造とアルゴリズム、コンピュータネットワーク、データベースシステム、IoTアーキテクチャ',
-                    'highschool': '江蘇省靖江高級中学',
-                    'hstype': '江蘇省高品質モデル高校',
-                    'period2': '2019年 - 2022年'
-                },
-                'publications': {
-                    'title': '出版物',
-                    'title1': '心血管疾患診断のための適応重み付けブースティングフレームワーク',
-                    'citation1': '心血管疾患診断のための適応重み付けブースティングフレームワーク。バイオメディカル信号処理とコントロール、エルゼビア。(SCI、JCR-Q1、)',
-                    'author1': '筆頭著者',
-                    'journal1': 'バイオメディカル信号処理とコントロールに掲載',
-                    'abstract1': 'ブースティングアルゴリズムのための革新的な適応重み付けメカニズムを開発し、従来の方法と比較して心血管疾患診断の精度を大幅に向上させました。このフレームワークは、多様な患者集団と臨床シナリオにおいて強化された堅牢性を示しています。',
-                    'title2': 'APPBoost: ノイズと不均衡に対する堅牢性を強化するための適応パラメータペアブースティングアルゴリズム',
-                    'citation2': 'APPBoost: ノイズと不均衡に対する堅牢性を強化するための適応パラメータペアブースティングアルゴリズム。スーパーコンピューティングジャーナル、スプリンガー。(SCI、JCR-Q2、CCF-C)',
-                    'author2': '筆頭著者',
-                    'journal2': 'スーパーコンピューティングジャーナルに受理',
-                    'abstract2': 'この研究は、干渉に対するモデルの抵抗力を系統的に強化し、堅牢性を向上させるブースティングアルゴリズムのための新しい二重パラメータ調整メカニズムを導入しています。提案されたAPPBoostアルゴリズムは、2つの主要パラメータを同時に適応的に調整し、ノイズとデータの不均衡の存在下でのパフォーマンスを最適化します。',
-                    'title3': '重みパラメータ調整を用いた心血管疾患診断のための適応強化法',
-                    'author3': '筆頭発明者',
-                    'journal3': '国家認可特許',
-                    'abstract3': 'この特許は、診断精度とシステム信頼性を向上させるための適応重みパラメータ調整を利用した心血管疾患診断の新しい方法を文書化しています。この発明は、臨床応用におけるパフォーマンスを大幅に向上させるパラメータ最適化の体系的なアプローチを提供します。'
-                },
-                'projects': {
-                    'title': '研究プロジェクト',
-                    'title1': '適応と特徴相互作用に基づく心血管疾患の早期診断アルゴリズムに関する研究',
-                    'role1': '主任研究員、プロジェクトリーダー',
-                    'period1': '2024年5月 - 2025年5月',
-                    'program1': '国家レベル大学生イノベーション・起業家精神トレーニングプログラム',
-                    'supervisors': '指導教官:',
-                    'supervisornames': 'ウォーターフォード研究所の王宝偉学部長と徐成副学部長',
-                    'p1point1': '予測精度が向上した改良適応重みアルゴリズムを研究し提案しました。',
-                    'p1point2': 'モデルの干渉抵抗力と堅牢性を強化するための二重パラメータ調整メカニズムを革新的に導入しました。',
-                    'p1point3': '実験結果は、提案された改良方法が従来のAdaBoostアルゴリズムと比較して予測精度と堅牢性を大幅に向上させることを示しています。',
-                    'title2': 'UAV知能認識と対策スキームに関する研究：マルチモーダルデータ融合と3D軌道推定',
-                    'role2': '研究プロジェクト',
-                    'period2': '2024年冬',
-                    'p2point1': 'UAV知能認識と対策スキームを研究し、従来の単一モダリティセンサーの限界に対処し、複雑な環境での実現可能性を向上させます。',
-                    'p2point2': 'ビジョン、レーダー、無線周波数からのマルチモーダルセンサーデータを融合して、UAVターゲット検出と位置推定の精度を向上させます。',
-                    'p2point3': 'UAV 3D軌道推定に焦点を当て、従来の2Dトラッキングの限界を克服し、より正確な動的認識と対策をサポートします。',
-                    'title3': '可視光-赤外線歩行者再識別に関する革新的研究',
-                    'role3': '研究プロジェクト',
-                    'period3': '2024年冬',
-                    'p3point1': 'VI-ReIDは、異なる照明条件下での歩行者マッチングの課題に対処し、クロスモーダルの違いとモーダル内変動の課題に直面しています。',
-                    'p3point2': '補助モーダル融合を通じて可視光と赤外線情報を統合するモーダル統一ネットワークを設計し、モーダルの違いを軽減します。',
-                    'p3point3': 'アイデンティティレベルと分布レベルでの特徴関係を最適化するためのアイデンティティアラインメントとモーダリティアラインメント損失関数を設計し、モデルのパフォーマンスを向上させます。'
-                },
-                'awards': {
-                    'title': '受賞歴',
-                    'category1': '数学モデリング',
-                    'award1': '2等賞、中国大学生数学モデリングコンテスト(CUMCM)、国家レベル、2023年10月',
-                    'award2': '優秀賞(Hアワード)、数学モデリングコンテスト(MCM/ICM)、国家レベル、2024年5月',
-                    'award3': '2等賞、中国大学生数学モデリングコンテスト(CUMCM)、省レベル、2024年10月',
-                    'award4': '1等賞、江蘇省高等数学コンテスト、カテゴリーA、省レベル、2023年5月',
-                    'category2': '学術優秀',
-                    'award5': '一級奨学金、2023年 & 2024年',
-                    'award6': '大学「三好学生」、2023年 & 2024年',
-                    'award7': '優秀共青団幹部、2024年',
-                    'award8': '優秀団員、2023年',
-                    'category3': '言語と革新',
-                    'award9': '1等賞、中国大学英語翻訳コンテスト、省レベル、2024年6月',
-                    'award10': '銅賞、「インターネット+」大学生イノベーション・起業家精神コンペティション、大学レベル、2024年6月',
-                    'award11': 'CET-6: 574',
-                    'award12': 'IELTS: 6.5 (リーディング: 8)'
-                },
-                'skills': {
-                    'title': 'スキルと専門知識',
-                    'category1': '機械学習',
-                    'skill1': 'AdaBoostとアンサンブルアルゴリズム',
-                    'skill2': 'ディープラーニング (TensorFlow, PyTorch)',
-                    'skill3': 'マルチモーダル学習とパターン認識',
-                    'skill4': '進化的最適化アルゴリズム',
-                    'skill5': 'ナレッジディスティレーション技術',
-                    'category2': 'プログラミング',
-                    'skill6': 'Linuxオペレーティングシステム',
-                    'category3': 'データ管理',
-                    'skill7': 'データ可視化 (Origin)',
-                    'skill8': '統計分析',
-                    'skill9': 'Adobeデザインソフトウェア',
-                    'category4': '学術スキル',
-                    'skill10': '数学モデリング',
-                    'skill11': '科学論文執筆',
-                    'skill12': '文献レビュー',
-                    'skill13': '学術プレゼンテーション'
-                },
-                'contact': {
-                    'title': '研究機会',
-                    'text': '現在、機械学習、医療応用、知能システム分野での博士課程および研究志向の修士課程の機会を探しています。私の研究関心があなたのプログラムと一致する場合は、潜在的な協力について議論させていただければ幸いです。',
-                    'button': '連絡する'
-                },
-                'footer': {
-                    'email': 'メール',
-                    'phone': '電話',
-                    'copyright': '© 2025 王 子恒 | 南京情報工程大学'
-                }
-            }
+
         };
 
         // Function to update content based on selected language
