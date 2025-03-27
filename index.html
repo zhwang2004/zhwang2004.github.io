@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ziheng Wang | Academic Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
         :root {
             --primary-color: #0a3d62;
@@ -14,6 +15,18 @@
             --dark-color: #2c3e50;
             --text-color: #333;
             --max-width: 1200px;
+        }
+        #welcome-text {
+             border-right: 2px solid black; /* 模拟打字光标 */
+             white-space: nowrap; /* 防止文字换行 */
+             overflow: hidden; /* 隐藏未显示的文字 */
+             animation: blinkCursor 0.75s step-end infinite; /* 光标闪烁动画 */
+        }
+
+        /* 光标闪烁动画 */
+        @keyframes blinkCursor {
+        from, to { border-color: transparent; }
+        50% { border-color: black; }
         }
 
         @keyframes fadeIn {
@@ -521,10 +534,28 @@
     </style>
 </head>
 <body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const welcomeElement = document.getElementById('welcome-text');
+    const text = welcomeElement.textContent; // 获取原始文本
+    welcomeElement.textContent = ''; // 清空文本内容
+    let index = 0;
+
+    function typeWriter() {
+        if (index < text.length) {
+            welcomeElement.textContent += text.charAt(index); // 逐个添加字符
+            index++;
+            setTimeout(typeWriter, 100); // 每100毫秒添加一个字符
+        }
+    }
+
+    typeWriter(); // 启动打字效果
+});
+    </script>
     <header>
         <div class="container header-content">
             <h1 class="i18n" data-i18n="header.title">Ziheng Wang</h1>
-            <p><i class="fas fa-brain"></i> <span class="i18n" data-i18n="header.subtitle">Machine Learning Researcher | Ph.D. & Research Master's Applicant</span></p>
+            <p><span class="i18n" data-i18n="header.subtitle">Machine Learning Researcher | Ph.D. & Research Master's Applicant</span></p>
             <div class="contact-info">
                 <a href="mailto:zhwang@nuist.edu.cn"><i class="fas fa-envelope"></i> <span class="i18n" data-i18n="header.email">zhwang@nuist.edu.cn</span></a> |
                 <a href="https://github.com/Nickory" target="_blank"><i class="fab fa-github"></i> GitHub</a> |
@@ -555,21 +586,96 @@
         </div>
     </nav>
 
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title"><i class="fas fa-user-circle"></i> <span class="i18n" data-i18n="about.title">About Me</span></h2>
-            <div class="about-content">
-                 <div class="profile-pic">
-                     <img src="https://nickory.github.io/RayVita_website/api/placeholder/60/500.png" alt="Ziheng Wang">
-                 </div>
-                <div class="about-text">
-                    <p class="i18n" data-i18n="about.p1">I am a senior undergraduate student at Nanjing University of Information Science and Technology, specializing in Internet of Things through an international collaborative program. My research focuses on machine learning algorithms with healthcare applications, particularly ensemble methods for cardiovascular disease diagnosis.</p>
-                    <p class="i18n" data-i18n="about.p2">My work has resulted in multiple publications in respected scientific journals and a nationally authorized patent. I have developed novel approaches for enhancing the robustness and accuracy of diagnostic algorithms through adaptive techniques and parameter optimization.</p>
-                    <p class="i18n" data-i18n="about.p3">I am currently seeking Ph.D. and research-oriented Master's opportunities to further develop my expertise in machine learning for healthcare and intelligent systems. I hope to join a research team where I can continue contributing to this field through innovative computational methods.</p>
-                </div>
+   <!-- Updated About Section with Fixed Typewriter Effect -->
+<section id="about">
+    <div class="container">
+        <h2 class="section-title"><i class="fas fa-user-circle"></i> <span class="i18n" data-i18n="about.title">About Me</span></h2>
+        <div class="about-content">
+            <div class="profile-pic">
+                <img src="https://nickory.github.io/RayVita_website/api/placeholder/60/500.png" alt="Profile Picture">
+            </div>
+            <div class="about-text">
+                <!-- Updated welcome text with improved styling -->
+                <p id="welcome-text" class="welcome-heading i18n" data-i18n="about.p1"></p>
+                <p class="intro-text i18n" data-i18n="about.p2">
+                    I am a junior undergraduate student majoring in Internet of Things Engineering at Nanjing University of Information Science and Technology, enrolled in the Waterford Institute of Technology College. My current research focuses on the application of machine learning algorithms in the medical and health fields, multimodal tasks, and computer vision. I have published several research papers as the first author in SCI and CCF-recommended journals, led a national-level innovation and entrepreneurship training program for college students and successfully completed it, and obtained patent authorization as the first inventor. I have also won more than ten provincial and above awards, including the second prize in the national mathematical modeling competition.
+                </p>
+                <p class="outro-text i18n" data-i18n="about.p3">
+                    Currently, I am seeking opportunities for doctoral and research-oriented master's programs. I am very eager to join a dynamic research team and continue to contribute to this field through innovation. If you think there is any possibility, please feel free to contact me!!
+                </p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<!-- Add these styles to your existing stylesheet -->
+<style>
+    /* Improved styling for the welcome text paragraphs */
+    .welcome-heading {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        letter-spacing: 0.5px;
+        position: relative;
+        display: inline-block;
+    }
+
+    .intro-text {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        margin-bottom: 20px;
+        text-align: justify;
+    }
+
+    .outro-text {
+        font-size: 1.2rem;
+        font-weight: 500;
+        line-height: 1.7;
+        color: var(--dark-color);
+        background: linear-gradient(to right, #f9f9f9, white);
+        padding: 15px;
+        border-left: 4px solid var(--accent-color);
+        border-radius: 0 8px 8px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Fixed typewriter effect */
+    #welcome-text::after {
+        content: '|';
+        display: inline-block;
+        animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+        from, to { opacity: 1; }
+        50% { opacity: 0; }
+    }
+</style>
+
+<!-- Updated JavaScript for typewriter effect -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const welcomeElement = document.getElementById('welcome-text');
+    const text = "Welcome to my homepage!!!";
+    welcomeElement.textContent = ''; // Clear the initial text
+    let index = 0;
+
+    function typeWriter() {
+        if (index < text.length) {
+            welcomeElement.textContent += text.charAt(index);
+            index++;
+            setTimeout(typeWriter, 100); // Add a character every 100ms
+        } else {
+            // When typing is complete, add the blinking cursor class
+            welcomeElement.classList.add('typing-complete');
+        }
+    }
+
+    // Start the typewriter effect with a slight delay
+    setTimeout(typeWriter, 500);
+});
+</script>
 
     <section id="education">
         <div class="container">
@@ -613,7 +719,7 @@
                 <div class="publication-links">
                     <a href="#" class="resource-link" target="_blank"><i class="fas fa-file-pdf"></i> <span class="i18n" data-i18n="publications.paper">Full Paper</span></a>
                     <a href="#" class="resource-link" target="_blank"><i class="fas fa-file-powerpoint"></i> <span class="i18n" data-i18n="publications.presentation">Presentation</span></a>
-                    <a href="#" class="resource-link" target="_blank"><i class="fas fa-link"></i> <span class="i18n" data-i18n="publications.doi">DOI Link</span></a>
+                    <a href="https://www.sciencedirect.com/science/article/abs/pii/S1746809424015052" class="resource-link" target="_blank"><i class="fas fa-link"></i> <span class="i18n" data-i18n="publications.doi">DOI Link</span></a>
                 </div>
             </div>
             <div class="publication-item">
@@ -627,7 +733,7 @@
                 <div class="publication-links">
                     <a href="#" class="resource-link" target="_blank"><i class="fas fa-file-pdf"></i> <span class="i18n" data-i18n="publications.paper">Full Paper</span></a>
                     <a href="#" class="resource-link" target="_blank"><i class="fas fa-file-powerpoint"></i> <span class="i18n" data-i18n="publications.presentation">Presentation</span></a>
-                    <a href="#" class="resource-link" target="_blank"><i class="fas fa-link"></i> <span class="i18n" data-i18n="publications.doi">DOI Link</span></a>
+                    <a href="https://link.springer.com/article/10.1007/s11227-025-07053-9" class="resource-link" target="_blank"><i class="fas fa-link"></i> <span class="i18n" data-i18n="publications.doi">DOI Link</span></a>
                 </div>
             </div>
             <div class="publication-item">
@@ -801,7 +907,7 @@
                         <li><i class="fab fa-python"></i> Python</li>
                         <li><i class="fab fa-java"></i> Java</li>
                         <li><i class="fab fa-js-square"></i> JavaScript</li>
-                        <li><img src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.5.1/collection/components/icon/svg/logo-kotlin.svg" alt="Kotlin" style="width: 15px; height: 15px; margin-right: 10px;"> Kotlin</li>
+                        <li><img src="https://nickory.github.io/RayVita_website/api/placeholder/60/kotlin.png" alt="Kotlin" style="width: 15px; height: 15px; margin-right: 10px;"> Kotlin</li>
                         <li><i style="font-weight: bold; font-style: normal; margin-right: 10px;">C++</i> C++</li>
                         <li><i style="font-weight: bold; font-style: normal; margin-right: 10px;">M</i> MATLAB</li>
                         <li><i class="fab fa-linux"></i> <span class="i18n" data-i18n="skills.skill6">Linux operating system</span></li>
@@ -813,7 +919,7 @@
                         <li><i class="fas fa-server"></i> MySQL and MongoDB</li>
                         <li><i class="fas fa-chart-bar"></i> <span class="i18n" data-i18n="skills.skill7">Data visualization (Origin)</span></li>
                         <li><i class="fas fa-calculator"></i> <span class="i18n" data-i18n="skills.skill8">Statistical analysis</span></li>
-                        <li><i class="fab fa-adobe"></i> <span class="i18n" data-i18n="skills.skill9">Adobe design software</span></li>
+<!--                        <li><i class="fab fa-adobe"></i> <span class="i18n" data-i18n="skills.skill9">Adobe design software</span></li>-->
                     </ul>
                 </div>
                 <div class="skill-category">
@@ -856,7 +962,7 @@
             'en': {
                 'header': {
                     'title': 'Ziheng Wang',
-                    'subtitle': 'Machine Learning Researcher | Ph.D. & Research Master\'s Applicant',
+                    'subtitle': 'Nanjing university of information science and technology | Ph.D. & Research Master\'s Applicant',
                     'email': 'zhwang@nuist.edu.cn',
                     'phone': '+86 136-4157-7335',
                     'scholar': 'Google Scholar'
@@ -873,9 +979,9 @@
                 },
                 'about': {
                     'title': 'About Me',
-                    'p1': 'I am a senior undergraduate student at Nanjing University of Information Science and Technology, specializing in Internet of Things through an international collaborative program. My research focuses on machine learning algorithms with healthcare applications, particularly ensemble methods for cardiovascular disease diagnosis.',
-                    'p2': 'My work has resulted in multiple publications in respected scientific journals and a nationally authorized patent. I have developed novel approaches for enhancing the robustness and accuracy of diagnostic algorithms through adaptive techniques and parameter optimization.',
-                    'p3': 'I am currently seeking Ph.D. and research-oriented Master\'s opportunities to further develop my expertise in machine learning for healthcare and intelligent systems. I hope to join a research team where I can continue contributing to this field through innovative computational methods.'
+                    'p1': 'Welcome to my homepage!!!',
+                    'p2': 'I am a third-year undergraduate majoring in Internet of Things Engineering at Nanjing University of Information Science and Technology, studying at Waterford College. My current research focuses on the application of machine learning algorithms in healthcare, multimodal tasks, and computer vision. As the first author, I have published multiple research papers in SCI and CCF-recommended journals, led a national-level "College Student Innovation and Entrepreneurship Training Program" project to successful completion, obtained patent authorization as the first inventor, and won over ten provincial or higher awards, including a National Second Prize in mathematical modeling competitions.',
+                    'p3': 'Currently, I am seeking opportunities for a Ph.D. or research-based Master’s program. I am eager to join a dynamic research team and continue contributing to this field through innovation. If you see any potential fit, please do not hesitate to contact me!!'
                 },
                 'education': {
                     'title': 'Education',
@@ -1012,7 +1118,7 @@
             'zh-TW': {
                 'header': {
                     'title': '王子恒',
-                    'subtitle': '機器學習研究員 | 博士與研究型碩士申請人',
+                    'subtitle': '南京信息工程大学 | 博士與研究型碩士申請人',
                     'email': 'zhwang@nuist.edu.cn',
                     'phone': '+86 136-4157-7335',
                     'scholar': '谷歌學術'
@@ -1029,9 +1135,9 @@
                 },
                 'about': {
                     'title': '關於我',
-                    'p1': '我是南京信息工程大學物聯網工程專業的大四本科生，就讀於國際合作項目。我的研究方向是機器學習演算法在醫療健康領域的應用，特別是用於心血管疾病診斷的集成學習方法。',
-                    'p2': '我的研究成果包括多篇發表在知名科學期刊上的論文和一項國家授權專利。我開發了提高診斷演算法穩健性和準確性的創新方法，主要通過自適應技術和參數最佳化實現。',
-                    'p3': '目前，我正在尋求博士和研究型碩士的機會，以進一步發展我在醫療健康和智慧系統機器學習領域的專業知識。我希望加入一個研究團隊，通過創新的計算方法繼續為這個領域做出貢獻。'
+                    'p1': '歡迎訪問我的主頁！！！',
+                    'p2': '我是南京信息工程大學物聯網工程專業的大三本科生，就讀於南京信息工程大學沃特福德學院。目前研究方向為機器學習算法在醫療健康領域的應用、多模態任務及計算機視覺。我以第一作者身份在SCI、CCF推薦期刊上發表多篇研究論文，主持國家級全國大學生創新創業訓練計劃項目並成功結項，以第一發明人獲得專利授權，獲數學建模國賽國二等省級以上獎項十餘項。',
+                    'p3': '目前，我正在尋求博士和研究型碩士的機會，非常希望加入一個充滿活力的研究團隊，通過創新繼續為該領域貢獻力量。如果您認為有任何可能性，請務必聯繫我！！'
                 },
                 'education': {
                     'title': '教育背景',
@@ -1168,7 +1274,7 @@
             'ja': {
                 'header': {
                     'title': '王 子恒',
-                    'subtitle': '機械学習研究者 | 博士・研究型修士課程志願者',
+                    'subtitle': '南京信息工程大学 | 博士・研究型修士課程志願者',
                     'email': 'zhwang@nuist.edu.cn',
                     'phone': '+86 136-4157-7335',
                     'scholar': 'Google Scholar'
@@ -1184,10 +1290,10 @@
                     'contact': '連絡先'
                 },
                 'about': {
-                    'title': 'プロフィール',
-                    'p1': '私は南京情報工程大学のIoT（モノのインターネット）専攻の学部4年生で、国際協力プログラムに在籍しています。私の研究は、特に心血管疾患診断のためのアンサンブル手法に焦点を当てた、医療応用のための機械学習アルゴリズムに関するものです。',
-                    'p2': '私の研究は、複数の科学ジャーナルでの論文発表と国家認可特許につながっています。適応技術とパラメータ最適化を通じて、診断アルゴリズムの堅牢性と精度を向上させる新しいアプローチを開発しました。',
-                    'p3': '現在、医療および知能システムのための機械学習分野での専門知識をさらに発展させるため、博士課程および研究志向の修士課程の機会を求めています。革新的な計算手法を通じてこの分野に貢献し続けることができる研究チームに参加したいと考えています。'
+                    'title': '私について',
+                    'p1': '私のホームページへようこそ！！！',
+                    'p2': '私は南京情報工程大学ウォーターフォードカレッジの三年生で、専攻はIoT（モノのインターネット）工学です。現在の研究分野は、医療健康分野における機械学習アルゴリズムの応用、マルチモーダルタスク、コンピュータビジョンです。第一著者としてSCIやCCF推薦ジャーナルに複数の研究論文を発表し、国家級「大学生創新創業訓練計画」プロジェクトを主導して成功裏に完了させました。また、第一発明者として特許を取得し、数学モデリング競技の国家二等賞を含む省級以上の受賞歴が10以上あります。',
+                    'p3': '現在、博士課程または研究型修士課程の機会を探しており、活気ある研究チームに加わり、イノベーションを通じてこの分野に貢献したいと考えています。可能性がございましたら、ぜひご連絡ください！！'
                 },
                 'education': {
                     'title': '学歴',
@@ -1334,7 +1440,7 @@
             'zh-CN': {
                 'header': {
                     'title': '王子恒',
-                    'subtitle': '机器学习研究员 | 博士与研究型硕士申请人',
+                    'subtitle': '南京信息工程大学 | 博士与研究型硕士申请人',
                     'email': 'zhwang@nuist.edu.cn',
                     'phone': '+86 136-4157-7335',
                     'scholar': '谷歌学术'
@@ -1351,9 +1457,9 @@
                 },
                 'about': {
                     'title': '关于我',
-                    'p1': '我是南京信息工程大学物联网工程专业的大四本科生，就读于南京信息工程大学沃特福德学院。我的研究方向是机器学习算法在医疗健康领域的应用，特别是用于心血管疾病诊断的集成学习方法。',
-                    'p2': '我的研究成果包括多篇发表在知名科学期刊上的论文和一项国家授权专利。我开发了提高诊断算法稳健性和准确性的创新方法，主要通过自适应技术和参数优化实现。',
-                    'p3': '目前，我正在寻求博士和研究型硕士的机会，以进一步发展我在医疗健康和智能系统机器学习领域的专业知识。我希望加入一个研究团队，通过创新的计算方法继续为这个领域做出贡献。'
+                    'p1': '欢迎访问我的主页！！！',
+                    'p2': '我是南京信息工程大学物联网工程专业的大三本科生，就读于南京信息工程大学沃特福德学院。我的目前研究方向是机器学习算法在医疗健康领域的应用，多模态任务，计算机视觉。我以第一作者身份在SCI，CCF推荐期刊上发表多篇研究论文，主持国家级全国大学生创新创业训练计划项目并成功结项，以第一发明人获得专利授权，获数模国赛国二等省级以上奖项十余项。',
+                    'p3': '目前，我正在寻求博士和研究型硕士的机会，我非常希望加入一个有活力研究团队，通过创新继续为这个领域做出贡献。如果您觉得有任何可能，请务必联系我！！'
                 },
                 'education': {
                     'title': '教育背景',
@@ -1362,10 +1468,10 @@
                     'period1': '2022 - 2026 (预计)',
                     'gpa': '平均绩点:',
                     'rank': '排名第2/34名学生',
-                    'description1': '就读于南京信息工程大学与爱尔兰东南理工大学的4+0联合项目。所有专业课程均以英语授课，提供了强大的国际视野和跨文化技能。',
-                    'dualDegree': 'SETU双学位 - 预计一等荣誉学位 (2026)',
+                    'description1': '就读于南京信息工程大学与爱尔兰东南理工大学的4+0联合项目。所有专业课程均以全英文授课，提供了强大的国际视野和跨文化技能。',
+                    'dualDegree': 'SETU（Ireland）学士学位 - 预计一等荣誉学位 (2026)',
                     'coursework': '相关课程:',
-                    'courses': '机器学习、数据结构与算法、计算机网络、数据库系统、物联网架构',
+                    'courses': '嵌入式脚本开发，应用密码学，数据结构，移动应用开发等',
                     'highschool': '江苏省靖江高级中学',
                     'hstype': '江苏省优质示范高中',
                     'period2': '2019 - 2022'
@@ -1373,7 +1479,7 @@
                 'publications': {
                     'title': '发表文献',
                     'title1': 'An Adaptive Weighted Boosting Framework for Enhanced Cardiovascular Disease Diagnosis',
-                    'citation1': '一种增强心血管疾病诊断的自适应加权提升框架. 生物医学信号处理与控制, Elsevier. (SCI, JCR-Q1, )',
+                    'citation1': '一种增强心血管疾病诊断的自适应加权提升框架. 生物医学信号处理与控制, Elsevier. (SCI, JCR-Q1,中科院二区)',
                     'author1': '第一作者',
                     'journal1': '发表于生物医学信号处理与控制',
                     'abstract1': '开发了一种用于提升算法的创新自适应加权机制，与传统方法相比，显著提高了心血管疾病诊断的准确性。该框架在不同患者群体和临床场景中展示了增强的稳健性。',
@@ -1381,7 +1487,7 @@
                     'citation2': 'APPBoost：一种针对噪声和不平衡增强鲁棒性的自适应参数对提升算法. 超级计算期刊, Springer. (SCI, JCR-Q2, CCF-C)',
                     'author2': '第一作者',
                     'journal2': '发表于超级计算期刊',
-                    'abstract2': '本研究引入了一种用于提升算法的新型双参数调整机制，系统地增强了模型对干扰的抵抗力并提高了稳健性。提出的APPBoost算法能够同时自适应调整两个关键参数，优化在噪声和数据不平衡情况下的性能。',
+                    'abstract2': '本研究引入了一种用于提升算法的新型双参数调整机制，从数学上推导与证明相关定理，系统地增强了模型对干扰的抵抗力并提高了稳健性。提出的APPBoost算法能够同时自适应调整两个关键参数，优化在噪声和数据不平衡情况下的性能。',
                     'title3': '一种用于心血管疾病诊断的双参数调节自适应增强方法',
                     'author3': '第一发明人',
                     'journal3': '国家授权专利',
@@ -1396,8 +1502,8 @@
                 'projects': {
                     'title': '研究项目',
                     'title1': '基于自适应和特征交互的心血管疾病早期诊断算法研究',
-                    'role1': '主要研究员，项目负责人',
-                    'period1': '2024年5月 - 2025年5月',
+                    'role1': '项目负责人',
+                    'period1': '2024年5月 - 2025年3月（提前结项）',
                     'program1': '国家级大学生创新创业训练计划项目',
                     'supervisors': '指导教师:',
                     'supervisornames': '王保卫院长和程旭副院长，沃特福德学院',
