@@ -1,0 +1,527 @@
+<!-- Add this right before the closing </body> tag in your main HTML file -->
+
+<!-- Enhanced Chatbot Components -->
+<div id="chatbot-icon" class="chatbot-icon">
+    <i class="fas fa-robot"></i>
+    <span class="chatbot-notification" style="display: none;">1</span>
+</div>
+
+<div id="chatbot-modal" class="chatbot-modal">
+    <div class="chatbot-content">
+        <div class="chatbot-header">
+            <h3><i class="fas fa-robot"></i> Ziheng's AI Assistant</h3>
+            <span class="close-chatbot">×</span>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="message bot-message">Hello! I'm Ziheng's AI assistant. You can ask me anything about Ziheng's research, education, projects, or just chat with me!</div>
+        </div>
+        <div class="chatbot-input-container">
+            <input type="text" id="chatbot-input" placeholder="Type your question here..." />
+            <button id="chatbot-send">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+        <div class="chatbot-suggestions">
+            <span class="suggestion-chip" data-question="about">Who is Ziheng?</span>
+            <span class="suggestion-chip" data-question="research">Research interests?</span>
+            <span class="suggestion-chip" data-question="projects">Projects?</span>
+            <span class="suggestion-chip" data-question="contact">Contact info?</span>
+        </div>
+    </div>
+</div>
+
+<!-- Add this to your existing <style> section or create a new one in the <head> -->
+<style>
+    /* Enhanced Chatbot Styles */
+    .chatbot-icon {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #3498db;
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s, background-color 0.3s;
+        z-index: 1000;
+    }
+
+    .chatbot-notification {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #e74c3c;
+        color: white;
+        font-size: 12px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+
+    .chatbot-icon:hover {
+        transform: scale(1.1);
+        background-color: #f39c12;
+    }
+
+    .chatbot-modal {
+        display: none;
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        width: 430px;
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
+        z-index: 1000;
+        animation: slideUp 0.3s ease;
+        overflow: hidden;
+    }
+
+    .chatbot-content {
+        display: flex;
+        flex-direction: column;
+        height: 750px;
+    }
+
+    .chatbot-header {
+        background: linear-gradient(135deg, #0a3d62, #3498db);
+        color: white;
+        padding: 15px;
+        border-radius: 15px 15px 0 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .chatbot-header h3 {
+        font-size: 1.2rem;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .close-chatbot {
+        cursor: pointer;
+        font-size: 1.5rem;
+        transition: color 0.3s;
+    }
+
+    .close-chatbot:hover {
+        color: #f39c12;
+    }
+
+    .chatbot-messages {
+        flex: 1;
+        padding: 15px;
+        overflow-y: auto;
+        background-color: #f5f6fa;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .message {
+        margin-bottom: 10px;
+        padding: 12px 16px;
+        border-radius: 18px;
+        max-width: 80%;
+        word-wrap: break-word;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        line-height: 1.4;
+        animation: fadeIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .bot-message {
+        background-color: #3498db;
+        color: white;
+        border-top-left-radius: 5px;
+        align-self: flex-start;
+        position: relative;
+    }
+
+    .bot-message::before {
+        content: '';
+        position: absolute;
+        left: -8px;
+        bottom: 0;
+        border-right: 12px solid #3498db;
+        border-top: 12px solid transparent;
+        border-bottom: 0px solid transparent;
+    }
+
+    .user-message {
+        background-color: #e9e9e9;
+        color: #333;
+        border-top-right-radius: 5px;
+        align-self: flex-end;
+        position: relative;
+    }
+
+    .user-message::before {
+        content: '';
+        position: absolute;
+        right: -8px;
+        bottom: 0;
+        border-left: 12px solid #e9e9e9;
+        border-top: 12px solid transparent;
+        border-bottom: 0px solid transparent;
+    }
+
+    .chatbot-input-container {
+        display: flex;
+        padding: 15px;
+        background-color: white;
+        border-top: 1px solid #eee;
+    }
+
+    #chatbot-input {
+        flex: 1;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 25px;
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.3s;
+    }
+
+    #chatbot-input:focus {
+        border-color: #3498db;
+    }
+
+    #chatbot-send {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-left: 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s;
+    }
+
+    #chatbot-send:hover {
+        background-color: #f39c12;
+    }
+
+    .chatbot-suggestions {
+        padding: 10px 15px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        background-color: #f8f9fa;
+        border-top: 1px solid #eee;
+    }
+
+    .suggestion-chip {
+        background-color: #e9e9e9;
+        color: #333;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .suggestion-chip:hover {
+        background-color: #3498db;
+        color: white;
+    }
+
+    .typing-indicator {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .typing-indicator span {
+        height: 8px;
+        width: 8px;
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 3px;
+        animation: typing 1.5s infinite ease-in-out;
+    }
+
+    .typing-indicator span:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .typing-indicator span:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+
+    @keyframes typing {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-5px); }
+        100% { transform: translateY(0px); }
+    }
+
+    @keyframes slideUp {
+        from { transform: translateY(30px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    @media (max-width: 480px) {
+        .chatbot-modal {
+            width: calc(100% - 40px);
+            right: 20px;
+            bottom: 80px;
+            height: 450px;
+        }
+
+        .chatbot-content {
+            height: 100%;
+        }
+    }
+</style>
+
+<!-- Add this right before the closing </body> tag -->
+<script>
+    // Enhanced Chatbot functionality with API and text input
+    (function() {
+        // DOM Elements
+        const chatbotIcon = document.getElementById('chatbot-icon');
+        const chatbotModal = document.getElementById('chatbot-modal');
+        const closeChatbot = document.querySelector('.close-chatbot');
+        const messagesContainer = document.getElementById('chatbot-messages');
+        const chatbotInput = document.getElementById('chatbot-input');
+        const chatbotSend = document.getElementById('chatbot-send');
+        const suggestionChips = document.querySelectorAll('.suggestion-chip');
+        const notification = document.querySelector('.chatbot-notification');
+
+        // Knowledge Base - Comprehensive info about Ziheng
+        const knowledgeBase = {
+            about: {
+                keywords: ['who', 'about', 'yourself', 'introduction', 'profile', 'background', 'ziheng', 'wang'],
+                response: "I'm Ziheng Wang, a junior undergraduate at Nanjing University of Information Science and Technology (NUIST), majoring in Internet of Things Engineering through the Waterford Institute of Technology College. I'm ranked 2nd out of 34 students with a GPA of 3.969/5.0 (equivalent to 3.8+/4.0). My current research focuses on machine learning algorithms for healthcare, multimodal tasks, and computer vision. I'm currently seeking PhD and research-oriented Master's opportunities."
+            },
+            education: {
+                keywords: ['education', 'university', 'school', 'degree', 'college', 'gpa', 'study', 'major', 'nuist', 'waterford'],
+                response: "I'm studying at Nanjing University of Information Science and Technology (NUIST) through a 4+0 joint program with South East Technological University (SETU) in Ireland. I'm pursuing a B.Eng. in Internet of Things Engineering (2022-2026) with a GPA of 3.969/5.0, ranking 2nd in my class. All my major courses are taught in English, which provides me with strong international exposure and cross-cultural skills. I'll receive a dual degree with expected First Class Honors from SETU in 2026."
+            },
+            research: {
+                keywords: ['research', 'interest', 'focus', 'area', 'study', 'specialization', 'ai', 'ml', 'machine learning'],
+                response: "My research focuses on machine learning algorithms for healthcare applications, particularly cardiovascular disease diagnosis. I've developed an adaptive weighted boosting framework that improves diagnostic accuracy. I'm also interested in multimodal learning, including visible light-infrared pedestrian re-identification and UAV intelligent perception with multi-modal data fusion. I excel in working with ensemble algorithms, particularly AdaBoost variations, and have created innovations like APPBoost, an adaptive parameter-pair boosting algorithm with enhanced robustness against noise and imbalance."
+            },
+            publications: {
+                keywords: ['publication', 'paper', 'journal', 'article', 'publish', 'author', 'write', 'research paper', 'patent'],
+                response: "As a first author, I've published research papers in SCI and CCF-recommended journals, including: 1) 'An Adaptive Weighted Boosting Framework for Enhanced Cardiovascular Disease Diagnosis' in Biomedical Signal Processing and Control (SCI, JCR-Q1), and 2) 'APPBoost: An Adaptive Parameter-Pair Boosting Algorithm for Enhanced Robustness Against Noise and Imbalance' in The Journal of Supercomputing (SCI, JCR-Q2, CCF-C). I'm also the first inventor on a nationally authorized patent: 'An Adaptive Enhanced Method for Cardiovascular Disease Diagnosis Using Weight Parameter Adjustment' (Patent Number: ZL 2024 1 1625421.3)."
+            },
+            projects: {
+                keywords: ['project', 'work', 'research project', 'innovation', 'leading', 'development', 'creating'],
+                response: "I've led several significant research projects: 1) Principal Investigator for the National-level College Students' Innovation and Entrepreneurship Training Program on 'Early Diagnosis Algorithms for Cardiovascular Diseases Based on Adaptive and Feature Interaction' (2024-2025), 2) Research on UAV Intelligent Perception using multi-modal data fusion and 3D trajectory estimation, and 3) Innovative research on Visible Light-Infrared Pedestrian Re-Identification (VI-ReID) addressing pedestrian matching under different lighting conditions. My projects focus on developing practical applications of machine learning for real-world problems."
+            },
+            awards: {
+                keywords: ['award', 'honor', 'prize', 'recognition', 'win', 'achievement', 'scholarship', 'contest', 'competition', 'modeling'],
+                response: "I've received numerous awards in mathematical modeling and academics: 1) Second Prize in the China Undergraduate Mathematical Contest in Modeling (CUMCM, National-level), 2) Honorable Mention (H Award) in the Mathematical Contest in Modeling (MCM/ICM), 3) First Prize in the Jiangsu Province Advanced Mathematics Contest, 4) First-Class Scholarship (2023 & 2024), 5) First Prize in the Chinese College English Translation Contest (Provincial-level), and many more. I've won over ten provincial or higher awards, demonstrating excellence in both technical and language skills."
+            },
+            skills: {
+                keywords: ['skill', 'ability', 'expertise', 'proficiency', 'knowledge', 'programming', 'technique', 'language', 'tool'],
+                response: "My technical skills include: 1) Machine Learning: AdaBoost and ensemble algorithms, deep learning (TensorFlow, PyTorch), multi-modal learning, and evolutionary optimization. 2) Programming: Python, Java, JavaScript, Kotlin, C++, MATLAB, and Linux. 3) Data Management: MySQL, MongoDB, data visualization, and statistical analysis. 4) Academic Skills: Mathematical modeling, scientific writing, LaTeX, literature review, and academic presentation. My language skills include English (CET-6: 574, IELTS: 6.5 with Reading: 8)."
+            },
+            contact: {
+                keywords: ['contact', 'email', 'phone', 'reach', 'connect', 'message', 'get in touch', 'github', 'scholar'],
+                response: "You can reach me through: Email: zhwang@nuist.edu.cn, Phone: +86 136-4157-7335, GitHub: https://github.com/Nickory, Google Scholar: https://scholar.google.com/citations?user=QrHma30AAAAJ. I'm currently seeking PhD and research-oriented Master's opportunities in machine learning, healthcare applications, and intelligent systems. I'm very eager to join a dynamic research team and would be pleased to discuss potential collaborations."
+            },
+            future: {
+                keywords: ['future', 'plan', 'goal', 'aspiration', 'career', 'aim', 'objective', 'phd', 'graduate', 'master'],
+                response: "I'm currently seeking opportunities for doctoral and research-oriented master's programs in machine learning, particularly applications in healthcare and intelligent systems. I aim to continue developing innovative algorithms that can have real-world impact in medical diagnosis and multimodal perception. My goal is to join a dynamic research team where I can contribute to advancing the field while continuing to develop my expertise in adaptive learning algorithms and healthcare applications."
+            },
+            greeting: {
+                keywords: ['hello', 'hi', 'hey', 'greetings', 'good morning', 'good afternoon', 'good evening', 'howdy'],
+                response: "Hello! I'm Ziheng's AI assistant. How can I help you learn more about Ziheng's research, education, projects, or skills today?"
+            },
+            thanks: {
+                keywords: ['thank', 'thanks', 'appreciate', 'grateful', 'gratitude', 'thank you'],
+                response: "You're welcome! I'm happy to share information about Ziheng. If you have any other questions, feel free to ask. Ziheng is always open to connecting with fellow researchers and potential collaborators!"
+            },
+            hobbies: {
+                keywords: ['hobby', 'interest', 'free time', 'fun', 'leisure', 'enjoy', 'passion', 'pastime'],
+                response: "Beyond academics, Ziheng enjoys reading sci-fi novels, experimenting with IoT devices, participating in mathematical modeling competitions, and learning about cutting-edge AI research. He's particularly passionate about finding practical applications for machine learning in everyday life and healthcare. In his free time, he also enjoys sharing his knowledge with peers and exploring innovative technologies."
+            }
+        };
+
+        // Show notification on first load
+        if (!sessionStorage.getItem('chatbotShown')) {
+            setTimeout(() => {
+                if (notification) {
+                    notification.style.display = 'flex';
+                }
+            }, 3000);
+            sessionStorage.setItem('chatbotShown', 'true');
+        }
+
+        // Function to find best response based on input
+        function findBestResponse(input) {
+            if (!input) return "I didn't catch that. Could you please rephrase your question about Ziheng?";
+
+            input = input.toLowerCase();
+            let bestMatch = null;
+            let highestScore = 0;
+
+            // Check each knowledge category
+            for (const category in knowledgeBase) {
+                const data = knowledgeBase[category];
+                let score = 0;
+
+                // Calculate match score based on keywords
+                data.keywords.forEach(keyword => {
+                    if (input.includes(keyword.toLowerCase())) {
+                        score += 1;
+                    }
+                });
+
+                // Update best match if this category has a higher score
+                if (score > highestScore) {
+                    highestScore = score;
+                    bestMatch = data.response;
+                }
+            }
+
+            // If no good match found, provide a general response
+            if (highestScore === 0) {
+                return "I'm not sure I understand your question about Ziheng. You can ask about his education, research interests, publications, projects, awards, skills, or contact information. How can I help you?";
+            }
+
+            return bestMatch;
+        }
+
+        // Function to add a message to the chat
+        function addMessage(text, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(isUser ? 'user-message' : 'bot-message');
+            messageDiv.textContent = text;
+            messagesContainer.appendChild(messageDiv);
+
+            // Scroll to the latest message
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        // Function to show typing indicator
+        function showTypingIndicator() {
+            const indicator = document.createElement('div');
+            indicator.className = 'message bot-message typing-indicator';
+            indicator.innerHTML = '<span></span><span></span><span></span>';
+            indicator.id = 'typing-indicator';
+            messagesContainer.appendChild(indicator);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        // Function to remove typing indicator
+        function removeTypingIndicator() {
+            const indicator = document.getElementById('typing-indicator');
+            if (indicator) {
+                indicator.remove();
+            }
+        }
+
+        // Function to handle sending a message
+        function sendMessage() {
+            const message = chatbotInput.value.trim();
+            if (message) {
+                // Add user message
+                addMessage(message, true);
+                chatbotInput.value = '';
+
+                // Show typing indicator
+                showTypingIndicator();
+
+                // Simulate thinking and API call with setTimeout
+                setTimeout(() => {
+                    removeTypingIndicator();
+                    // Get response based on input
+                    const response = findBestResponse(message);
+                    addMessage(response, false);
+                }, 1000 + Math.random() * 1000); // Random delay between 1-2 seconds
+            }
+        }
+
+        // Event listener for Send button
+        if (chatbotSend) {
+            chatbotSend.addEventListener('click', sendMessage);
+        }
+
+        // Event listener for Enter key in input field
+        if (chatbotInput) {
+            chatbotInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        }
+
+        // Open chat window
+        if (chatbotIcon) {
+            chatbotIcon.addEventListener('click', function() {
+                if (chatbotModal) {
+                    chatbotModal.style.display = 'block';
+                    // Hide notification when chat is opened
+                    if (notification) {
+                        notification.style.display = 'none';
+                    }
+                    // Focus on input field
+                    if (chatbotInput) {
+                        setTimeout(() => chatbotInput.focus(), 300);
+                    }
+                }
+            });
+        }
+
+        // Close chat window
+        if (closeChatbot) {
+            closeChatbot.addEventListener('click', function() {
+                if (chatbotModal) {
+                    chatbotModal.style.display = 'none';
+                }
+            });
+        }
+
+        // Handle suggestion chips
+        if (suggestionChips.length > 0) {
+            suggestionChips.forEach(chip => {
+                chip.addEventListener('click', function() {
+                    const question = this.getAttribute('data-question');
+                    const text = this.textContent;
+
+                    // Add user message
+                    addMessage(text, true);
+
+                    // Show typing indicator
+                    showTypingIndicator();
+
+                    // Simulate API response
+                    setTimeout(() => {
+                        removeTypingIndicator();
+                        const response = knowledgeBase[question] ?
+                            knowledgeBase[question].response :
+                            "I'm not sure about that. Maybe try asking something about Ziheng's research or education?";
+                        addMessage(response, false);
+                    }, 800);
+                });
+            });
+        }
+    })();
+</script>

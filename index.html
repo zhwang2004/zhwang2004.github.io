@@ -1741,5 +1741,44 @@ document.addEventListener('DOMContentLoaded', function() {
             window.addEventListener('scroll', animateOnScroll);
         });
     </script>
+    <script>
+    // Language translations and other existing code remain unchanged...
+
+    // Initialize UI elements
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log("DOM loaded");
+
+        // Existing language and navigation code...
+
+        // Load chatbot
+        fetch('chatbot.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Failed to load chatbot.html: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(data => {
+                console.log('Chatbot HTML fetched:', data); // 调试：检查返回的内容
+                document.body.insertAdjacentHTML('beforeend', data);
+
+                // 提取并执行脚本
+                const scriptMatch = data.match(/<script>([\s\S]*?)<\/script>/);
+                if (scriptMatch && scriptMatch[1]) {
+                    const scriptContent = scriptMatch[1];
+                    console.log('Extracted script:', scriptContent); // 调试：检查脚本内容
+                    const script = document.createElement('script');
+                    script.textContent = scriptContent;
+                    document.body.appendChild(script);
+                } else {
+                    console.error('No script found in chatbot.html');
+                }
+            })
+            .catch(error => console.error('Error loading chatbot:', error));
+    });
+    </script>
+    </body>
+</html>
 </body>
+
 </html>
