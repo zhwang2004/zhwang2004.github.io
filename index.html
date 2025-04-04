@@ -7,6 +7,279 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
+        /* 增强响应式设计 - 添加到现有的CSS中 */
+
+/* 基础响应式优化 */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .header-content {
+    padding: 0 15px;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-info a {
+    margin: 5px 0;
+  }
+
+  nav ul {
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 5px;
+  }
+
+  nav li {
+    flex-shrink: 0;
+  }
+
+  nav a {
+    padding: 15px 12px;
+    font-size: 0.9rem;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  #theme-toggle {
+    bottom: 15px;
+    left: 15px;
+  }
+
+  #theme-toggle button {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+
+  #color-picker {
+    width: 250px;
+    left: -100px;
+  }
+}
+
+/* 额外的小屏幕设备优化 */
+@media (max-width: 576px) {
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  header p {
+    font-size: 1rem;
+  }
+
+  .about-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-pic {
+    margin-bottom: 20px;
+    width: 200px;
+  }
+
+  .welcome-heading {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  .degree-badge {
+    width: 100%;
+    text-align: center;
+  }
+
+  .publication-item h3,
+  .project-item h3 {
+    font-size: 1.2rem;
+  }
+
+  .publication-meta,
+  .project-meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .publication-meta span {
+    margin-bottom: 5px;
+  }
+
+  .skills-container {
+    grid-template-columns: 1fr;
+  }
+
+  .certificate-container {
+    width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .certificate-header h3 {
+    font-size: 1.2rem;
+  }
+
+  /* 改进特色项目在移动设备上的显示 */
+  .featured-project .project-meta {
+    padding-left: 0;
+  }
+
+  .project-icon {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+  }
+
+  .project-featured-badge {
+    font-size: 0.75rem;
+    padding: 5px 10px;
+  }
+
+  .project-footer {
+    flex-direction: column;
+  }
+
+  .project-tech-stack {
+    margin-top: 10px;
+  }
+
+  .view-project {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  /* 改进奖项样式在移动设备上的显示 */
+  .award-grid {
+    display: block;
+  }
+
+  .award-item {
+    margin-bottom: 15px;
+  }
+
+  .award-badge {
+    min-width: 60px;
+    font-size: 0.65rem;
+  }
+
+  /* 改进页脚在移动设备上的布局 */
+  .footer-content {
+    padding: 0 15px;
+  }
+
+  .social-links a {
+    margin: 0 5px;
+  }
+}
+
+/* 改进超小屏幕设备显示 */
+@media (max-width: 360px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  .language-switcher {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .lang-btn {
+    margin-bottom: 5px;
+    width: 100%;
+  }
+
+  nav a {
+    padding: 15px 8px;
+    font-size: 0.8rem;
+  }
+
+  .profile-pic {
+    width: 180px;
+  }
+
+  /* 改善超小屏幕上的间距 */
+  section {
+    padding: 40px 0;
+  }
+}
+
+/* 改进平板设备显示 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    max-width: 95%;
+  }
+
+  .skills-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .profile-pic {
+    flex: 0 0 250px;
+  }
+}
+
+/* 加强粒子和动画在移动设备上的效率 */
+@media (max-width: 768px) {
+  .particles-canvas {
+    opacity: 0.5;
+  }
+
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.2); }
+    70% { box-shadow: 0 0 0 5px rgba(52, 152, 219, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0); }
+  }
+
+  #skills-graph {
+    height: 350px;
+  }
+}
+
+/* 打印样式优化 */
+@media print {
+  body {
+    font-size: 12pt;
+  }
+
+  nav,
+  #theme-toggle,
+  .cta-section,
+  .particles-canvas,
+  #skills-graph,
+  .floating-container .floating-particle,
+  .social-links {
+    display: none !important;
+  }
+
+  .container {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--text-color);
+  }
+
+  .profile-pic img {
+    max-width: 2in;
+  }
+
+  header, footer {
+    background: none !important;
+    color: black;
+  }
+
+  header h1 {
+    font-size: 18pt;
+  }
+}
         :root {
                --primary-color: #0a3d62;
                --secondary-color: #3498db;
@@ -2640,8 +2913,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     </script>
     <!-- 证书查看功能脚本 -->
-<script>
-// 等待页面完全加载后初始化
+<script>// 改进的证书图片匹配系统
 window.addEventListener('load', function() {
     // 确保awards部分已加载
     if (document.querySelector('#awards')) {
@@ -2680,9 +2952,10 @@ window.addEventListener('load', function() {
 
         console.log(`Found ${awardItems.length} award items`);
 
-        // 模拟证书图片映射
+        // 多语言证书图片映射 - 扩展以支持各种语言
         const certificateImages = {
-            "Second Prize, China Undergraduate": "/api/placeholder/800/500?text=CUMCM_National_Second_Prize",
+            // 英文匹配
+            "Second Prize, China Undergraduate": "https://nickory.github.io/RayVita_website/api/placeholder/50/CUMCM%202023.png",
             "Honorable Mention (H Award)": "/api/placeholder/800/500?text=MCM_ICM_H_Award",
             "Second Prize, China": "/api/placeholder/800/500?text=CUMCM_Provincial_Second_Prize",
             "First Prize, Jiangsu": "/api/placeholder/800/500?text=Jiangsu_Math_First_Prize",
@@ -2693,16 +2966,69 @@ window.addEventListener('load', function() {
             "First Prize, Chinese": "/api/placeholder/800/500?text=English_Translation_First_Prize",
             "Bronze Award": "/api/placeholder/800/500?text=Internet_Plus_Bronze_Award",
             "CET-6": "/api/placeholder/800/500?text=CET6_Certificate",
-            "IELTS": "/api/placeholder/800/500?text=IELTS_Certificate"
+            "IELTS": "/api/placeholder/800/500?text=IELTS_Certificate",
+
+            // 简体中文匹配
+            "二等奖": "https://nickory.github.io/RayVita_website/api/placeholder/50/CUMCM%202023.png",
+            "荣誉奖": "/api/placeholder/800/500?text=MCM_ICM_H_Award",
+            "一等奖，江苏省": "/api/placeholder/800/500?text=Jiangsu_Math_First_Prize",
+            "一等奖学金": "/api/placeholder/800/500?text=First_Class_Scholarship",
+            "三好学生": "/api/placeholder/800/500?text=Three_Good_Student",
+            "优秀共青团干部": "/api/placeholder/800/500?text=Excellent_Youth_League_Cadre",
+            "优秀共青团员": "/api/placeholder/800/500?text=Excellent_League_Member",
+            "一等奖，全国": "/api/placeholder/800/500?text=English_Translation_First_Prize",
+            "铜奖": "/api/placeholder/800/500?text=Internet_Plus_Bronze_Award",
+            "大学英语六级": "/api/placeholder/800/500?text=CET6_Certificate",
+            "雅思": "/api/placeholder/800/500?text=IELTS_Certificate",
+
+            // 繁体中文匹配
+            "二等獎": "https://nickory.github.io/RayVita_website/api/placeholder/50/CUMCM%202023.png",
+            "榮譽獎": "/api/placeholder/800/500?text=MCM_ICM_H_Award",
+            "一等獎，江蘇省": "/api/placeholder/800/500?text=Jiangsu_Math_First_Prize",
+            "一等獎學金": "/api/placeholder/800/500?text=First_Class_Scholarship",
+            "三好學生": "/api/placeholder/800/500?text=Three_Good_Student",
+            "優秀共青團幹部": "/api/placeholder/800/500?text=Excellent_Youth_League_Cadre",
+            "優秀共青團員": "/api/placeholder/800/500?text=Excellent_League_Member",
+            "一等獎，全國": "/api/placeholder/800/500?text=English_Translation_First_Prize",
+            "銅獎": "/api/placeholder/800/500?text=Internet_Plus_Bronze_Award",
+            "大學英語六級": "/api/placeholder/800/500?text=CET6_Certificate",
+
+            // 日语匹配
+            "二等賞": "https://nickory.github.io/RayVita_website/api/placeholder/50/CUMCM%202023.png",
+            "優秀賞": "/api/placeholder/800/500?text=MCM_ICM_H_Award",
+            "一等賞，江蘇省": "/api/placeholder/800/500?text=Jiangsu_Math_First_Prize",
+            "一級奨学金": "/api/placeholder/800/500?text=First_Class_Scholarship",
+            "優秀共青団幹部": "/api/placeholder/800/500?text=Excellent_Youth_League_Cadre",
+            "優秀団員": "/api/placeholder/800/500?text=Excellent_League_Member",
+            "一等賞，中国": "/api/placeholder/800/500?text=English_Translation_First_Prize",
+            "銅賞": "/api/placeholder/800/500?text=Internet_Plus_Bronze_Award",
+
+            // 关键词匹配（更通用的备用方案）
+            "CUMCM": "/api/placeholder/800/500?text=CUMCM_Second_Prize",
+            "MCM": "/api/placeholder/800/500?text=MCM_ICM_H_Award",
+            "ICM": "/api/placeholder/800/500?text=MCM_ICM_H_Award",
+            "Scholarship": "/api/placeholder/800/500?text=First_Class_Scholarship",
+            "奖学金": "/api/placeholder/800/500?text=First_Class_Scholarship",
+            "獎學金": "/api/placeholder/800/500?text=First_Class_Scholarship",
+            "CET": "/api/placeholder/800/500?text=CET6_Certificate",
+            "六级": "/api/placeholder/800/500?text=CET6_Certificate",
+            "六級": "/api/placeholder/800/500?text=CET6_Certificate"
         };
 
         // 提取日期的函数
         function extractDate(text) {
-            const dateRegex = /\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}\b/i;
+            // 匹配英文日期格式
+            const enDateRegex = /\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}\b/i;
+            // 匹配中文日期格式
+            const cnDateRegex = /\b(?:\d{4}年\d{1,2}月)\b/;
+            // 匹配年份
             const yearRegex = /\b\d{4}\b/;
 
-            const dateMatch = text.match(dateRegex);
-            if (dateMatch) return dateMatch[0];
+            const enDateMatch = text.match(enDateRegex);
+            if (enDateMatch) return enDateMatch[0];
+
+            const cnDateMatch = text.match(cnDateRegex);
+            if (cnDateMatch) return cnDateMatch[0];
 
             const yearMatch = text.match(yearRegex);
             if (yearMatch) return yearMatch[0];
@@ -2710,29 +3036,62 @@ window.addEventListener('load', function() {
             return "Not specified";
         }
 
-        // 提取级别的函数
+        // 提取级别的函数 - 支持多语言
         function extractLevel(text) {
-            if (text.includes('National-level')) return 'National';
+            // 英文
+            if (text.includes('National-level') || text.includes('national')) return 'National';
             if (text.includes('International') || text.includes('MCM/ICM')) return 'International';
-            if (text.includes('Provincial-level')) return 'Provincial';
-            if (text.includes('University-level')) return 'University';
+            if (text.includes('Provincial-level') || text.includes('provincial')) return 'Provincial';
+            if (text.includes('University-level') || text.includes('university')) return 'University';
+
+            // 简体中文
+            if (text.includes('国家级') || text.includes('全国')) return 'National';
+            if (text.includes('国际') || text.includes('国际级')) return 'International';
+            if (text.includes('省级') || text.includes('省')) return 'Provincial';
+            if (text.includes('校级') || text.includes('大学')) return 'University';
+
+            // 繁体中文
+            if (text.includes('國家級') || text.includes('全國')) return 'National';
+            if (text.includes('國際') || text.includes('國際級')) return 'International';
+            if (text.includes('省級') || text.includes('省')) return 'Provincial';
+            if (text.includes('校級') || text.includes('大學')) return 'University';
+
+            // 日语
+            if (text.includes('国家レベル')) return 'National';
+            if (text.includes('国際') || text.includes('国際級')) return 'International';
+            if (text.includes('省レベル')) return 'Provincial';
+            if (text.includes('大学レベル')) return 'University';
+
             return 'General';
         }
 
-        // 获取图片函数
+        // 改进的获取图片函数
         function getCertificateImage(text) {
             for (const key in certificateImages) {
                 if (text.includes(key)) {
                     return certificateImages[key];
                 }
             }
+
+            // 默认图片
             return "/api/placeholder/800/500?text=Award_Certificate";
         }
 
         // 为每个奖项添加点击事件
         awardItems.forEach(function(item) {
             item.style.cursor = 'pointer';
-            item.setAttribute('title', 'Click to view certificate');
+
+            // 添加多语言提示
+            const currentLang = document.documentElement.lang || 'en';
+            if (currentLang === 'en') {
+                item.setAttribute('title', 'Click to view certificate');
+            } else if (currentLang === 'zh-CN') {
+                item.setAttribute('title', '点击查看证书');
+            } else if (currentLang === 'zh-TW') {
+                item.setAttribute('title', '點擊查看證書');
+            } else if (currentLang === 'ja') {
+                item.setAttribute('title', '証明書を見るにはクリックしてください');
+            }
 
             item.addEventListener('click', function() {
                 const awardText = this.textContent;
@@ -2743,7 +3102,28 @@ window.addEventListener('load', function() {
                 const certificateImg = getCertificateImage(awardText);
 
                 // 更新模态框内容
-                document.getElementById('certificateTitle').textContent = `Certificate: ${awardText.split(',')[0]}`;
+                // 提取奖项名称（考虑不同语言）
+                let awardName = awardText;
+                const commaIndex = awardText.indexOf(',');
+                const commaChIndex = awardText.indexOf('，');
+                if (commaIndex > 0) {
+                    awardName = awardText.substring(0, commaIndex).trim();
+                } else if (commaChIndex > 0) {
+                    awardName = awardText.substring(0, commaChIndex).trim();
+                }
+
+                // 多语言标题支持
+                const titlePrefix = (() => {
+                    const lang = document.documentElement.lang || 'en';
+                    switch (lang) {
+                        case 'zh-CN': return '证书: ';
+                        case 'zh-TW': return '證書: ';
+                        case 'ja': return '証明書: ';
+                        default: return 'Certificate: ';
+                    }
+                })();
+
+                document.getElementById('certificateTitle').textContent = titlePrefix + awardName;
                 document.getElementById('certificateImage').src = certificateImg;
                 document.getElementById('awardName').textContent = awardText;
                 document.getElementById('awardCategory').textContent = category;
@@ -2793,6 +3173,69 @@ window.addEventListener('load', function() {
             document.body.style.overflow = '';
         }
     }
+});
+
+// 为模态框添加多语言支持
+document.addEventListener('DOMContentLoaded', function() {
+    // 检查并更新证书详情标签
+    function updateCertificateLabels() {
+        const lang = document.documentElement.lang || 'en';
+
+        // 获取所有需要更新的元素
+        const closeBtn = document.getElementById('closeCertificate');
+        const detailsContainer = document.querySelector('.certificate-details');
+
+        if (!detailsContainer) return;
+
+        // 获取所有标签
+        const labels = detailsContainer.querySelectorAll('p strong');
+
+        // 根据语言更新文本
+        if (lang === 'zh-CN') {
+            if (closeBtn) closeBtn.innerHTML = '&times;';
+
+            labels.forEach(label => {
+                if (label.textContent === 'Award:') label.textContent = '奖项:';
+                if (label.textContent === 'Category:') label.textContent = '类别:';
+                if (label.textContent === 'Level:') label.textContent = '级别:';
+                if (label.textContent === 'Date:') label.textContent = '日期:';
+            });
+        }
+        else if (lang === 'zh-TW') {
+            if (closeBtn) closeBtn.innerHTML = '&times;';
+
+            labels.forEach(label => {
+                if (label.textContent === 'Award:') label.textContent = '獎項:';
+                if (label.textContent === 'Category:') label.textContent = '類別:';
+                if (label.textContent === 'Level:') label.textContent = '級別:';
+                if (label.textContent === 'Date:') label.textContent = '日期:';
+            });
+        }
+        else if (lang === 'ja') {
+            if (closeBtn) closeBtn.innerHTML = '&times;';
+
+            labels.forEach(label => {
+                if (label.textContent === 'Award:') label.textContent = '賞:';
+                if (label.textContent === 'Category:') label.textContent = 'カテゴリー:';
+                if (label.textContent === 'Level:') label.textContent = 'レベル:';
+                if (label.textContent === 'Date:') label.textContent = '日付:';
+            });
+        }
+    }
+
+    // 添加语言切换监听
+    const langButtons = document.querySelectorAll('.lang-btn');
+    if (langButtons) {
+        langButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // 给切换语言一点延迟，确保DOM已更新
+                setTimeout(updateCertificateLabels, 300);
+            });
+        });
+    }
+
+    // 初始加载时也进行更新
+    updateCertificateLabels();
 });
 // 确保奖项图标正确显示
 document.addEventListener('DOMContentLoaded', function() {
