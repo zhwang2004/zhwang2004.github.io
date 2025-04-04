@@ -1531,6 +1531,108 @@
     }
 }
     </style>
+    <style>
+        /* 默认样式保持不变 */
+
+/* 超紧凑布局样式 */
+.compact-layout body {
+    font-size: 14px;
+}
+
+.compact-layout header h1 {
+    font-size: 2rem;
+}
+
+.compact-layout header p {
+    font-size: 1rem;
+}
+
+.compact-layout .section-title {
+    font-size: 1.5rem;
+}
+
+.compact-layout h3 {
+    font-size: 1.2rem;
+}
+
+.compact-layout .container {
+    padding: 0 10px;
+}
+
+.compact-layout section {
+    padding: 30px 0;
+}
+
+.compact-layout .education-item,
+.compact-layout .publication-item,
+.compact-layout .project-item,
+.compact-layout .award-item,
+.compact-layout .course-item {
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.compact-layout .skills-container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.compact-layout .award-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+}
+
+.compact-layout header {
+    background: var(--primary-color);
+}
+
+.compact-layout .button,
+.compact-layout .resource-link {
+    background-color: var(--accent-color);
+    padding: 8px 15px;
+    box-shadow: none;
+}
+
+.compact-layout .button:hover,
+.compact-layout .resource-link:hover {
+    background-color: var(--accent-color);
+    transform: none;
+}
+
+.compact-layout nav a {
+    font-size: 0.8rem;
+    padding: 10px 12px;
+}
+
+.compact-layout nav a span {
+    display: none;
+}
+
+.compact-layout nav a i {
+    margin-right: 0;
+}
+
+.compact-layout .profile-pic {
+    flex: 0 0 200px;
+}
+
+.compact-layout .welcome-heading {
+    display: none; /* 隐藏欢迎动画 */
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .compact-layout body {
+        font-size: 12px;
+    }
+    .compact-layout .container {
+        padding: 0 5px;
+    }
+    .compact-layout .skills-container {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
 </head>
 <body>
     <script>
@@ -2089,6 +2191,12 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <p class="copyright i18n" data-i18n="footer.copyright">© 2025 Ziheng Wang | Nanjing University of Information Science and Technology</p>
         </div>
+
+<!--        <div id="layout-toggle" style="position: fixed; bottom: 30px; right: 150px; z-index: 1000;">-->
+<!--         <button id="toggle-compact-layout" style="width: 30px; height: 30px; border-radius: 50%; background: var(&#45;&#45;secondary-color); color: #fff; border: none; cursor: pointer; font-size: 1.2rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: transform 0.3s ease;">-->
+<!--        <i class="fas fa-compress-alt"></i>-->
+<!--         </button>-->
+<!--        </div>-->
     </footer>
 
     <script>
@@ -2956,7 +3064,7 @@ window.addEventListener('load', function() {
         const certificateImages = {
             // 英文匹配
             "Second Prize, China Undergraduate": "https://nickory.github.io/RayVita_website/api/placeholder/50/CUMCM%202023.png",
-            "Honorable Mention (H Award)": "/api/placeholder/800/500?text=MCM_ICM_H_Award",
+            "Honorable Mention (H Award)": "https://nickory.github.io/RayVita_website/api/placeholder/50/MCMICM%202024_page-0001.jpg",
             "Second Prize, China": "/api/placeholder/800/500?text=CUMCM_Provincial_Second_Prize",
             "First Prize, Jiangsu": "/api/placeholder/800/500?text=Jiangsu_Math_First_Prize",
             "First-Class Scholarship": "/api/placeholder/800/500?text=First_Class_Scholarship",
@@ -2970,7 +3078,7 @@ window.addEventListener('load', function() {
 
             // 简体中文匹配
             "二等奖": "https://nickory.github.io/RayVita_website/api/placeholder/50/CUMCM%202023.png",
-            "荣誉奖": "/api/placeholder/800/500?text=MCM_ICM_H_Award",
+            "荣誉奖": "https://nickory.github.io/RayVita_website/api/placeholder/50/MCMICM%202024_page-0001.jpg",
             "一等奖，江苏省": "/api/placeholder/800/500?text=Jiangsu_Math_First_Prize",
             "一等奖学金": "/api/placeholder/800/500?text=First_Class_Scholarship",
             "三好学生": "/api/placeholder/800/500?text=Three_Good_Student",
@@ -2983,7 +3091,7 @@ window.addEventListener('load', function() {
 
             // 繁体中文匹配
             "二等獎": "https://nickory.github.io/RayVita_website/api/placeholder/50/CUMCM%202023.png",
-            "榮譽獎": "/api/placeholder/800/500?text=MCM_ICM_H_Award",
+            "榮譽獎": "https://nickory.github.io/RayVita_website/api/placeholder/50/MCMICM%202024_page-0001.jpg",
             "一等獎，江蘇省": "/api/placeholder/800/500?text=Jiangsu_Math_First_Prize",
             "一等獎學金": "/api/placeholder/800/500?text=First_Class_Scholarship",
             "三好學生": "/api/placeholder/800/500?text=Three_Good_Student",
@@ -2995,7 +3103,7 @@ window.addEventListener('load', function() {
 
             // 日语匹配
             "二等賞": "https://nickory.github.io/RayVita_website/api/placeholder/50/CUMCM%202023.png",
-            "優秀賞": "/api/placeholder/800/500?text=MCM_ICM_H_Award",
+            "優秀賞": "https://nickory.github.io/RayVita_website/api/placeholder/50/MCMICM%202024_page-0001.jpg",
             "一等賞，江蘇省": "/api/placeholder/800/500?text=Jiangsu_Math_First_Prize",
             "一級奨学金": "/api/placeholder/800/500?text=First_Class_Scholarship",
             "優秀共青団幹部": "/api/placeholder/800/500?text=Excellent_Youth_League_Cadre",
@@ -3005,8 +3113,8 @@ window.addEventListener('load', function() {
 
             // 关键词匹配（更通用的备用方案）
             "CUMCM": "/api/placeholder/800/500?text=CUMCM_Second_Prize",
-            "MCM": "/api/placeholder/800/500?text=MCM_ICM_H_Award",
-            "ICM": "/api/placeholder/800/500?text=MCM_ICM_H_Award",
+            "MCM": "https://nickory.github.io/RayVita_website/api/placeholder/50/MCMICM%202024_page-0001.jpg",
+            "ICM": "https://nickory.github.io/RayVita_website/api/placeholder/50/MCMICM%202024_page-0001.jpg",
             "Scholarship": "/api/placeholder/800/500?text=First_Class_Scholarship",
             "奖学金": "/api/placeholder/800/500?text=First_Class_Scholarship",
             "獎學金": "/api/placeholder/800/500?text=First_Class_Scholarship",
@@ -4382,6 +4490,41 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('mouseup', function() {
         isDragging = false;
         draggedNode = null;
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleButton = document.getElementById('toggle-compact-layout');
+    const body = document.body;
+    let isCompact = false;
+
+    // 初始化按钮提示
+    toggleButton.setAttribute('title', 'Switch to Compact Layout');
+
+    // 点击切换布局
+    toggleButton.addEventListener('click', function() {
+        isCompact = !isCompact;
+
+        if (isCompact) {
+            // 应用紧凑布局
+            body.classList.add('compact-layout');
+            toggleButton.innerHTML = '<i class="fas fa-expand-alt"></i>'; // 切换图标
+            toggleButton.style.background = 'var(--accent-color)';
+            toggleButton.setAttribute('title', 'Switch to Default Layout');
+        } else {
+            // 恢复默认布局
+            body.classList.remove('compact-layout');
+            toggleButton.innerHTML = '<i class="fas fa-compress-alt"></i>';
+            toggleButton.style.background = 'var(--secondary-color)';
+            toggleButton.setAttribute('title', 'Switch to Compact Layout');
+        }
+
+        // 添加切换动画效果
+        body.style.transition = 'all 0.3s ease';
+        toggleButton.style.transform = 'scale(1.1)';
+        setTimeout(() => {
+            toggleButton.style.transform = 'scale(1)';
+        }, 200);
     });
 });
 </script>
