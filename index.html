@@ -8,14 +8,19 @@
 
     <style>
         :root {
-            --primary-color: #0a3d62;
-            --secondary-color: #3498db;
-            --accent-color: #f39c12;
-            --light-color: #f5f6fa;
-            --dark-color: #2c3e50;
-            --text-color: #333;
-            --max-width: 1200px;
-        }
+               --primary-color: #0a3d62;
+               --secondary-color: #3498db;
+               --accent-color: #f39c12;
+               --light-color: #f5f6fa;
+               --dark-color: #2c3e50;
+               --text-color: #333;
+               --background-color: #f9f9f9; /* 添加背景色变量 */
+               --section-even-bg: #ffffff; /* 偶数section背景 */
+               --footer-bg: var(--dark-color); /* 页脚背景 */
+               --header-gradient-start: var(--primary-color); /* header渐变起始 */
+               --header-gradient-end: var(--secondary-color); /* header渐变结束 */
+               --max-width: 1200px;
+             }
         #welcome-text {
              border-right: 2px solid black; /* 模拟打字光标 */
              white-space: nowrap; /* 防止文字换行 */
@@ -53,10 +58,10 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          line-height: 1.6;
             color: var(--text-color);
-            background-color: #f9f9f9;
+            background-color: var(--background-color); /* 使用变量控制背景 */
         }
 
         .container {
@@ -66,7 +71,7 @@
         }
 
         header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--header-gradient-start), var(--header-gradient-end)); /* 使用变量控制渐变 */
             color: white;
             padding: 60px 0 30px;
             text-align: center;
@@ -181,7 +186,7 @@
         }
 
         section:nth-child(even) {
-            background-color: white;
+            background-color: var(--section-even-bg); /* 使用变量控制偶数section背景 */
         }
 
         .section-title {
@@ -314,11 +319,11 @@
         }
 
         .cta-section {
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-            color: white;
-            text-align: center;
+           background: linear-gradient(135deg, var(--secondary-color), var(--primary-color)); /* CTA部分也使用变量 */
+           color: white;
+           text-align: center;
             padding: 80px 0;
-        }
+      }
 
         .cta-content {
             max-width: 700px;
@@ -353,10 +358,10 @@
         }
 
         footer {
-            background-color: var(--dark-color);
-            color: white;
-            padding: 30px 0;
-            text-align: center;
+           background-color: var(--footer-bg); /* 使用变量控制footer背景 */
+           color: white;
+          padding: 30px 0;
+          text-align: center;
         }
 
         .footer-content {
@@ -531,6 +536,727 @@
                 flex-direction: column;
             }
         }
+        /* 证书模态框样式 - 添加到现有style标签中 */
+.certificate-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.certificate-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.certificate-container {
+    position: relative;
+    width: 80%;
+    max-width: 800px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    transform: scale(0.8);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease;
+}
+
+.certificate-modal.active .certificate-container {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.certificate-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 20px 25px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.certificate-header h3 {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.certificate-close {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.certificate-close:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+}
+
+.certificate-content {
+    padding: 30px;
+    text-align: center;
+}
+
+.certificate-image-container {
+    margin-bottom: 25px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.certificate-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.certificate-image-container:hover .certificate-image {
+    transform: scale(1.02);
+}
+
+.certificate-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(10, 61, 98, 0.1), rgba(52, 152, 219, 0.1));
+    pointer-events: none;
+}
+
+.certificate-details {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: left;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.certificate-details:hover {
+    transform: translateY(-5px);
+}
+
+.certificate-details p {
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+}
+
+.certificate-details p strong {
+    min-width: 100px;
+    display: inline-block;
+    color: var(--primary-color);
+}
+
+.certificate-details p span {
+    color: #2c3e50;
+}
+
+.certificate-badge {
+    display: inline-block;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 6px 12px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    margin-top: 15px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(52, 152, 219, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0); }
+}
+
+/* 改进奖项交互 - 但不修改你原始的列表结构 */
+.award-item li {
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.award-item li:hover {
+    color: var(--accent-color);
+    transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+    .certificate-container {
+        width: 95%;
+    }
+
+    .certificate-header h3 {
+        font-size: 1.3rem;
+    }
+
+    .certificate-content {
+        padding: 20px;
+    }
+
+    .certificate-details p strong {
+        min-width: 80px;
+    }
+}
+
+        /* 增强奖项部分的样式 */
+#awards {
+    position: relative;
+    overflow: hidden;
+}
+
+#awards::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://source.unsplash.com/random/1600x900');
+    background-blend-mode: overlay;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.03;
+    z-index: 0;
+}
+
+.award-grid {
+    position: relative;
+    z-index: 1;
+}
+
+.award-item {
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.award-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.award-header {
+    display: flex;
+    align-items: center;
+    padding: 20px 25px 15px;
+    background: linear-gradient(45deg, rgba(var(--primary-color-rgb, 10, 61, 98, 0.04)), rgba(var(--secondary-color-rgb, 52, 152, 219, 0.08)));
+    border-bottom: 2px solid rgba(var(--accent-color-rgb, 243, 156, 18, 0.3));
+}
+
+.award-icon {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-right: 15px;
+    background: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.award-item h3 {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    position: relative;
+}
+
+.award-item ul {
+    padding: 15px 5px;
+    margin: 0;
+    list-style: none;
+}
+
+.award-item li {
+    position: relative;
+    padding: 14px 20px 14px 15px;
+    margin-bottom: 12px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    border-left: 3px solid transparent;
+}
+
+.award-national {
+    border-left-color: #e74c3c !important;
+}
+
+.award-international {
+    border-left-color: #8e44ad !important;
+}
+
+.award-provincial {
+    border-left-color: #3498db !important;
+}
+
+.award-university {
+    border-left-color: #2ecc71 !important;
+}
+
+.award-certificate {
+    border-left-color: #f39c12 !important;
+}
+
+.award-item li:hover {
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transform: translateX(5px);
+}
+
+.award-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: white;
+    border-radius: 4px;
+    margin-right: 12px;
+    min-width: 80px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+.award-text {
+    flex: 1;
+}
+
+.award-badge.national {
+    background: linear-gradient(45deg, #c0392b, #e74c3c);
+}
+
+.award-badge.international {
+    background: linear-gradient(45deg, #8e44ad, #9b59b6);
+}
+
+.award-badge.provincial {
+    background: linear-gradient(45deg, #2980b9, #3498db);
+}
+
+.award-badge.university {
+    background: linear-gradient(45deg, #27ae60, #2ecc71);
+}
+
+.award-badge.certification {
+    background: linear-gradient(45deg, #d35400, #f39c12);
+}
+
+.award-view-icon {
+    color: var(--accent-color);
+    opacity: 0;
+    font-size: 0.9rem;
+    margin-left: 10px;
+    transition: all 0.3s ease;
+    align-self: center;
+}
+
+.award-item li:hover .award-view-icon {
+    opacity: 1;
+    transform: rotate(10deg) scale(1.2);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .award-badge {
+        min-width: 60px;
+        font-size: 0.65rem;
+        padding: 3px 6px;
+    }
+
+    .award-item li {
+        padding: 12px 15px 12px 10px;
+    }
+
+    .award-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.4rem;
+    }
+
+    .award-header {
+        padding: 15px 20px 12px;
+    }
+}
+        /* 特色项目样式 */
+
+.featured-project:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.featured-project::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(var(--primary-color-rgb, 10, 61, 98), 0.03), rgba(var(--secondary-color-rgb, 52, 152, 219), 0.05));
+    z-index: 0;
+}
+
+.project-content {
+    position: relative;
+    z-index: 2;
+    padding: 30px;
+}
+
+.project-featured-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(45deg, var(--primary-color, #0a3d62), var(--secondary-color, #3498db));
+    color: white;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    animation: badge-pulse 2s infinite;
+}
+
+@keyframes badge-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(var(--secondary-color-rgb, 52, 152, 219), 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(var(--secondary-color-rgb, 52, 152, 219), 0); }
+    100% { box-shadow: 0 0 0 0 rgba(var(--secondary-color-rgb, 52, 152, 219), 0); }
+}
+
+.project-featured-badge i {
+    color: var(--accent-color, #f39c12);
+    margin-right: 6px;
+    animation: star-spin 4s linear infinite;
+}
+
+@keyframes star-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.project-header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.project-icon {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    border: 2px solid rgba(var(--primary-color-rgb, 10, 61, 98), 0.1);
+}
+
+.project-icon i {
+    font-size: 24px;
+    color: var(--primary-color, #0a3d62);
+}
+
+.pulse-icon {
+    animation: pulse-animation 2s infinite;
+}
+
+@keyframes pulse-animation {
+    0% { transform: scale(0.95); color: var(--primary-color, #0a3d62); }
+    50% { transform: scale(1.1); color: var(--accent-color, #f39c12); }
+    100% { transform: scale(0.95); color: var(--primary-color, #0a3d62); }
+}
+
+.featured-project h3 {
+    color: var(--primary-color, #0a3d62);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 0;
+    position: relative;
+}
+
+.featured-project .project-meta {
+    display: flex;
+    margin-bottom: 20px;
+    padding-left: 80px;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+    color: var(--secondary-color, #3498db);
+    font-weight: 500;
+}
+
+.meta-item i {
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
+.project-highlight {
+    background: rgba(var(--accent-color-rgb, 243, 156, 18), 0.08);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.highlight-badge {
+    display: flex;
+    align-items: center;
+}
+
+.highlight-badge i {
+    color: var(--accent-color, #f39c12);
+    margin-right: 12px;
+    font-size: 1.2rem;
+}
+
+.highlight-badge strong {
+    color: var(--dark-color, #2c3e50);
+}
+
+.project-id {
+    background: var(--primary-color, #0a3d62);
+    color: white;
+    font-family: monospace;
+    letter-spacing: 1px;
+    transform: scale(1.1);
+}
+
+.project-supervisors {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+}
+
+.project-supervisors i {
+    color: var(--secondary-color, #3498db);
+    margin-right: 10px;
+}
+
+.project-details {
+    margin-bottom: 25px;
+}
+
+.animated-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.animated-list li {
+    position: relative;
+    padding: 12px 0 12px 35px;
+    margin-bottom: 10px;
+    background-color: rgba(255,255,255,0.7);
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: flex-start;
+    animation: fade-in-up 0.6s both;
+    animation-delay: calc(var(--i, 0) * 0.1s);
+}
+
+.animated-list li:nth-child(1) { --i: 1; }
+.animated-list li:nth-child(2) { --i: 2; }
+.animated-list li:nth-child(3) { --i: 3; }
+
+.animated-list li:hover {
+    background-color: white;
+    transform: translateX(5px);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.05);
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.point-indicator {
+    position: absolute;
+    left: 10px;
+    top: 12px;
+    width: 22px;
+    height: 22px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.point-indicator i {
+    font-size: 0.7rem;
+    color: var(--accent-color, #f39c12);
+}
+
+.project-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.view-project {
+    background: linear-gradient(45deg, var(--primary-color, #0a3d62), var(--secondary-color, #3498db));
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.view-project span {
+    margin-right: 10px;
+}
+
+.view-project i {
+    transition: transform 0.3s ease;
+}
+
+.featured-project:hover .view-project {
+    background: linear-gradient(45deg, var(--secondary-color, #3498db), var(--primary-color, #0a3d62));
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.featured-project:hover .view-project i {
+    transform: translateX(5px);
+}
+
+.project-tech-stack {
+    display: flex;
+}
+
+.tech-tag {
+    background: rgba(var(--primary-color-rgb, 10, 61, 98), 0.1);
+    color: var(--primary-color, #0a3d62);
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: 10px;
+    letter-spacing: 0.5px;
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 10% 10%, rgba(var(--primary-color-rgb, 10, 61, 98), 0.03), transparent 60%),
+                radial-gradient(circle at 90% 90%, rgba(var(--secondary-color-rgb, 52, 152, 219), 0.03), transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.featured-project:hover .project-overlay {
+    opacity: 1;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .featured-project .project-meta {
+        flex-direction: column;
+        padding-left: 0;
+    }
+
+    .meta-item {
+        margin-bottom: 8px;
+    }
+
+    .project-header {
+        flex-direction: column;
+    }
+
+    .project-icon {
+        margin-bottom: 15px;
+        margin-right: 0;
+    }
+
+    .project-highlight {
+        flex-direction: column;
+    }
+
+    .highlight-badge {
+        margin-bottom: 10px;
+    }
+
+    .project-footer {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+    }
+
+    .project-tech-stack {
+        margin-bottom: 15px;
+    }
+
+    .tech-tag {
+        margin-left: 0;
+        margin-right: 10px;
+    }
+}
     </style>
 </head>
 <body>
@@ -753,51 +1479,106 @@ document.addEventListener('DOMContentLoaded', function() {
               </div>
             </div>
     </section>
+<section id="projects">
+    <div class="container">
+        <h2 class="section-title"><i class="fas fa-microscope"></i> <span class="i18n" data-i18n="projects.title">Research Projects</span></h2>
 
-    <section id="projects">
-        <div class="container">
-            <h2 class="section-title"><i class="fas fa-microscope"></i> <span class="i18n" data-i18n="projects.title">Research Projects</span></h2>
-            <div class="project-item">
-                <h3 class="i18n" data-i18n="projects.title1">Research on Early Diagnosis Algorithms for Cardiovascular Diseases Based on Adaptive and Feature Interaction</h3>
-                <div class="project-meta">
-                    <span class="i18n" data-i18n="projects.role1">Principal Investigator, Project Leader</span>
-                    <span class="i18n" data-i18n="projects.period1">May 2024 - May 2025</span>
-                </div>
-                <p><strong class="i18n" data-i18n="projects.program1">National-level College Students' Innovation and Entrepreneurship Training Program</strong> <span class="badge">202410300075Z</span></p>
-                <p><strong class="i18n" data-i18n="projects.supervisors">Supervisors:</strong> <span class="i18n" data-i18n="projects.supervisornames">Dean Baowei Wang and Associate Dean Xu Cheng, Waterford Institute</span></p>
-                <ul>
-                    <li class="i18n" data-i18n="projects.p1point1">Researched and proposed an improved adaptive weight algorithm with enhanced prediction accuracy.</li>
-                    <li class="i18n" data-i18n="projects.p1point2">Innovatively introduced a dual-parameter adjustment mechanism to enhance the model's resistance to interference and robustness.</li>
-                    <li class="i18n" data-i18n="projects.p1point3">Experimental results show that the proposed improved method significantly improves prediction accuracy and robustness compared to the traditional AdaBoost algorithm.</li>
-                </ul>
+        <!-- 增强的第一个项目 -->
+        <div class="project-item featured-project" onclick="window.open('http://gjcxcy.bjtu.edu.cn/NewLXItemListForStudentDetail.aspx?ItemNo=1228647&year=2024&type=student&IsLXItem=0', '_blank')">
+            <div class="project-featured-badge">
+                <i class="fas fa-star"></i> <span>Featured Project</span>
             </div>
-            <div class="project-item">
-                <h3 class="i18n" data-i18n="projects.title2">Research on UAV Intelligent Perception and Countermeasure Schemes: Multi-modal Data Fusion and 3D Trajectory Estimation</h3>
-                <div class="project-meta">
-                    <span class="i18n" data-i18n="projects.role2">Research Project</span>
-                    <span class="i18n" data-i18n="projects.period2">Winter 2024</span>
+            <div class="project-content">
+                <div class="project-header">
+                    <div class="project-icon">
+                        <i class="fas fa-heartbeat pulse-icon"></i>
+                    </div>
+                    <h3 class="i18n" data-i18n="projects.title1">Research on Early Diagnosis Algorithms for Cardiovascular Diseases Based on Adaptive and Feature Interaction</h3>
                 </div>
-                <ul>
-                    <li class="i18n" data-i18n="projects.p2point1">Study UAV intelligent perception and countermeasure schemes, addressing the limitations of traditional single-modal sensors, and improving feasibility in complex environments.</li>
-                    <li class="i18n" data-i18n="projects.p2point2">Fuse multi-modal sensor data from vision, radar, and radio frequency to enhance UAV target detection and position estimation accuracy.</li>
-                    <li class="i18n" data-i18n="projects.p2point3">Focus on UAV 3D trajectory estimation, overcoming the limitations of traditional 2D tracking, supporting more precise dynamic perception and countermeasures.</li>
-                </ul>
-            </div>
-            <div class="project-item">
-                <h3 class="i18n" data-i18n="projects.title3">Innovative Research on Visible Light-Infrared Pedestrian Re-Identification</h3>
                 <div class="project-meta">
-                    <span class="i18n" data-i18n="projects.role3">Research Project</span>
-                    <span class="i18n" data-i18n="projects.period3">Winter 2024</span>
+                    <div class="meta-item">
+                        <i class="fas fa-user-tie"></i>
+                        <span class="i18n" data-i18n="projects.role1">Principal Investigator, Project Leader</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span class="i18n" data-i18n="projects.period1">May 2024 - May 2025</span>
+                    </div>
                 </div>
-                <ul>
-                    <li class="i18n" data-i18n="projects.p3point1">VI-ReID aims to address the challenge of pedestrian matching under different lighting conditions, facing challenges of cross-modal differences and intra-modal variation.</li>
-                    <li class="i18n" data-i18n="projects.p3point2">Design a modality-unified network that merges visible light and infrared information through auxiliary modality fusion, alleviating modality differences.</li>
-                    <li class="i18n" data-i18n="projects.p3point3">Design identity alignment and modality alignment loss functions to optimize feature relationships at the identity and distribution levels, improving model performance.</li>
-                </ul>
+
+                <div class="project-highlight">
+                    <div class="highlight-badge">
+                        <i class="fas fa-award"></i>
+                        <strong class="i18n" data-i18n="projects.program1">National-level College Students' Innovation and Entrepreneurship Training Program</strong>
+                    </div>
+                    <span class="badge project-id">202410300075Z</span>
+                </div>
+
+                <div class="project-supervisors">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <strong class="i18n" data-i18n="projects.supervisors">Supervisors:</strong>
+                    <span class="i18n" data-i18n="projects.supervisornames">Dean Baowei Wang and Associate Dean Xu Cheng, Waterford Institute</span>
+                </div>
+
+                <div class="project-details">
+                    <ul class="animated-list">
+                        <li class="i18n" data-i18n="projects.p1point1">
+                            <div class="point-indicator"><i class="fas fa-check"></i></div>
+                            <span>Researched and proposed an improved adaptive weight algorithm with enhanced prediction accuracy.</span>
+                        </li>
+                        <li class="i18n" data-i18n="projects.p1point2">
+                            <div class="point-indicator"><i class="fas fa-check"></i></div>
+                            <span>Innovatively introduced a dual-parameter adjustment mechanism to enhance the model's resistance to interference and robustness.</span>
+                        </li>
+                        <li class="i18n" data-i18n="projects.p1point3">
+                            <div class="point-indicator"><i class="fas fa-check"></i></div>
+                            <span>Experimental results show that the proposed improved method significantly improves prediction accuracy and robustness compared to the traditional AdaBoost algorithm.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="project-footer">
+                    <div class="view-project">
+                        <span>View Project Details</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                    <div class="project-tech-stack">
+                        <span class="tech-tag">AdaBoost</span>
+                        <span class="tech-tag">ML</span>
+                        <span class="tech-tag">Healthcare</span>
+                    </div>
+                </div>
             </div>
+            <div class="project-overlay"></div>
         </div>
-    </section>
 
+        <!-- 其他项目不变 -->
+        <div class="project-item">
+            <h3 class="i18n" data-i18n="projects.title2">Research on UAV Intelligent Perception and Countermeasure Schemes: Multi-modal Data Fusion and 3D Trajectory Estimation</h3>
+            <div class="project-meta">
+                <span class="i18n" data-i18n="projects.role2">Research Project</span>
+                <span class="i18n" data-i18n="projects.period2">Winter 2024</span>
+            </div>
+            <ul>
+                <li class="i18n" data-i18n="projects.p2point1">Study UAV intelligent perception and countermeasure schemes, addressing the limitations of traditional single-modal sensors, and improving feasibility in complex environments.</li>
+                <li class="i18n" data-i18n="projects.p2point2">Fuse multi-modal sensor data from vision, radar, and radio frequency to enhance UAV target detection and position estimation accuracy.</li>
+                <li class="i18n" data-i18n="projects.p2point3">Focus on UAV 3D trajectory estimation, overcoming the limitations of traditional 2D tracking, supporting more precise dynamic perception and countermeasures.</li>
+            </ul>
+        </div>
+        <div class="project-item">
+            <h3 class="i18n" data-i18n="projects.title3">Innovative Research on Visible Light-Infrared Pedestrian Re-Identification</h3>
+            <div class="project-meta">
+                <span class="i18n" data-i18n="projects.role3">Research Project</span>
+                <span class="i18n" data-i18n="projects.period3">Winter 2024</span>
+            </div>
+            <ul>
+                <li class="i18n" data-i18n="projects.p3point1">VI-ReID aims to address the challenge of pedestrian matching under different lighting conditions, facing challenges of cross-modal differences and intra-modal variation.</li>
+                <li class="i18n" data-i18n="projects.p3point2">Design a modality-unified network that merges visible light and infrared information through auxiliary modality fusion, alleviating modality differences.</li>
+                <li class="i18n" data-i18n="projects.p3point3">Design identity alignment and modality alignment loss functions to optimize feature relationships at the identity and distribution levels, improving model performance.</li>
+            </ul>
+        </div>
+    </div>
+</section>
 <!--    <section id="courses">-->
 <!--        <div class="container">-->
 <!--            <h2 class="section-title"><i class="fas fa-book-open"></i> <span class="i18n" data-i18n="courses.title">Selected Courses</span></h2>-->
@@ -853,40 +1634,121 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--    </section>-->
 
     <section id="awards">
-        <div class="container">
-            <h2 class="section-title"><i class="fas fa-award"></i> <span class="i18n" data-i18n="awards.title">Awards & Honors</span></h2>
-            <div class="award-grid">
-                <div class="award-item">
+    <div class="container">
+        <h2 class="section-title"><i class="fas fa-trophy"></i> <span class="i18n" data-i18n="awards.title">Awards & Honors</span></h2>
+        <div class="award-grid">
+            <div class="award-item">
+                <div class="award-header">
+                    <i class="fas fa-square-root-alt award-icon"></i>
                     <h3 class="i18n" data-i18n="awards.category1">Mathematical Modeling</h3>
-                    <ul>
-                        <li class="i18n" data-i18n="awards.award1">Second Prize, China Undergraduate Mathematical Contest in Modeling (CUMCM), National-level, October 2023</li>
-                        <li class="i18n" data-i18n="awards.award2">Honorable Mention (H Award), Mathematical Contest in Modeling (MCM/ICM), National-level, May 2024</li>
-                        <li class="i18n" data-i18n="awards.award3">Second Prize, China Undergraduate Mathematical Contest in Modeling (CUMCM), Provincial-level, October 2024</li>
-                        <li class="i18n" data-i18n="awards.award4">First Prize, Jiangsu Province Advanced Mathematics Contest, Category A, Provincial-level, May 2023</li>
-                    </ul>
                 </div>
-                <div class="award-item">
+                <ul>
+                    <li class="award-national i18n" data-i18n="awards.award1">
+                        <span class="award-badge national">National</span>
+                        <span class="award-text">Second Prize, China Undergraduate Mathematical Contest in Modeling (CUMCM), National-level, October 2023</span>
+                        <i class="fas fa-certificate award-view-icon"></i>
+                    </li>
+                    <li class="award-national i18n" data-i18n="awards.award2">
+                        <span class="award-badge international">International</span>
+                        <span class="award-text">Honorable Mention (H Award), Mathematical Contest in Modeling (MCM/ICM), National-level, May 2024</span>
+                        <i class="fas fa-certificate award-view-icon"></i>
+                    </li>
+                    <li class="award-provincial i18n" data-i18n="awards.award3">
+                        <span class="award-badge provincial">Provincial</span>
+                        <span class="award-text">Second Prize, China Undergraduate Mathematical Contest in Modeling (CUMCM), Provincial-level, October 2024</span>
+                        <i class="fas fa-certificate award-view-icon"></i>
+                    </li>
+                    <li class="award-provincial i18n" data-i18n="awards.award4">
+                        <span class="award-badge provincial">Provincial</span>
+                        <span class="award-text">First Prize, Jiangsu Province Advanced Mathematics Contest, Category A, Provincial-level, May 2023</span>
+                        <i class="fas fa-certificate award-view-icon"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="award-item">
+                <div class="award-header">
+                    <i class="fas fa-graduation-cap award-icon"></i>
                     <h3 class="i18n" data-i18n="awards.category2">Academic Excellence</h3>
-                    <ul>
-                        <li class="i18n" data-i18n="awards.award5">First-Class Scholarship, 2023 & 2024</li>
-                        <li class="i18n" data-i18n="awards.award6">"Three Good Student" of the University, 2023 & 2024</li>
-                        <li class="i18n" data-i18n="awards.award7">Excellent Communist Youth League Cadre, 2024</li>
-                        <li class="i18n" data-i18n="awards.award8">Excellent League Member, 2023</li>
-                    </ul>
                 </div>
-                <div class="award-item">
+                <ul>
+                    <li class="award-university i18n" data-i18n="awards.award5">
+                        <span class="award-badge university">University</span>
+                        <span class="award-text">First-Class Scholarship, 2023 & 2024</span>
+                        <i class="fas fa-certificate award-view-icon"></i>
+                    </li>
+                    <li class="award-university i18n" data-i18n="awards.award6">
+                        <span class="award-badge university">University</span>
+                        <span class="award-text">"Three Good Student" of the University, 2023 & 2024</span>
+                        <i class="fas fa-certificate award-view-icon"></i>
+                    </li>
+                    <li class="award-university i18n" data-i18n="awards.award7">
+                        <span class="award-badge university">University</span>
+                        <span class="award-text">Excellent Communist Youth League Cadre, 2024</span>
+                        <i class="fas fa-certificate award-view-icon"></i>
+                    </li>
+                    <li class="award-university i18n" data-i18n="awards.award8">
+                        <span class="award-badge university">University</span>
+                        <span class="award-text">Excellent League Member, 2023</span>
+                        <i class="fas fa-certificate award-view-icon"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="award-item">
+                <div class="award-header">
+                    <i class="fas fa-language award-icon"></i>
                     <h3 class="i18n" data-i18n="awards.category3">Language & Innovation</h3>
-                    <ul>
-                        <li class="i18n" data-i18n="awards.award9">First Prize, Chinese College English Translation Contest, Provincial-level, June 2024</li>
-                        <li class="i18n" data-i18n="awards.award10">Bronze Award, "Internet+" College Students Innovation and Entrepreneurship Competition, University-level, June 2024</li>
-                        <li class="i18n" data-i18n="awards.award11">CET-6: 574</li>
-                        <li class="i18n" data-i18n="awards.award12">IELTS: 6.5 (Reading: 8)</li>
-                    </ul>
                 </div>
+                <ul>
+                    <li class="award-provincial i18n" data-i18n="awards.award9">
+                        <span class="award-badge provincial">Provincial</span>
+                        <span class="award-text">First Prize, Chinese College English Translation Contest, Provincial-level, June 2024</span>
+                        <i class="fas fa-certificate award-view-icon"></i>
+                    </li>
+                    <li class="award-university i18n" data-i18n="awards.award10">
+                        <span class="award-badge university">University</span>
+                        <span class="award-text">Bronze Award, "Internet+" College Students Innovation and Entrepreneurship Competition, University-level, June 2024</span>
+                        <i class="fas fa-certificate award-view-icon"></i>
+                    </li>
+                    <li class="award-certificate i18n" data-i18n="awards.award11">
+                        <span class="award-badge certification">Certification</span>
+                        <span class="award-text">CET-6: 574</span>
+                        <i class="fas fa-certificate award-view-icon"></i>
+                    </li>
+                    <li class="award-certificate i18n" data-i18n="awards.award12">
+                        <span class="award-badge certification">Certification</span>
+                        <span class="award-text">IELTS: 6.5 (Reading: 8)</span>
+                        <i class="fas fa-certificate award-view-icon"></i>
+                    </li>
+                </ul>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
+<!-- 证书模态框 -->
+<div id="certificateModal" class="certificate-modal">
+    <div class="certificate-container">
+        <div class="certificate-header">
+            <h3 id="certificateTitle">Award Certificate</h3>
+            <button class="certificate-close" id="closeCertificate">&times;</button>
+        </div>
+        <div class="certificate-content">
+            <div class="certificate-image-container">
+                <img id="certificateImage" src="/api/placeholder/800/500" alt="Award Certificate" class="certificate-image">
+                <div class="certificate-overlay"></div>
+            </div>
+            <div class="certificate-details">
+                <p><strong>Award:</strong> <span id="awardName"></span></p>
+                <p><strong>Category:</strong> <span id="awardCategory"></span></p>
+                <p><strong>Level:</strong> <span id="awardLevel"></span></p>
+                <p><strong>Date:</strong> <span id="awardDate"></span></p>
+            </div>
+            <div class="certificate-badge" id="awardLevel-badge">
+                <i class="fas fa-award"></i> <span id="levelBadge"></span>
+            </div>
+        </div>
+    </div>
+</div>
     <section id="skills">
         <div class="container">
             <h2 class="section-title"><i class="fas fa-cogs"></i> <span class="i18n" data-i18n="skills.title">Skills & Expertise</span></h2>
@@ -1777,6 +2639,1309 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error loading chatbot:', error));
     });
     </script>
+    <!-- 证书查看功能脚本 -->
+<script>
+// 等待页面完全加载后初始化
+window.addEventListener('load', function() {
+    // 确保awards部分已加载
+    if (document.querySelector('#awards')) {
+        initAwardCertificates();
+    } else {
+        // 如果awards部分尚未加载，使用轮询方式等待
+        let checkInterval = setInterval(function() {
+            if (document.querySelector('#awards')) {
+                clearInterval(checkInterval);
+                initAwardCertificates();
+            }
+        }, 500);
+
+        // 5秒后停止轮询
+        setTimeout(function() {
+            clearInterval(checkInterval);
+        }, 5000);
+    }
+
+    function initAwardCertificates() {
+        console.log('Initializing award certificates...');
+        // 获取所有奖项列表项
+        const awardItems = document.querySelectorAll('.award-item li');
+        const modal = document.getElementById('certificateModal');
+        const closeBtn = document.getElementById('closeCertificate');
+
+        if (!modal || !closeBtn) {
+            console.error("Modal elements not found");
+            return;
+        }
+
+        if (awardItems.length === 0) {
+            console.error("No award items found");
+            return;
+        }
+
+        console.log(`Found ${awardItems.length} award items`);
+
+        // 模拟证书图片映射
+        const certificateImages = {
+            "Second Prize, China Undergraduate": "/api/placeholder/800/500?text=CUMCM_National_Second_Prize",
+            "Honorable Mention (H Award)": "/api/placeholder/800/500?text=MCM_ICM_H_Award",
+            "Second Prize, China": "/api/placeholder/800/500?text=CUMCM_Provincial_Second_Prize",
+            "First Prize, Jiangsu": "/api/placeholder/800/500?text=Jiangsu_Math_First_Prize",
+            "First-Class Scholarship": "/api/placeholder/800/500?text=First_Class_Scholarship",
+            "\"Three Good Student\"": "/api/placeholder/800/500?text=Three_Good_Student",
+            "Excellent Communist Youth": "/api/placeholder/800/500?text=Excellent_Youth_League_Cadre",
+            "Excellent League Member": "/api/placeholder/800/500?text=Excellent_League_Member",
+            "First Prize, Chinese": "/api/placeholder/800/500?text=English_Translation_First_Prize",
+            "Bronze Award": "/api/placeholder/800/500?text=Internet_Plus_Bronze_Award",
+            "CET-6": "/api/placeholder/800/500?text=CET6_Certificate",
+            "IELTS": "/api/placeholder/800/500?text=IELTS_Certificate"
+        };
+
+        // 提取日期的函数
+        function extractDate(text) {
+            const dateRegex = /\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}\b/i;
+            const yearRegex = /\b\d{4}\b/;
+
+            const dateMatch = text.match(dateRegex);
+            if (dateMatch) return dateMatch[0];
+
+            const yearMatch = text.match(yearRegex);
+            if (yearMatch) return yearMatch[0];
+
+            return "Not specified";
+        }
+
+        // 提取级别的函数
+        function extractLevel(text) {
+            if (text.includes('National-level')) return 'National';
+            if (text.includes('International') || text.includes('MCM/ICM')) return 'International';
+            if (text.includes('Provincial-level')) return 'Provincial';
+            if (text.includes('University-level')) return 'University';
+            return 'General';
+        }
+
+        // 获取图片函数
+        function getCertificateImage(text) {
+            for (const key in certificateImages) {
+                if (text.includes(key)) {
+                    return certificateImages[key];
+                }
+            }
+            return "/api/placeholder/800/500?text=Award_Certificate";
+        }
+
+        // 为每个奖项添加点击事件
+        awardItems.forEach(function(item) {
+            item.style.cursor = 'pointer';
+            item.setAttribute('title', 'Click to view certificate');
+
+            item.addEventListener('click', function() {
+                const awardText = this.textContent;
+                const categoryElem = this.closest('.award-item').querySelector('h3');
+                const category = categoryElem ? categoryElem.textContent : '';
+                const level = extractLevel(awardText);
+                const date = extractDate(awardText);
+                const certificateImg = getCertificateImage(awardText);
+
+                // 更新模态框内容
+                document.getElementById('certificateTitle').textContent = `Certificate: ${awardText.split(',')[0]}`;
+                document.getElementById('certificateImage').src = certificateImg;
+                document.getElementById('awardName').textContent = awardText;
+                document.getElementById('awardCategory').textContent = category;
+                document.getElementById('awardLevel').textContent = level;
+                document.getElementById('awardDate').textContent = date;
+                document.getElementById('levelBadge').textContent = level;
+
+                // 根据级别设置徽章颜色
+                const badge = document.getElementById('awardLevel-badge');
+                if (level === 'International') {
+                    badge.style.background = 'linear-gradient(45deg, #8e44ad, #9b59b6)';
+                } else if (level === 'National') {
+                    badge.style.background = 'linear-gradient(45deg, #c0392b, #e74c3c)';
+                } else if (level === 'Provincial') {
+                    badge.style.background = 'linear-gradient(45deg, #2980b9, #3498db)';
+                } else {
+                    badge.style.background = 'linear-gradient(45deg, #27ae60, #2ecc71)';
+                }
+
+                // 显示模态框
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // 关闭模态框
+        closeBtn.addEventListener('click', function() {
+            closeModal();
+        });
+
+        // 点击模态框背景关闭
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // ESC键关闭模态框
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+});
+// 确保奖项图标正确显示
+document.addEventListener('DOMContentLoaded', function() {
+    // 替换默认图标 - 可以根据需要调整
+    document.querySelectorAll('.award-icon.fas.fa-square-root-alt').forEach(function(icon) {
+        icon.classList.remove('fa-square-root-alt');
+        icon.classList.add('fa-calculator');
+    });
+
+    // 添加鼠标悬停效果
+    document.querySelectorAll('.award-item li').forEach(function(item) {
+        item.addEventListener('mouseenter', function() {
+            const icon = this.querySelector('.award-view-icon');
+            if (icon) {
+                icon.classList.add('fa-spin');
+            }
+        });
+
+        item.addEventListener('mouseleave', function() {
+            const icon = this.querySelector('.award-view-icon');
+            if (icon) {
+                icon.classList.remove('fa-spin');
+            }
+        });
+    });
+});
+// 项目动画交互效果
+document.addEventListener('DOMContentLoaded', function() {
+    const featuredProject = document.querySelector('.featured-project');
+
+    if (featuredProject) {
+        // 添加鼠标进入效果
+        featuredProject.addEventListener('mouseenter', function() {
+            const listItems = this.querySelectorAll('.animated-list li');
+            listItems.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.1}s`;
+                item.style.animationName = 'fade-in-up';
+                item.style.animationDuration = '0.6s';
+                item.style.animationFillMode = 'both';
+            });
+
+            // 添加心脏图标跳动动画
+            const heartIcon = this.querySelector('.pulse-icon');
+            if (heartIcon) {
+                heartIcon.style.animationDuration = '1s';
+            }
+        });
+
+        // 添加点击跳转效果
+        featuredProject.addEventListener('click', function(e) {
+            // 如果点击的是链接，不执行自定义跳转
+            if (e.target.tagName === 'A' || e.target.closest('a')) {
+                return;
+            }
+
+            // 添加点击波纹效果
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const ripple = document.createElement('span');
+            ripple.classList.add('click-ripple');
+            ripple.style.left = `${x}px`;
+            ripple.style.top = `${y}px`;
+
+            this.appendChild(ripple);
+
+            // 移除波纹效果
+            setTimeout(() => {
+                ripple.remove();
+                window.open('http://gjcxcy.bjtu.edu.cn/NewLXItemListForStudentDetail.aspx?ItemNo=1228647&year=2024&type=student&IsLXItem=0', '_blank');
+            }, 500);
+        });
+    }
+});
+
+// 添加CSS用于波纹效果
+const style = document.createElement('style');
+style.textContent = `
+.click-ripple {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 0.5s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+`;
+document.head.appendChild(style);
+
+// 添加到页面底部的脚本部分
+// 粒子背景系统
+document.addEventListener('DOMContentLoaded', function() {
+    const header = document.querySelector('header');
+
+    // 创建Canvas元素
+    const canvas = document.createElement('canvas');
+    canvas.classList.add('particles-canvas');
+    canvas.style.position = 'absolute';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.pointerEvents = 'none';
+    canvas.style.zIndex = '1';
+
+    header.style.position = 'relative';
+    header.style.overflow = 'hidden';
+    header.insertBefore(canvas, header.firstChild);
+
+    const ctx = canvas.getContext('2d');
+
+    // 设置Canvas尺寸
+    function resizeCanvas() {
+        canvas.width = header.offsetWidth;
+        canvas.height = header.offsetHeight;
+    }
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // 创建粒子类
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2 + 0.5;
+            this.speedX = Math.random() * 1 - 0.5;
+            this.speedY = Math.random() * 1 - 0.5;
+            this.color = `rgba(255, 255, 255, ${Math.random() * 0.5 + 0.1})`;
+        }
+
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+
+            if (this.x > canvas.width) this.x = 0;
+            else if (this.x < 0) this.x = canvas.width;
+
+            if (this.y > canvas.height) this.y = 0;
+            else if (this.y < 0) this.y = canvas.height;
+        }
+
+        draw() {
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    // 创建粒子阵列
+    const particles = [];
+    const particleCount = Math.min(Math.max(header.offsetWidth * 0.05, 50), 100);
+
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+    }
+
+    // 连接临近粒子
+    function connectParticles() {
+        const maxDistance = 100;
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < maxDistance) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance/maxDistance})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+
+    // 鼠标交互
+    let mouse = {
+        x: null,
+        y: null,
+        radius: 150
+    };
+
+    header.addEventListener('mousemove', function(e) {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+    });
+
+    header.addEventListener('mouseleave', function() {
+        mouse.x = null;
+        mouse.y = null;
+    });
+
+    // 动画循环
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
+
+            // 鼠标交互
+            if (mouse.x !== null && mouse.y !== null) {
+                const dx = particle.x - mouse.x;
+                const dy = particle.y - mouse.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < mouse.radius) {
+                    const forceDirectionX = dx / distance;
+                    const forceDirectionY = dy / distance;
+                    const force = (mouse.radius - distance) / mouse.radius;
+                    const directionX = forceDirectionX * force * 2;
+                    const directionY = forceDirectionY * force * 2;
+
+                    particle.x += directionX;
+                    particle.y += directionY;
+                }
+            }
+        });
+
+        connectParticles();
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+});
+
+// 液态按钮和悬停效果
+document.addEventListener('DOMContentLoaded', function() {
+    // 为按钮和资源链接添加液态效果
+    const buttons = document.querySelectorAll('.button, .resource-link');
+
+    buttons.forEach(button => {
+        // 保存原始样式
+        const originalStyles = {
+            background: button.style.background,
+            transform: button.style.transform,
+            boxShadow: button.style.boxShadow
+        };
+
+        // 添加液态悬停效果
+        button.addEventListener('mouseenter', function(e) {
+            const x = e.clientX - button.getBoundingClientRect().left;
+            const y = e.clientY - button.getBoundingClientRect().top;
+
+            button.style.background = `radial-gradient(circle at ${x}px ${y}px, var(--accent-color, #f39c12) 0%, var(--secondary-color, #3498db) 100%)`;
+            button.style.transform = 'translateY(-2px) scale(1.03)';
+            button.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.1)';
+
+            // 添加波纹效果
+            const ripple = document.createElement('span');
+            ripple.classList.add('liquid-ripple');
+            ripple.style.position = 'absolute';
+            ripple.style.width = '5px';
+            ripple.style.height = '5px';
+            ripple.style.borderRadius = '50%';
+            ripple.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+            ripple.style.top = `${y}px`;
+            ripple.style.left = `${x}px`;
+            ripple.style.transform = 'translate(-50%, -50%)';
+            ripple.style.animation = 'ripple 1s linear forwards';
+
+            if (button.style.position !== 'absolute' && button.style.position !== 'fixed') {
+                button.style.position = 'relative';
+            }
+            button.style.overflow = 'hidden';
+
+            button.appendChild(ripple);
+
+            setTimeout(() => {
+                ripple.remove();
+            }, 1000);
+        });
+
+        button.addEventListener('mouseleave', function() {
+            button.style.background = originalStyles.background;
+            button.style.transform = originalStyles.transform;
+            button.style.boxShadow = originalStyles.boxShadow;
+        });
+    });
+
+    // 添加波纹动画样式
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes ripple {
+            0% {
+                width: 5px;
+                height: 5px;
+                opacity: 0.5;
+            }
+            100% {
+                width: 300px;
+                height: 300px;
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+});
+// 磁性吸附文本效果
+document.addEventListener('DOMContentLoaded', function() {
+    const contactSection = document.getElementById('contact');
+    if (!contactSection) return;
+
+    const contactText = contactSection.querySelector('p');
+    if (!contactText) return;
+
+    // 分割文本为单独的字符
+    const originalText = contactText.textContent;
+    contactText.innerHTML = '';
+
+    const charWrapper = document.createElement('div');
+    charWrapper.style.display = 'inline-block';
+    charWrapper.style.position = 'relative';
+
+    [...originalText].forEach(char => {
+        const span = document.createElement('span');
+        span.textContent = char;
+        span.style.display = 'inline-block';
+        span.style.transition = 'transform 0.2s ease';
+        span.style.position = 'relative';
+        span.style.zIndex = '1';
+        charWrapper.appendChild(span);
+    });
+
+    contactText.appendChild(charWrapper);
+
+    // 磁性吸附效果
+    contactSection.addEventListener('mousemove', function(e) {
+        const chars = charWrapper.querySelectorAll('span');
+        const rect = contactSection.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        chars.forEach(char => {
+            const charRect = char.getBoundingClientRect();
+            const charX = charRect.left + charRect.width / 2 - rect.left;
+            const charY = charRect.top + charRect.height / 2 - rect.top;
+
+            const distanceX = mouseX - charX;
+            const distanceY = mouseY - charY;
+            const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+
+            const maxDistance = 150;
+            const maxMovement = 10;
+
+            if (distance < maxDistance) {
+                const force = (maxDistance - distance) / maxDistance;
+                const moveX = (distanceX / distance) * force * maxMovement;
+                const moveY = (distanceY / distance) * force * maxMovement;
+
+                char.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                char.style.color = 'var(--accent-color, #f39c12)';
+                char.style.textShadow = '0 0 5px rgba(255, 255, 255, 0.5)';
+                char.style.fontWeight = 'bold';
+            } else {
+                char.style.transform = '';
+                char.style.color = '';
+                char.style.textShadow = '';
+                char.style.fontWeight = '';
+            }
+        });
+    });
+
+    contactSection.addEventListener('mouseleave', function() {
+        const chars = charWrapper.querySelectorAll('span');
+        chars.forEach(char => {
+            char.style.transform = '';
+            char.style.color = '';
+            char.style.textShadow = '';
+            char.style.fontWeight = '';
+        });
+    });
+});
+// 反重力浮动效果（续）
+document.addEventListener('DOMContentLoaded', function() {
+    const profilePic = document.querySelector('.profile-pic img');
+    if (!profilePic) return;
+
+    // 创建浮动容器
+    const floatingContainer = document.createElement('div');
+    floatingContainer.classList.add('floating-container');
+    floatingContainer.style.position = 'relative';
+    floatingContainer.style.width = '100%';
+    floatingContainer.style.height = '100%';
+    profilePic.parentNode.appendChild(floatingContainer);
+
+    // 移动原始图片
+    profilePic.style.transition = 'all 0.2s ease';
+    profilePic.style.position = 'relative';
+    profilePic.style.zIndex = '2';
+    floatingContainer.appendChild(profilePic);
+
+    // 创建悬浮粒子
+    for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('floating-particle');
+
+        const size = Math.random() * 15 + 5;
+        particle.style.position = 'absolute';
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.borderRadius = '50%';
+        particle.style.backgroundColor = `rgba(var(--accent-color-rgb, 243, 156, 18), ${Math.random() * 0.4 + 0.1})`;
+        particle.style.top = `${Math.random() * 120 - 10}%`;
+        particle.style.left = `${Math.random() * 120 - 10}%`;
+        particle.style.zIndex = '1';
+
+        // 设置动画
+        const duration = Math.random() * 10 + 10;
+        const delay = Math.random() * 5;
+        particle.style.animation = `floatParticle ${duration}s ease-in-out ${delay}s infinite alternate`;
+
+        floatingContainer.appendChild(particle);
+    }
+
+    // 创建光晕效果
+    const halo = document.createElement('div');
+    halo.classList.add('profile-halo');
+    halo.style.position = 'absolute';
+    halo.style.width = '110%';
+    halo.style.height = '110%';
+    halo.style.top = '-5%';
+    halo.style.left = '-5%';
+    halo.style.borderRadius = '50%';
+    halo.style.background = 'radial-gradient(circle, rgba(var(--secondary-color-rgb, 52, 152, 219), 0.2) 0%, rgba(var(--secondary-color-rgb, 52, 152, 219), 0) 70%)';
+    halo.style.zIndex = '0';
+    halo.style.animation = 'pulse-halo 4s ease-in-out infinite';
+    floatingContainer.appendChild(halo);
+
+    // 添加必要的动画CSS
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes floatParticle {
+        0% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(10deg); }
+        100% { transform: translateY(10px) rotate(-5deg); }
+    }
+
+    @keyframes pulse-halo {
+        0% { opacity: 0.5; transform: scale(1); }
+        50% { opacity: 0.7; transform: scale(1.1); }
+        100% { opacity: 0.5; transform: scale(1); }
+    }
+`   ;
+    document.head.appendChild(style);
+
+    // 添加鼠标交互
+    floatingContainer.addEventListener('mousemove', function(e) {
+        const rect = floatingContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        // 移动图片响应鼠标
+        profilePic.style.transform = `translate(${x * 0.03}px, ${y * 0.03}px)`;
+
+        // 移动粒子响应鼠标
+        const particles = floatingContainer.querySelectorAll('.floating-particle');
+        particles.forEach((particle, index) => {
+            const factor = (index % 5 + 1) * 0.01;
+            particle.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
+        });
+
+        // 移动光晕响应鼠标
+        halo.style.transform = `translate(${x * 0.02}px, ${y * 0.02}px)`;
+    });
+
+    // 恢复默认状态
+    floatingContainer.addEventListener('mouseleave', function() {
+        profilePic.style.transform = '';
+
+        const particles = floatingContainer.querySelectorAll('.floating-particle');
+        particles.forEach(particle => {
+            particle.style.transform = '';
+        });
+
+        halo.style.transform = '';
+    });
+});
+document.addEventListener('DOMContentLoaded', function() {
+    // Create theme toggle container
+    const themeToggle = document.createElement('div');
+    themeToggle.id = 'theme-toggle';
+    themeToggle.style.position = 'fixed';
+    themeToggle.style.bottom = '30px';
+    themeToggle.style.left = '30px';
+    themeToggle.style.zIndex = '1000';
+    themeToggle.style.transition = 'all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)';
+
+    // Create artistic toggle button
+    const toggleButton = document.createElement('button');
+    toggleButton.innerHTML = '<i class="fas fa-palette"></i>';
+    toggleButton.style.width = '60px';
+    toggleButton.style.height = '60px';
+    toggleButton.style.borderRadius = '50%';
+    toggleButton.style.background = 'linear-gradient(45deg, var(--primary-color, #0a3d62), var(--secondary-color, #3498db))';
+    toggleButton.style.color = '#fff';
+    toggleButton.style.border = '2px solid rgba(255, 255, 255, 0.3)';
+    toggleButton.style.cursor = 'pointer';
+    toggleButton.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.3)';
+    toggleButton.style.fontSize = '1.5rem';
+    toggleButton.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease';
+    toggleButton.style.position = 'relative';
+    toggleButton.style.overflow = 'hidden';
+
+    // Add hover halo effect
+    toggleButton.innerHTML += `
+        <span style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent); opacity: 0; transition: opacity 0.3s;"></span>
+    `;
+
+    // Create advanced color picker container
+    const colorPicker = document.createElement('div');
+    colorPicker.id = 'color-picker';
+    colorPicker.style.display = 'none';
+    colorPicker.style.position = 'absolute';
+    colorPicker.style.bottom = '80px';
+    colorPicker.style.left = '0';
+    colorPicker.style.width = '300px';
+    colorPicker.style.background = 'rgba(255, 255, 255, 0.95)';
+    colorPicker.style.borderRadius = '15px';
+    colorPicker.style.padding = '15px';
+    colorPicker.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2)';
+    colorPicker.style.transition = 'all 0.4s ease';
+    colorPicker.style.transform = 'translateY(20px) scale(0.9)';
+    colorPicker.style.opacity = '0';
+    colorPicker.style.backdropFilter = 'blur(10px)';
+
+    // Define warm-toned themes inspired by deep learning models
+    const themes = [
+        {
+            name: 'Transformer',
+            description: 'Inspired by the Transformer model, this theme uses vibrant blues and purples to represent attention mechanisms and neural networks.',
+            primary: '#5e50a1',
+            secondary: '#8a7dba',
+            accent: '#ffcc00',
+            background: '#f5f5fa',
+            sectionEvenBg: '#ffffff',
+            footerBg: '#2c2f38',
+            light: '#f5f5fa',
+            dark: '#2c2f38',
+            headerGradientStart: '#5e50a1',
+            headerGradientEnd: '#8a7dba'
+        },
+        {
+            name: 'GAN',
+            description: 'Inspired by Generative Adversarial Networks, this theme uses contrasting reds and oranges to symbolize the generator-discriminator dance.',
+            primary: '#d9534f',
+            secondary: '#f0ad4e',
+            accent: '#5bc0de',
+            background: '#f9f9f9',
+            sectionEvenBg: '#ffffff',
+            footerBg: '#2c3e50',
+            light: '#f9f9f9',
+            dark: '#2c3e50',
+            headerGradientStart: '#d9534f',
+            headerGradientEnd: '#f0ad4e'
+        },
+        {
+            name: 'BERT',
+            description: 'Inspired by BERT, this theme features earthy tones to reflect natural language understanding and contextual embeddings.',
+            primary: '#8b4513',
+            secondary: '#a0522d',
+            accent: '#d2b48c',
+            background: '#fdf6e9',
+            sectionEvenBg: '#fff8f0',
+            footerBg: '#8b4513',
+            light: '#fdf6e9',
+            dark: '#8b4513',
+            headerGradientStart: '#8b4513',
+            headerGradientEnd: '#a0522d'
+        },
+        {
+            name: 'ResNet',
+            description: 'Inspired by Residual Networks, this theme uses deep reds and oranges to evoke residual connections and deep learning layers.',
+            primary: '#c0392b',
+            secondary: '#e67e22',
+            accent: '#f39c12',
+            background: '#fdf6e9',
+            sectionEvenBg: '#fff8f0',
+            footerBg: '#c0392b',
+            light: '#fdf6e9',
+            dark: '#c0392b',
+            headerGradientStart: '#c0392b',
+            headerGradientEnd: '#e67e22'
+        },
+        {
+            name: 'LSTM',
+            description: 'Inspired by Long Short-Term Memory networks, this theme blends green and blue hues to represent memory cells and gates.',
+            primary: '#2e8b57',
+            secondary: '#4682b4',
+            accent: '#00ced1',
+            background: '#e8f0f5',
+            sectionEvenBg: '#f2f6fa',
+            footerBg: '#2e8b57',
+            light: '#e8f0f5',
+            dark: '#2e8b57',
+            headerGradientStart: '#2e8b57',
+            headerGradientEnd: '#4682b4'
+        }
+    ];
+
+    // Add theme options to picker
+    themes.forEach(theme => {
+        const themeOption = document.createElement('div');
+        themeOption.classList.add('theme-option');
+        themeOption.style.display = 'flex';
+        themeOption.style.alignItems = 'center';
+        themeOption.style.padding = '10px';
+        themeOption.style.cursor = 'pointer';
+        themeOption.style.borderRadius = '8px';
+        themeOption.style.marginBottom = '8px';
+        themeOption.style.transition = 'all 0.3s ease';
+
+        themeOption.innerHTML = `
+            <div style="display: flex; margin-right: 15px;">
+                <div style="width: 20px; height: 20px; background: ${theme.primary}; border-radius: 50%; margin-right: 5px;"></div>
+                <div style="width: 20px; height: 20px; background: ${theme.secondary}; border-radius: 50%; margin-right: 5px;"></div>
+                <div style="width: 20px; height: 20px; background: ${theme.accent}; border-radius: 50%;"></div>
+            </div>
+            <div style="flex: 1;">
+                <span style="font-size: 1rem; font-weight: 600;">${theme.name}</span>
+                <span style="font-size: 0.8rem; color: #666; display: block;">${theme.description}</span>
+            </div>
+        `;
+
+        themeOption.addEventListener('mouseenter', () => {
+            themeOption.style.background = 'rgba(0, 0, 0, 0.05)';
+            themeOption.style.transform = 'scale(1.02)';
+        });
+
+        themeOption.addEventListener('mouseleave', () => {
+            themeOption.style.background = 'transparent';
+            themeOption.style.transform = 'scale(1)';
+        });
+
+        themeOption.addEventListener('click', () => {
+            // Apply theme colors
+            document.documentElement.style.setProperty('--primary-color', theme.primary);
+            document.documentElement.style.setProperty('--secondary-color', theme.secondary);
+            document.documentElement.style.setProperty('--accent-color', theme.accent);
+            document.documentElement.style.setProperty('--background-color', theme.background);
+            document.documentElement.style.setProperty('--section-even-bg', theme.sectionEvenBg);
+            document.documentElement.style.setProperty('--footer-bg', theme.footerBg);
+            document.documentElement.style.setProperty('--light-color', theme.light);
+            document.documentElement.style.setProperty('--dark-color', theme.dark);
+            document.documentElement.style.setProperty('--header-gradient-start', theme.headerGradientStart);
+            document.documentElement.style.setProperty('--header-gradient-end', theme.headerGradientEnd);
+
+            // Close color picker with animation
+            colorPicker.style.transform = 'translateY(20px) scale(0.9)';
+            colorPicker.style.opacity = '0';
+            setTimeout(() => {
+                colorPicker.style.display = 'none';
+            }, 400);
+
+            // Creative transition animation
+            const transitionOverlay = document.createElement('div');
+            transitionOverlay.style.position = 'fixed';
+            transitionOverlay.style.top = '0';
+            transitionOverlay.style.left = '0';
+            transitionOverlay.style.width = '100%';
+            transitionOverlay.style.height = '100%';
+            transitionOverlay.style.background = `radial-gradient(circle at center, ${theme.primary}, ${theme.background})`;
+            transitionOverlay.style.zIndex = '9998';
+            transitionOverlay.style.opacity = '0';
+            transitionOverlay.style.transform = 'scale(0)';
+            transitionOverlay.style.transition = 'opacity 0.6s ease, transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55)';
+            document.body.appendChild(transitionOverlay);
+
+            setTimeout(() => {
+                transitionOverlay.style.opacity = '1';
+                transitionOverlay.style.transform = 'scale(1.5)';
+                setTimeout(() => {
+                    transitionOverlay.style.opacity = '0';
+                    transitionOverlay.style.transform = 'scale(2)';
+                    setTimeout(() => {
+                        document.body.removeChild(transitionOverlay);
+                    }, 600);
+                }, 400);
+            }, 10);
+        });
+
+        colorPicker.appendChild(themeOption);
+    });
+
+    // Add custom theme option
+    const customTheme = document.createElement('div');
+    customTheme.classList.add('theme-option');
+    customTheme.style.display = 'flex';
+    customTheme.style.alignItems = 'center';
+    customTheme.style.justifyContent = 'center';
+    customTheme.style.padding = '10px';
+    customTheme.style.cursor = 'pointer';
+    customTheme.style.borderRadius = '8px';
+    customTheme.style.marginTop = '15px';
+    customTheme.style.borderTop = '1px solid #eee';
+    customTheme.style.transition = 'background 0.3s ease';
+
+    customTheme.innerHTML = `
+        <span style="font-size: 1rem; font-weight: 600;"><i class="fas fa-magic"></i> Custom Theme</span>
+    `;
+
+    customTheme.addEventListener('mouseenter', () => {
+        customTheme.style.background = 'rgba(0, 0, 0, 0.05)';
+    });
+
+    customTheme.addEventListener('mouseleave', () => {
+        customTheme.style.background = 'transparent';
+    });
+
+    customTheme.addEventListener('click', () => {
+        const customPicker = document.createElement('div');
+        customPicker.style.display = 'flex';
+        customPicker.style.flexDirection = 'column';
+        customPicker.style.padding = '20px';
+        customPicker.style.background = 'white';
+        customPicker.style.borderRadius = '15px';
+        customPicker.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2)';
+        customPicker.style.position = 'fixed';
+        customPicker.style.top = '50%';
+        customPicker.style.left = '50%';
+        customPicker.style.transform = 'translate(-50%, -50%)';
+        customPicker.style.zIndex = '9999';
+        customPicker.style.minWidth = '350px';
+
+        customPicker.innerHTML = `
+            <h3 style="margin-top: 0; text-align: center; margin-bottom: 20px; font-size: 1.5rem;">Custom Theme</h3>
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: 600;">Primary Color:</label>
+                <input type="color" id="primary-color" value="${getComputedStyle(document.documentElement).getPropertyValue('--primary-color') || '#0a3d62'}" style="width: 100%; height: 40px; border: none;">
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: 600;">Secondary Color:</label>
+                <input type="color" id="secondary-color" value="${getComputedStyle(document.documentElement).getPropertyValue('--secondary-color') || '#3498db'}" style="width: 100%; height: 40px; border: none;">
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: 600;">Accent Color:</label>
+                <input type="color" id="accent-color" value="${getComputedStyle(document.documentElement).getPropertyValue('--accent-color') || '#f39c12'}" style="width: 100%; height: 40px; border: none;">
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: 600;">Background Color:</label>
+                <input type="color" id="background-color" value="${getComputedStyle(document.documentElement).getPropertyValue('--background-color') || '#f9f9f9'}" style="width: 100%; height: 40px; border: none;">
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: 600;">Section Even Background:</label>
+                <input type="color" id="section-even-bg" value="${getComputedStyle(document.documentElement).getPropertyValue('--section-even-bg') || '#ffffff'}" style="width: 100%; height: 40px; border: none;">
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: 600;">Footer Background:</label>
+                <input type="color" id="footer-bg" value="${getComputedStyle(document.documentElement).getPropertyValue('--footer-bg') || '#2c3e50'}" style="width: 100%; height: 40px; border: none;">
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <button id="cancel-custom-theme" style="padding: 10px 20px; border: none; background: #f1f1f1; border-radius: 5px; cursor: pointer; font-weight: 600;">Cancel</button>
+                <button id="apply-custom-theme" style="padding: 10px 20px; border: none; background: var(--primary-color, #0a3d62); color: white; border-radius: 5px; cursor: pointer; font-weight: 600;">Apply Theme</button>
+            </div>
+        `;
+
+        document.body.appendChild(customPicker);
+
+        document.getElementById('cancel-custom-theme').addEventListener('click', () => {
+            document.body.removeChild(customPicker);
+        });
+
+        document.getElementById('apply-custom-theme').addEventListener('click', () => {
+            const primaryColor = document.getElementById('primary-color').value;
+            const secondaryColor = document.getElementById('secondary-color').value;
+            const accentColor = document.getElementById('accent-color').value;
+            const backgroundColor = document.getElementById('background-color').value;
+            const sectionEvenBg = document.getElementById('section-even-bg').value;
+            const footerBg = document.getElementById('footer-bg').value;
+
+            document.documentElement.style.setProperty('--primary-color', primaryColor);
+            document.documentElement.style.setProperty('--secondary-color', secondaryColor);
+            document.documentElement.style.setProperty('--accent-color', accentColor);
+            document.documentElement.style.setProperty('--background-color', backgroundColor);
+            document.documentElement.style.setProperty('--section-even-bg', sectionEvenBg);
+            document.documentElement.style.setProperty('--footer-bg', footerBg);
+            document.documentElement.style.setProperty('--light-color', backgroundColor);
+            document.documentElement.style.setProperty('--dark-color', footerBg);
+            document.documentElement.style.setProperty('--header-gradient-start', primaryColor);
+            document.documentElement.style.setProperty('--header-gradient-end', secondaryColor);
+
+            document.body.removeChild(customPicker);
+            colorPicker.style.transform = 'translateY(20px) scale(0.9)';
+            colorPicker.style.opacity = '0';
+            setTimeout(() => {
+                colorPicker.style.display = 'none';
+            }, 400);
+        });
+    });
+
+    colorPicker.appendChild(customTheme);
+
+    // Toggle color picker visibility
+    toggleButton.addEventListener('click', () => {
+        if (colorPicker.style.display === 'none') {
+            colorPicker.style.display = 'block';
+            setTimeout(() => {
+                colorPicker.style.transform = 'translateY(0) scale(1)';
+                colorPicker.style.opacity = '1';
+            }, 10);
+        } else {
+            colorPicker.style.transform = 'translateY(20px) scale(0.9)';
+            colorPicker.style.opacity = '0';
+            setTimeout(() => {
+                colorPicker.style.display = 'none';
+            }, 400);
+        }
+    });
+
+    // Enhanced hover effects
+    toggleButton.addEventListener('mouseenter', () => {
+        toggleButton.style.transform = 'scale(1.1) rotate(5deg)';
+        toggleButton.querySelector('span').style.opacity = '1';
+    });
+
+    toggleButton.addEventListener('mouseleave', () => {
+        toggleButton.style.transform = 'scale(1) rotate(0deg)';
+        toggleButton.querySelector('span').style.opacity = '0';
+    });
+
+    // Append components to page
+    themeToggle.appendChild(colorPicker);
+    themeToggle.appendChild(toggleButton);
+    document.body.appendChild(themeToggle);
+});
+// 实时技能网络图表
+document.addEventListener('DOMContentLoaded', function() {
+    const skillsSection = document.getElementById('skills');
+    if (!skillsSection) return;
+
+    // 创建网络图表容器
+    const graphContainer = document.createElement('div');
+    graphContainer.id = 'skills-graph';
+    graphContainer.style.width = '100%';
+    graphContainer.style.height = '500px';
+    graphContainer.style.background = 'rgba(255, 255, 255, 0.7)';
+    graphContainer.style.borderRadius = '10px';
+    graphContainer.style.marginTop = '30px';
+    graphContainer.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.05)';
+    graphContainer.style.overflow = 'hidden';
+    graphContainer.style.position = 'relative';
+
+    skillsSection.querySelector('.container').appendChild(graphContainer);
+
+    // 添加标题
+    const graphTitle = document.createElement('h3');
+    graphTitle.textContent = 'Skills Network Visualization';
+    graphTitle.style.textAlign = 'center';
+    graphTitle.style.marginBottom = '20px';
+    graphTitle.style.color = 'var(--primary-color)';
+    graphContainer.appendChild(graphTitle);
+
+    // 创建Canvas
+    const canvas = document.createElement('canvas');
+    canvas.id = 'skills-canvas';
+    canvas.style.width = '100%';
+    canvas.style.height = 'calc(100% - 50px)';
+    graphContainer.appendChild(canvas);
+
+    // 收集技能数据
+    const skillCategories = Array.from(skillsSection.querySelectorAll('.skill-category'));
+    const skillsData = {
+        nodes: [],
+        edges: []
+    };
+
+    // 中心节点（个人）
+    skillsData.nodes.push({
+        id: 'self',
+        label: 'Ziheng Wang',
+        color: 'var(--primary-color)',
+        size: 15,
+        fixed: true,
+        x: 0,
+        y: 0
+    });
+
+    // 添加技能类别节点
+    skillCategories.forEach((category, index) => {
+        const categoryTitle = category.querySelector('h3').textContent;
+        const categoryId = `category-${index}`;
+
+        // 添加类别节点
+        skillsData.nodes.push({
+            id: categoryId,
+            label: categoryTitle,
+            color: 'var(--secondary-color)',
+            size: 10
+        });
+
+        // 连接中心节点和类别节点
+        skillsData.edges.push({
+            from: 'self',
+            to: categoryId,
+            width: 3,
+            color: 'rgba(var(--secondary-color-rgb), 0.5)'
+        });
+
+        // 添加技能节点
+        const skills = Array.from(category.querySelectorAll('.skill-list li')).map(li => li.textContent.trim());
+
+        skills.forEach((skill, skillIndex) => {
+            const skillId = `skill-${index}-${skillIndex}`;
+
+            // 添加技能节点
+            skillsData.nodes.push({
+                id: skillId,
+                label: skill,
+                color: 'var(--accent-color)',
+                size: 6
+            });
+
+            // 连接类别节点和技能节点
+            skillsData.edges.push({
+                from: categoryId,
+                to: skillId,
+                width: 1,
+                color: 'rgba(var(--accent-color-rgb), 0.3)'
+            });
+
+            // 连接相关技能（简单示例：同类别技能相连）
+            if (skillIndex > 0) {
+                skillsData.edges.push({
+                    from: `skill-${index}-${skillIndex - 1}`,
+                    to: skillId,
+                    width: 0.5,
+                    color: 'rgba(200, 200, 200, 0.2)'
+                });
+            }
+        });
+    });
+
+    // 使用外部库进行可视化（如果需要）
+    // 这里提供一个简单的原生Canvas实现
+    const ctx = canvas.getContext('2d');
+    const width = canvas.offsetWidth;
+    const height = canvas.offsetHeight;
+
+    // 设置Canvas尺寸
+    function resizeCanvas() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+    }
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // 简易物理引擎 - 基本的力导向布局
+    const simulation = {
+        nodes: skillsData.nodes.map(node => ({
+            ...node,
+            x: node.x !== undefined ? node.x : (Math.random() * width - width/2),
+            y: node.y !== undefined ? node.y : (Math.random() * height - height/2),
+            vx: 0,
+            vy: 0
+        })),
+        links: skillsData.edges.map(edge => ({
+            source: skillsData.nodes.findIndex(n => n.id === edge.from),
+            target: skillsData.nodes.findIndex(n => n.id === edge.to),
+            width: edge.width,
+            color: edge.color
+        })),
+        update() {
+            // 重置力
+            this.nodes.forEach(node => {
+                if (node.fixed) return;
+                node.vx = 0;
+                node.vy = 0;
+            });
+
+            // 计算排斥力（节点间）
+            for (let i = 0; i < this.nodes.length; i++) {
+                for (let j = i + 1; j < this.nodes.length; j++) {
+                    const nodeA = this.nodes[i];
+                    const nodeB = this.nodes[j];
+
+                    if (nodeA.fixed && nodeB.fixed) continue;
+
+                    const dx = nodeB.x - nodeA.x;
+                    const dy = nodeB.y - nodeA.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy) || 1;
+                    const force = 1000 / (distance * distance);
+
+                    const forceX = dx / distance * force;
+                    const forceY = dy / distance * force;
+
+                    if (!nodeA.fixed) {
+                        nodeA.vx -= forceX;
+                        nodeA.vy -= forceY;
+                    }
+
+                    if (!nodeB.fixed) {
+                        nodeB.vx += forceX;
+                        nodeB.vy += forceY;
+                    }
+                }
+            }
+
+            // 计算引力（连接的节点间）
+            this.links.forEach(link => {
+                const sourceNode = this.nodes[link.source];
+                const targetNode = this.nodes[link.target];
+
+                if (sourceNode.fixed && targetNode.fixed) return;
+
+                const dx = targetNode.x - sourceNode.x;
+                const dy = targetNode.y - sourceNode.y;
+                const distance = Math.sqrt(dx * dx + dy * dy) || 1;
+                const force = 0.03 * (distance - 120);
+
+                const forceX = dx / distance * force;
+                const forceY = dy / distance * force;
+
+                if (!sourceNode.fixed) {
+                    sourceNode.vx += forceX;
+                    sourceNode.vy += forceY;
+                }
+
+                if (!targetNode.fixed) {
+                    targetNode.vx -= forceX;
+                    targetNode.vy -= forceY;
+                }
+            });
+
+            // 更新位置
+            this.nodes.forEach(node => {
+                if (node.fixed) return;
+
+                // 添加一些阻尼
+                node.vx *= 0.9;
+                node.vy *= 0.9;
+
+                node.x += node.vx;
+                node.y += node.vy;
+
+                // 边界限制
+                const padding = 50;
+                const maxX = width / 2 - padding;
+                const maxY = height / 2 - padding;
+
+                if (Math.abs(node.x) > maxX) {
+                    node.x = Math.sign(node.x) * maxX;
+                    node.vx *= -0.5;
+                }
+
+                if (Math.abs(node.y) > maxY) {
+                    node.y = Math.sign(node.y) * maxY;
+                    node.vy *= -0.5;
+                }
+            });
+        },
+        render() {
+            ctx.clearRect(0, 0, width, height);
+
+            // 绘制连线
+            ctx.lineWidth = 1;
+            this.links.forEach(link => {
+                const sourceNode = this.nodes[link.source];
+                const targetNode = this.nodes[link.target];
+
+                ctx.beginPath();
+                ctx.strokeStyle = link.color;
+                ctx.lineWidth = link.width;
+                ctx.moveTo(sourceNode.x + width/2, sourceNode.y + height/2);
+                ctx.lineTo(targetNode.x + width/2, targetNode.y + height/2);
+                ctx.stroke();
+            });
+
+            // 绘制节点
+            this.nodes.forEach(node => {
+                ctx.beginPath();
+                ctx.fillStyle = node.color;
+                ctx.arc(node.x + width/2, node.y + height/2, node.size, 0, Math.PI * 2);
+                ctx.fill();
+
+                // 绘制标签
+                ctx.fillStyle = '#333';
+                ctx.font = '10px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(node.label, node.x + width/2, node.y + height/2 + node.size + 10);
+            });
+        }
+    };
+
+    // 动画循环
+    function animate() {
+        simulation.update();
+        simulation.render();
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    // 鼠标交互
+    let isDragging = false;
+    let draggedNode = null;
+
+    canvas.addEventListener('mousedown', function(e) {
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left - width / 2;
+        const mouseY = e.clientY - rect.top - height / 2;
+
+        // 检查是否点击了节点
+        for (let i = simulation.nodes.length - 1; i >= 0; i--) {
+            const node = simulation.nodes[i];
+            const dx = mouseX - node.x;
+            const dy = mouseY - node.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < node.size) {
+                isDragging = true;
+                draggedNode = node;
+                break;
+            }
+        }
+    });
+
+    canvas.addEventListener('mousemove', function(e) {
+        if (!isDragging || !draggedNode) return;
+
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left - width / 2;
+        const mouseY = e.clientY - rect.top - height / 2;
+
+        draggedNode.x = mouseX;
+        draggedNode.y = mouseY;
+        draggedNode.vx = 0;
+        draggedNode.vy = 0;
+    });
+
+    window.addEventListener('mouseup', function() {
+        isDragging = false;
+        draggedNode = null;
+    });
+});
+</script>
     </body>
 </html>
 </body>
