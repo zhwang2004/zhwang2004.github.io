@@ -78,7 +78,7 @@
       <br>
       Weijie Xu, Zhenglong Ding, <strong>Ziheng Wang</strong>, Zhiqing Cui, Yifan Hu, Feng Jiang
       <br>
-      <em>IEEE Transactions on Geoscience and Remote Sensing</em>, 2025/9/22 &nbsp;|&nbsp; Publisher: IEEE
+      <em>IEEE Transactions on Geoscience and Remote Sensing</em>, 2025 &nbsp;|&nbsp; Publisher: IEEE
       <p></p>
       <p style="margin-top:8px;">We introduce <strong>FSCFNet</strong> on YOLOv10n with a novel <em>frequency‑spatial convolution</em> (FSConv) using Haar wavelets. High‑frequency branches enhance tiny‑target details while low‑frequency branches keep global context. An asymmetric cross‑domain attention (ACA) module sharpens the typical Gaussian‑like local patterns of IR small targets; customized multi‑scale receptive designs improve speed‑accuracy trade‑offs.</p>
     </td>
@@ -95,7 +95,7 @@
       <br>
       <strong>Ziheng Wang</strong>, Zixuan Shao, Baowei Wang, Xu Cheng
       <br>
-      <em>The Journal of Supercomputing</em>, 2025/3/9 &nbsp;|&nbsp; Volume 81, Issue 4, Pages 594 &nbsp;|&nbsp; Publisher: Springer US
+      <em>The Journal of Supercomputing</em>, 2025 &nbsp;|&nbsp; Volume 81, Issue 4, Pages 594 &nbsp;|&nbsp; Publisher: Springer US
       <p></p>
       <p style="margin-top:8px;">We propose <strong>APPBoost</strong>, which introduces a parameter pair within a new loss and weight‑update scheme to down‑weight noisy/mislabeled samples while preserving hard informative cases. The method bounds training error, relates to Forward Stagewise Additive Modeling, and empirically improves generalization under noise/imbalance.</p>
     </td>
@@ -111,9 +111,9 @@
       <br>
       <strong>Ziheng Wang</strong>, Zixuan Shao, Baowei Wang, Xu Cheng
       <br>
-      <em>Biomedical Signal Processing and Control</em>, 2025/5/1 &nbsp;|&nbsp; Volume 103, Pages 107447 &nbsp;|&nbsp; Publisher: Elsevier
+      <em>Biomedical Signal Processing and Control</em>, 2025 &nbsp;|&nbsp; Volume 103, Pages 107447 &nbsp;|&nbsp; Publisher: Elsevier
       <p></p>
-      <p style="margin-top:8px;">We propose <strong>AWABoost‑SVM</strong> with two key parameters (θ, C): θ dynamically tunes the weight‑update strength for harder samples; C regularizes the SVM to balance complexity and error. Bayesian optimization selects θ and C via expected improvement, yielding robust performance on high‑dimensional/noisy CVD data.</p>
+      <p style="margin-top:8px;">We propose <strong>AWABoost‑SVM</strong> with two key parameters: one dynamically tunes the weight‑update strength for harder samples; the other regularizes the SVM to balance complexity and error.</p>
     </td>
   </tr>
 </tbody></table>
@@ -127,19 +127,63 @@
             </tr>
           </tbody></table>
 
-          <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr>
-              <td style="padding:16px;width:20%;vertical-align:middle">
-                <img src="images/projects/rayvita.jpg" alt="RayVita" width="160" style="border-radius:8px;object-fit:cover;">
-              </td>
-              <td style="padding:8px;width:80%;vertical-align:middle">
-                <a href="https://github.com/Nickory/RayVita"><span class="papertitle">RayVita: AI‑Powered Digital Health Twin System</span></a>
-                <br>
-                <em>rPPG, HR/HRV, micro‑expression, AI tips, Android + Web</em>
-                <p>End‑to‑end health‑tech ecosystem: remote vitals from camera, AI insights and coaching, and a modular UI.</p>
-              </td>
-            </tr>
-          </tbody></table>
+          <style>
+.hover-video-container {
+  position: relative;
+  width: 160px;
+  height: 90px; /* 你可以根据视频比例调整，比如 160x160 方形也行 */
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.hover-video-container img,
+.hover-video-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hover-video-container video {
+  display: none;
+}
+.hover-video-container:hover img {
+  display: none;
+}
+.hover-video-container:hover video {
+  display: block;
+}
+</style>
+
+<table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+  <tr>
+    <td style="padding:16px;width:20%;vertical-align:middle">
+      <div class="hover-video-container">
+        <img src="images/projects/rayvita.jpg" alt="RayVita">
+        <video muted loop
+          onmouseover="this.play();"
+          onmouseout="this.pause(); this.currentTime = 0;">
+          <source src="http://47.96.237.130/assets/vedio/MAIN%20COMP_20250602_23182440_20250602_23243208_20250602_23255819.mp4" type="video/mp4">
+        </video>
+      </div>
+    </td>
+    <td style="padding:8px;width:80%;vertical-align:middle">
+      <a href="https://github.com/Nickory/RayVita"><span class="papertitle">RayVita: AI-Powered Digital Health Twin System</span></a>
+      <br>
+      <em>rPPG, HR/HRV, micro-expression, AI tips, Android + Web</em>
+      <p>End-to-end health-tech ecosystem: remote vitals from camera, AI insights and coaching, and a modular UI.</p>
+      <p>
+        <a href="data/RayVita.pdf" target="_blank">PDF Introduction</a>
+      </p>
+    </td>
+  </tr>
+</tbody></table>
+
+
+
+
 
 <!-- News -->
 <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-top:24px;"><tbody>
