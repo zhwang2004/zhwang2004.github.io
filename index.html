@@ -158,18 +158,32 @@
 }
 </style>
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/25ftlcGaDCM?si=-0oeI2mBDu4PIUbD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
   <tr>
     <td style="padding:16px;width:20%;vertical-align:middle">
       <div class="hover-video-container">
         <img src="images/projects/rayvita.jpg" alt="RayVita">
-        <video muted loop
-          onmouseover="this.play();"
-          onmouseout="this.pause(); this.currentTime = 0;">
-          <source src="http://47.96.237.130/assets/vedio/MAIN%20COMP_20250602_23182440_20250602_23243208_20250602_23255819.mp4" type="video/mp4">
-        </video>
+
+        <!-- 替换成 iframe -->
+        <div class="hover-iframe" 
+             onmouseover="this.querySelector('iframe').style.display='block';" 
+             onmouseout="this.querySelector('iframe').style.display='none';">
+
+          <iframe width="560" height="315" style="display:none;"
+            src="https://www.youtube.com/embed/25ftlcGaDCM?si=Y6bD_Tr-jrMuoSvX&clip=Ugkx72zujGZdtlhe3hIx_Fi3GroYbzv01jk7&clipt=EAAY_fkB"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+
+        </div>
       </div>
     </td>
+
     <td style="padding:8px;width:80%;vertical-align:middle">
       <a href="https://github.com/Nickory/RayVita"><span class="papertitle">RayVita: AI-Powered Digital Health Twin System</span></a>
       <br>
@@ -181,6 +195,7 @@
     </td>
   </tr>
 </tbody></table>
+
 
 <!-- News -->
 <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-top:24px;"><tbody>
